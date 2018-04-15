@@ -1,5 +1,3 @@
-// 15/04/2018
-
 import java.util.ArrayList;
 
 public class Produto {
