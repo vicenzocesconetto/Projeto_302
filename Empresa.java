@@ -1,11 +1,15 @@
 import java.util.ArrayList;
 
-public class Empresa{
+public class Empresa {
+
     private String nome;
     private String cnpj;
     private float caixa;
     private ArrayList<String> movimentacao;
 
+    public Empresa(String nome) {
+        this.nome = nome;
+    }
 
     public String getNome() {
         return nome;
