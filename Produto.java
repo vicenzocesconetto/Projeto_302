@@ -82,18 +82,6 @@ public class Produto {
 	public void setModelosCompativeis(ArrayList<String> modelosCompativeis) {
 		this.modelosCompativeis = modelosCompativeis;
 	}
-
-	@Override
-	public String toString() {
-		String str = "";
-		str += "ID: " + id + "\n";
-		str += "Nome: " + nome + "\n";
-		str += "Valor: " + valor + "\n";
-		str += "Estoque Minimo: " + estoqueMinimo + "\n";
-		str += "Estoque: " + estoque + "\n";
-		str += "Modelos Compativeis: " + modelosCompativeis.toString() + "\n";
-		return str;
-	}
 	
 	public boolean adicionarModeloCompativel(String modelo) {
 		return modelosCompativeis.add(modelo);
@@ -137,13 +125,15 @@ public class Produto {
 		return false;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	@Override
+	public String toString() {
+		String str = "";
+		str += "ID: " + id + "\n";
+		str += "Nome: " + nome + "\n";
+		str += "Valor: " + valor + "\n";
+		str += "Estoque Minimo: " + estoqueMinimo + "\n";
+		str += "Estoque: " + estoque + "\n";
+		str += "Modelos Compativeis: " + modelosCompativeis.toString() + "\n";
+		return str;
+	}
 }
