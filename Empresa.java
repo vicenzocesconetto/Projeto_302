@@ -7,8 +7,14 @@ public class Empresa {
     private float caixa;
     private ArrayList<String> movimentacao;
 
+
     public Empresa(String nome) {
         this.nome = nome;
+    }
+
+    public Empresa(String nome, String cnpj) {
+        this.nome = nome;
+        this.cnpj = cnpj;
     }
 
     public String getNome() {

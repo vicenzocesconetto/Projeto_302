@@ -6,6 +6,15 @@ public class Venda {
     private FormaPagamento formaPagamento;
 
 
+    public Venda() {}
+
+    public Venda(String client, ArrayList<Produtos> produtos, ArraList<Servicos> servicos, FormaPagamento formaPagamento) {
+        this.client = client;
+        this.produtos = produtos;
+        this.servicos = servicos;
+        this.formaPagamento = formaPagamento;
+    }
+
     public float calcularValorTotal(float ... preco) {
         float total = 0;
         for (int i = 0; i < preco.length; i++) {
