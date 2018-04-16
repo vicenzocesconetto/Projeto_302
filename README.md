@@ -1,5 +1,5 @@
 # Projeto_302
-Projeto de MC302
+##Projeto de MC302
 // 14/04/2017
 
 Classes bases:
@@ -34,13 +34,13 @@ Classes bases:
 -	Empresa:
 		- Dados da empresa
 		- Caixa
-		- ArryList Movimentação
+		- ArrayList Movimentação
 
 //Vicenzo
 -	Venda:
 		- Cliente
-		- Arry Produtos
-		- Arry Serviços
+		- Array Produtos
+		- Array Serviços
 		- Enum Tipo de pagamento
 		- Metodos
 			- Total
