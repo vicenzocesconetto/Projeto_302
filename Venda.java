@@ -1,14 +1,16 @@
+import java.util.ArrayList;
+
 public class Venda {
 
     private String client;
     private ArrayList<Produtos> produtos;
-    private ArraList<Servicos> servicos;
+    private ArrayList<Servicos> servicos;
     private FormaPagamento formaPagamento;
 
 
     public Venda() {}
 
-    public Venda(String client, ArrayList<Produtos> produtos, ArraList<Servicos> servicos, FormaPagamento formaPagamento) {
+    public Venda(String client, ArrayList<Produtos> produtos, ArrayList<Servicos> servicos, FormaPagamento formaPagamento) {
         this.client = client;
         this.produtos = produtos;
         this.servicos = servicos;
@@ -58,11 +60,11 @@ public class Venda {
         this.produtos = produtos;
     }
 
-    public ArraList<Servicos> getServicos() {
+    public ArrayList<Servicos> getServicos() {
         return servicos;
     }
 
-    public void setServicos(ArraList<Servicos> servicos) {
+    public void setServicos(ArrayList<Servicos> servicos) {
         this.servicos = servicos;
     }
 

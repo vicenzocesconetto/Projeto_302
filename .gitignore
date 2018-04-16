@@ -1,2 +1,4 @@
 # IntelliJ Management files #
 *.iml
+.idea
+/src
