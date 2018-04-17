@@ -6,15 +6,20 @@ Classes bases:
 
 //Evandro
 -	Cliente:
-		- Contato
-		- Enum: tipo veiculo
-		- Dados do veiculo:
+		- Contato:
+			-nome
+			-telefone
+			-endereço -> classe endereço
+			-email
+		- Array historico
+		- Static Num de Clientes
+		//17/04/2017
+		- Dados do veiculo: -> classe veiculo
+			- Enum: tipo veiculo
 			- Modelo/Marca
 			- KM
 			- Placa
 			- Ano fabricação/Ano Modelo
-		- Array Serviços
-		- Static Num de Clientes
 
 //Gustavo
 -	Produto:
@@ -29,6 +34,8 @@ Classes bases:
 -	Funcionarios:
 		- Nome
 		- Enum Cargo
+		- login
+		- senha
 
 //Vicenzo
 -	Empresa:
@@ -36,8 +43,17 @@ Classes bases:
 		- Caixa
 		- ArrayList Movimentação
 
+		//17/04/2019
+		- Movimentação: 
+			- valor 
+		==========Herança============
+			-Entrada
+				- Tipo de pagamento
+			-retirada
+				- motivo
+
 //Vicenzo
--	Venda:
+-	Venda:  
 		- Cliente
 		- Array Produtos
 		- Array Serviços
@@ -46,6 +62,11 @@ Classes bases:
 			- Total
 			- Desconto
 			- Troco
+		
+		// 17/04/2018
+		- Data
+		- Funcionario Resp
+		- 
 
 //Gustavo
 -	Serviços:
