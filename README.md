@@ -1,79 +1,95 @@
 # Projeto_302
-##Projeto de MC302
-// 14/04/2017
 
 Classes bases:
 
-//Evandro
--	Cliente:
+	- Cliente:
 		- Contato:
-			-nome
-			-telefone
-			-endereço -> classe endereço
+			-Nome
+			-Telefone
+			-Endereço -> classe endereço
 			-email
 		- Array historico
 		- Static Num de Clientes
-		//17/04/2017
-		- Dados do veiculo: -> classe veiculo
-			- Enum: tipo veiculo
-			- Modelo/Marca
-			- KM
-			- Placa
-			- Ano fabricação/Ano Modelo
 
-//Gustavo
--	Produto:
-		- Dados do produto
-		- Volume 
+		+ addHistorico
+		
+	- Veiculo
+		- Enum TipoVeiculo
+		- Modelo/Marca
+		- Placa
+		- Ano fabricação/Ano Modelo
+	
+	- Motorista extends Cliente
+		- ArrayList<Veiculo> veiculos
+		- ArrayList<int> kms
+
+		+ addVeiculos
+		+ addKMs
+		
+	- Produto:
+		- Id
+		- Nome
+		- Valor 
 		- Estoque
-		- Modelos compativeis
-		- Quantidade de produtos cadastrados
-		- Estoque minimo
+		- Estoque Minimo
+		- ArrayLis<Veiculo> Modelos compativeis
+		- Static Quantidade de produtos cadastrados
+		
+		+ Funçoes para manipular o estoque		
 
-//Evandro
--	Funcionarios:
+	- Funcionarios:
 		- Nome
 		- Enum Cargo
 		- login
 		- senha
 
-//Vicenzo
--	Empresa:
-		- Dados da empresa
+	- Empresa:
+		- Nome
+		- CNPJ
 		- Caixa
-		- ArrayList Movimentação
+		- ArrayList <Movimentacao>
 
-		//17/04/2019
-		- Movimentação: 
-			- valor 
-		==========Herança============
-			-Entrada
-				- Tipo de pagamento
-			-retirada
-				- motivo
+		+ Imprimir Movimentacao
 
-//Vicenzo
--	Venda:  
-		- Cliente
-		- Array Produtos
-		- Array Serviços
-		- Enum Tipo de pagamento
-		- Metodos
-			- Total
-			- Desconto
-			- Troco
+	- Movimentacao: 
+		- valor 
 		
-		// 17/04/2018
+	- Entrada extends Movimentacao
+		- Tipo de pagamento
+	
+	- Retirada extends Movimentacao
+		- Motivo
+		
+	- Venda:  
+		- Cliente
+		- ArrayList<Produto> Produtos
+		- ArrayList<Servico> Servicos
+		- Enum Tipo de pagamento
 		- Data
-		- Funcionario Resp
-		- 
+		- Funcionario Responsavel 
+		- Empresa
 
-//Gustavo
--	Serviços:
+		+ Total
+		+ addProdutos
+		+ addServicos
+		+ Finalizar venda
+			->alterar caixa
+			->salvar a movimentação
+			->diminuir estoque
+			->salvar historico
+		+ Desconto
+		
+	- Serviços:
+		- Id
 		- Nome
 		- Preço
 
-	//Serviços Outros
-
-// Entrega 18/04/2017
-
+	- Main
+		- ArrayList<Cliente> clientes
+		- ArrayList<Produto> produtos
+		- ArrayList<Servico> servicos
+		- Empresa
+		
+		+ Buscas (Cliente/Produto/Servicos)
+		+ Adicionar (Cliente/Produto/Servicos)
+		+ Atualizar estoque

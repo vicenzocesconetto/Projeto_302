@@ -4,7 +4,7 @@ public class Veiculo {
 	private String Marca;
 	private String Modelo;
 	private String placa;
-	private int km;
+	//private int km; //Classe motorista
 	private short anoF;
 	private short anoM;
 

@@ -8,7 +8,7 @@ public class Cliente {
 	private String email;
 	private Endereco endereco;
 	
-	private ArrayList<Veiculo> veiculos;
+	private ArrayList<Veiculo> veiculos; //Classe motorista
 	private ArrayList<Venda> historico;
 	
 	public Cliente(String nome, String telefone, String email, Endereco endereco) {
