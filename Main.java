@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-	public class Main{
-	private ArrayList<Cliente> clientes;
+public class Main{
+	
+   	private ArrayList<Cliente> clientes;
 	private ArrayList<Produto> produtos;
 	private ArrayList<Servico> servicos;
 	private Empresa empresa;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 			 }
 		  }
 		  return null;
-	 }
+	 }    
 	  
 	private Produto BuscarProduto(String nome) {
 		 for (int i = 0; i<produtos.size(); i++) {
