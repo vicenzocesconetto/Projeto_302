@@ -1,21 +1,18 @@
-
 public class Veiculo {
 	private TipoVeiculo tipo;
-	private String Marca;
-	private String Modelo;
+	private String marca;
+	private String modelo;
 	private String placa;
-	//private int km; //Classe motorista
-	private short anoF;
-	private short anoM;
-
-	public Veiculo(TipoVeiculo tipo, String marca, String modelo, String placa, int km, short anoF, short anoM) {
+	private short anoFabricacao;
+	private short anoModelo;
+	
+	public Veiculo(TipoVeiculo tipo, String marca, String modelo, String placa, short anoFabricacao, short anoModelo) {
 		this.tipo = tipo;
-		Marca = marca;
-		Modelo = modelo;
+		this.marca = marca;
+		this.modelo = modelo;
 		this.placa = placa;
-		this.km = km;
-		this.anoF = anoF;
-		this.anoM = anoM;
+		this.anoFabricacao = anoFabricacao;
+		this.anoModelo = anoModelo;
 	}
 
 	public TipoVeiculo getTipo() {
@@ -27,19 +24,19 @@ public class Veiculo {
 	}
 
 	public String getMarca() {
-		return Marca;
+		return marca;
 	}
 
 	public void setMarca(String marca) {
-		Marca = marca;
+		this.marca = marca;
 	}
 
 	public String getModelo() {
-		return Modelo;
+		return modelo;
 	}
 
 	public void setModelo(String modelo) {
-		Modelo = modelo;
+		this.modelo = modelo;
 	}
 
 	public String getPlaca() {
@@ -50,27 +47,19 @@ public class Veiculo {
 		this.placa = placa;
 	}
 
-	public int getKm() {
-		return km;
+	public short getAnoFabricacao() {
+		return anoFabricacao;
 	}
 
-	public void setKm(int km) {
-		this.km = km;
+	public void setAnoFabricacao(short anoFabricacao) {
+		this.anoFabricacao = anoFabricacao;
 	}
 
-	public short getAnoF() {
-		return anoF;
+	public short getAnoModelo() {
+		return anoModelo;
 	}
 
-	public void setAnoF(short anoF) {
-		this.anoF = anoF;
-	}
-
-	public short getAnoM() {
-		return anoM;
-	}
-
-	public void setAnoM(short anoM) {
-		this.anoM = anoM;
+	public void setAnoModelo(short anoModelo) {
+		this.anoModelo = anoModelo;
 	}
 }

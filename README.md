@@ -1,4 +1,4 @@
-# Projeto_302
+# Projeto 302
 
 Classes bases:
 
@@ -32,10 +32,12 @@ Classes bases:
 		- Valor 
 		- Estoque
 		- Estoque Minimo
-		- ArrayLis<Veiculo> Modelos compativeis
+//		- ArrayLis<Veiculo> Modelos compativeis
 		- Static Quantidade de produtos cadastrados
 		
-		+ Funçoes para manipular o estoque		
+		+ checarEstoque
+		+ diminuirEstoque
+		+ aumentarEstoque		
 
 	- Funcionarios:
 		- Nome
@@ -49,7 +51,7 @@ Classes bases:
 		- Caixa
 		- ArrayList <Movimentacao>
 
-		+ Imprimir Movimentacao
+		+ addMovimentacao
 
 	- Movimentacao: 
 		- valor 
@@ -68,8 +70,8 @@ Classes bases:
 		- Data
 		- Funcionario Responsavel 
 		- Empresa
+		- Total
 
-		+ Total
 		+ addProdutos
 		+ addServicos
 		+ Finalizar venda
@@ -93,3 +95,4 @@ Classes bases:
 		+ Buscas (Cliente/Produto/Servicos)
 		+ Adicionar (Cliente/Produto/Servicos)
 		+ Atualizar estoque
+		+ Retirar

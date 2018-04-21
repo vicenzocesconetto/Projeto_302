@@ -5,16 +5,12 @@ public class Empresa {
     private String nome;
     private String cnpj;
     private float caixa;
-    private ArrayList<String> movimentacao;
-
-
-    public Empresa(String nome) {
-        this.nome = nome;
-    }
+    private ArrayList<Movimentacao> movimentacoes;
 
     public Empresa(String nome, String cnpj) {
-        this.nome = nome;
+    	this.nome = nome;
         this.cnpj = cnpj;
+        this.movimentacoes = new ArrayList<Movimentacao>();
     }
 
     public String getNome() {
@@ -41,21 +37,18 @@ public class Empresa {
         this.caixa = caixa;
     }
 
-    public ArrayList<String> getMovimentacao() {
-        return movimentacao;
-    }
-
-    public void setMovimentacao(ArrayList<String> movimentacao) {
-        this.movimentacao = movimentacao;
-    }
-
-    @Override
-    public String toString() {
-        return "Empresa{" +
-                "nome='" + nome + '\'' +
-                ", cnpj='" + cnpj + '\'' +
-                ", caixa=" + caixa +
-                ", movimentacao=" + movimentacao +
-                '}';
-    }
+	public ArrayList<Movimentacao> getMovimentacoes() {
+		return movimentacoes;
+	}
+	
+	public void addMovimentacao(Movimentacao m) {
+		movimentacoes.add(m);
+		
+		if(m instanceof Entrada) {
+			this.caixa += m.getValor();
+		}
+		if(m instanceof Retirada) {
+			this.caixa -= m.getValor();
+		}
+	}	
 }

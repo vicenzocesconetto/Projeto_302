@@ -8,7 +8,6 @@ public class Cliente {
 	private String email;
 	private Endereco endereco;
 	
-	private ArrayList<Veiculo> veiculos; //Classe motorista
 	private ArrayList<Venda> historico;
 	
 	public Cliente(String nome, String telefone, String email, Endereco endereco) {
@@ -16,16 +15,12 @@ public class Cliente {
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
-		this.veiculos = new ArrayList<Veiculo>();
 		this.historico = new ArrayList<Venda>();
+		numClientes++;
 	}
 
 	public static int getNumClientes() {
 		return numClientes;
-	}
-
-	public static void setNumClientes(int numClientes) {
-		Cliente.numClientes = numClientes;
 	}
 
 	public String getNome() {
@@ -56,15 +51,11 @@ public class Cliente {
 		return endereco;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public ArrayList<Venda> getHistorico() {
+		return historico;
 	}
-
-	public ArrayList<Veiculo> getVeiculos() {
-		return veiculos;
-	}
-
-	public void setVeiculos(ArrayList<Veiculo> veiculos) {
-		this.veiculos = veiculos;
+	
+	public void addHistorico(Venda n) {
+		this.historico.add(n);
 	}
 }

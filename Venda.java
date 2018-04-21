@@ -1,88 +1,104 @@
 import java.util.ArrayList;
 
 public class Venda {
-
-    private String client;
-    private ArrayList<Produtos> produtos;
-    private ArrayList<Servicos> servicos;
+    private Cliente cliente;
+    private ArrayList<Produto> produtos;
+    private ArrayList<Servico> servicos;
+    private ArrayList<Integer> qtd;
     private FormaPagamento formaPagamento;
-
-
-    public Venda() {}
-
-    public Venda(String client, ArrayList<Produtos> produtos, ArrayList<Servicos> servicos, FormaPagamento formaPagamento) {
-        this.client = client;
-        this.produtos = produtos;
-        this.servicos = servicos;
-        this.formaPagamento = formaPagamento;
+    private Data data;
+    private String funcionario;
+    private Empresa empresa;
+    private float total;
+    
+    public Venda() {
+    	this.produtos = new ArrayList<Produto>();
+    	this.servicos = new ArrayList<Servico>();
+    	this.qtd = new ArrayList<Integer>();
     }
 
-    public float calcularValorTotal(float ... preco) {
-        float total = 0;
-        for (int i = 0; i < preco.length; i++) {
-            total += preco[i];
-        }
+	public Venda(Cliente cliente, Data data, String funcionario, Empresa empresa) {
+		this.cliente = cliente;
+		this.data = data;
+		this.funcionario = funcionario;
+		this.empresa = empresa;
+	}
 
-        return total;
-    }
+	public Cliente getCliente() {
+		return cliente;
+	}
 
-    public float calcularTroco(float preco, float valorPago) {
-        if(valorPago < preco) {
-            System.out.println("O valor pago eh menor que o preco! Revise a compra.");
-            return -1;
-        } else
-        return valorPago - preco;
-    }
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
-    public float aplicarDesconto(float preco, float desconto) {
-        if(desconto > preco) {
-            System.out.println("O desconto eh maior que o preco da preco! Revise a compra.");
-            return -1;
-        }
-        else {
-            return preco - desconto;
-        }
-    }
+	public FormaPagamento getFormaPagamento() {
+		return formaPagamento;
+	}
 
-    public String getClient() {
-        return client;
-    }
+	public void setFormaPagamento(FormaPagamento formaPagamento) {
+		this.formaPagamento = formaPagamento;
+	}
 
-    public void setClient(String client) {
-        this.client = client;
-    }
+	public Data getData() {
+		return data;
+	}
 
-    public ArrayList<Produtos> getProdutos() {
-        return produtos;
-    }
+	public void setData(Data data) {
+		this.data = data;
+	}
 
-    public void setProdutos(ArrayList<Produtos> produtos) {
-        this.produtos = produtos;
-    }
+	public String getFuncionario() {
+		return funcionario;
+	}
 
-    public ArrayList<Servicos> getServicos() {
-        return servicos;
-    }
+	public void setFuncionario(String funcionario) {
+		this.funcionario = funcionario;
+	}
 
-    public void setServicos(ArrayList<Servicos> servicos) {
-        this.servicos = servicos;
-    }
+	public Empresa getEmpresa() {
+		return empresa;
+	}
 
-    public FormaPagamento getFormaPagamento() {
-        return formaPagamento;
-    }
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 
-    public void setFormaPagamento(FormaPagamento formaPagamento) {
-        this.formaPagamento = formaPagamento;
-    }
+	public ArrayList<Produto> getProdutos() {
+		return produtos;
+	}
 
-    @Override
-    public String toString() {
-        return "Venda{" +
-                "client='" + client + '\'' +
-                ", produtos=" + produtos +
-                ", servicos=" + servicos +
-                ", formaPagamento=" + formaPagamento +
-                '}';
-    }
+	public ArrayList<Servico> getServicos() {
+		return servicos;
+	}
+
+	public float getTotal() {
+		return total;
+	}
+	
+	public void addProduto(Produto p, int q) {
+		qtd.add(q);	
+		produtos.add(p);
+	}
+	
+	public void addServico(Servico s) {
+		servicos.add(s);
+	}
+	
+	public void desconto(Float d) {
+		float aux=1;
+		aux -=d;
+		this.total=aux*total;
+	}
+	
+	public void finalizarVenda() {
+		//Salva no historico do Produto
+		this.cliente.addHistorico(this);
+		//Diminui o estoque dos produtos
+		for (int i=0; i<this.produtos.size(); i++) {
+			this.produtos.get(i).diminuirEstoque(1);
+		}
+		//Salva MOvimentacao
+		empresa.addMovimentacao(new Entrada(this.getTotal(),this.getFormaPagamento()));		
+	}
 }
