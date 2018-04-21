@@ -51,9 +51,14 @@ public class Main{
 	  // precisa da implementacao da movimentacao (motivo,...)
   }
   
+  private boolean atualizarEstoque(String nome, int estoque) {
+	  if (estoque >= 0) {
+		  BuscarProduto(nome).setEstoque(estoque);
+		  return true;
+	  }
+	  return false;
+  }
   
-  
-
   public static void main(String[] args) {
     int comandoDoUsuario;
     Scanner usuarioInput = new Scanner(System.in);
