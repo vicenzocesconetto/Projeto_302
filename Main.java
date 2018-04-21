@@ -46,7 +46,7 @@ public class Main{
 	  
 	private Servico BuscarServico(String nome) {
 		for (int i = 0; i<servicos.size(); i++) {
-			if (servicos.get(i).getNome.toLowerCase() == nome) {
+			if (servicos.get(i).getNome().toLowerCase() == nome) {
 				return servicos.get(i);
 			 }
 		 }
