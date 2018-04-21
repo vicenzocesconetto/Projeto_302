@@ -66,29 +66,65 @@ public class Main{
 		}
 		return false;
 	}
-    
-    private String imprimeEncerrante(ArrayList<Movimentacao> m){
-        String  out = "";
-			
-		for (int i=0;i<m.size();i++) {
-			if(m.get(i) instanceof Entrada) {
-				Entrada e = (Entrada)m.get(i);
-				out += "-------------------------------------\n";
-				out += "Entrada!\n";
-				out += "Valor: R$" + e.getValor()+"\n";
-				out += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
-			}else {
-				Retirada r = (Retirada)m.get(i);
-					out += "-------------------------------------\n";
-					out += "Retirada!\n";
-					out += "Valor: R$" + r.getValor()+"\n";
-					out += "Motivo: " + r.getMotivo()+"\n";	
-				}
+	
+	private String printCliente(Cliente cliente) {
+		String str = "";
+		str += "Nome: " + cliente.getNome() + "\n";
+		str += "Telefone: " + cliente.getTelefone() + "\n";
+		str += "Email: " + cliente.getEmail() + "\n";
+		str += "Endereço\n\n";
+		str += "UF: " + cliente.getEndereco().getUf() + "\n"; 
+		str += "Cidade: " + cliente.getEndereco().getCidade() + "\n"; 
+		str += "Bairro: " + cliente.getEndereco().getBairro() + "\n"; 
+		str += "Rua: " + cliente.getEndereco().getRua() + "\n"; 
+		str += "Numero: " + cliente.getEndereco().getNumero() + "\n\n";
+		str += "Veiculos do cliente\n\n";
+		if (cliente instanceof Motorista) {
+			for (int i = 0; i<((Motorista)cliente).getVeiculos().size(); i++) {
+				Veiculo veiculo = ((Motorista)cliente).getVeiculos().get(i);
+				str += "Veiculo" + (i + 1) + "\n\n";
+				str += "Tipo " + veiculo.getTipo() + "\n";
+				str += "Marca: " + veiculo.getMarca() + "\n";
+				str += "Modelo: " + veiculo.getModelo() + "\n";
+				// str += "Kilometragem da ultima visita: " + veiculo.getKms();
+				str += "Ano de fabricacao: " + veiculo.getAnoFabricacao() + "\n";
+				str += "Ano do modelo: " + veiculo.getAnoModelo() + "\n";
+				str += "Placa: " + veiculo.getPlaca() + "\n";
 			}
-         return out;
-    }
+		}
+		str += "Historico de vendas do cliente\n\n";
+		for (int i = 0; i<cliente.getHistorico().size(); i++) {
+			Venda venda = cliente.getHistorico().get(i);
+			str += "Venda" + (i + 1) + "\n\n";
+			str += "Data da venda: " + venda.getData().getDia() + "/" + venda.getData().getMes() + "/" + venda.getData().getAno() + "\n";
+			str += "Funcionario responsavel: " + venda.getFuncionario() + "\n"; 
+			str += "Forma de pagamento: " + venda.getFormaPagamento() + "\n";
+			str += "" + venda.getProdutos().toString();
 
-   public static void main(String[] args) {
+		}
+		str += "Modelos Compativeis: " + modelosCompativeis.toString() + "\n";
+		return str;
+	}
+	
+	private String printProduto(Produto produto) {
+		String str = "";
+		str += "ID: " + produto.getId() + "\n";
+		str += "Nome: " + produto.getNome() + "\n";
+		str += "Valor" + produto.getValor() + "\n";
+		str += "Quantidade em estoque: " + produto.getEstoque() + "\n";
+		checarEstoqueMinimo(produto);
+		return str;
+	}
+	
+	private String printServico(Servico servico) {
+		String str = "";
+		str += "ID: " + servico.getId() + "\n";
+		str += "Nome: " + servico.getNome() + "\n";
+		str += "Valor" + servico.getValor() + "\n";
+		return str;
+	}
+  
+  public static void main(String[] args) {
     int comandoDoUsuario;
     Scanner usuarioInput = new Scanner(System.in);
 
