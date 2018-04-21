@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Venda {
     private Cliente cliente;
@@ -6,7 +7,7 @@ public class Venda {
     private ArrayList<Servico> servicos;
     private ArrayList<Integer> qtd;
     private FormaPagamento formaPagamento;
-    private Data data;
+    private final Date data;
     private String funcionario;
     private Empresa empresa;
     private float total;
@@ -15,11 +16,12 @@ public class Venda {
     	this.produtos = new ArrayList<Produto>();
     	this.servicos = new ArrayList<Servico>();
     	this.qtd = new ArrayList<Integer>();
+    	this.data = new Date();
     }
 
-	public Venda(Cliente cliente, Data data, String funcionario, Empresa empresa) {
+	public Venda(Cliente cliente, String funcionario, Empresa empresa) {
+		this();
 		this.cliente = cliente;
-		this.data = data;
 		this.funcionario = funcionario;
 		this.empresa = empresa;
 	}
@@ -40,12 +42,8 @@ public class Venda {
 		this.formaPagamento = formaPagamento;
 	}
 
-	public Data getData() {
+	public Date getData() {
 		return data;
-	}
-
-	public void setData(Data data) {
-		this.data = data;
 	}
 
 	public String getFuncionario() {

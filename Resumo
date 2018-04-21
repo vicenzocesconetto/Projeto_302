@@ -24,6 +24,7 @@ No programa é possivel:
 Rotina do programa:
 
 	- O funcionário entra com seu login e senha (A ser implementado)
+    - O funcionario informa o caixa inicial do turno.
 	- Temos as funções iniciais:
 		- Realizar Venda:
 			- O funcionário entra com um cliente, é possivel cadastrar um novo ou buscar um cliente pelo nome.
