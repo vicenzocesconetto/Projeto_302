@@ -59,6 +59,13 @@ public class Main{
 		}
 		return false;
 	}
+	
+	private boolean checarEstoqueMinimo(Produto produto) {
+		if (produto.checarEstoqueMinimo() == true) {
+			System.out.println("AVISO: Estoque atual menor que o estoque minimo");
+		}
+		return false;
+	}
   
   public static void main(String[] args) {
     int comandoDoUsuario;
