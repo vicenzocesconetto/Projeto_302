@@ -1,32 +1,21 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main{
-	
-   	private ArrayList<Cliente> clientes;
-	private ArrayList<Produto> produtos;
-	private ArrayList<Servico> servicos;
-	private Empresa empresa;
-	
-	 public static void main(String[] args) {
-		    int comandoDoUsuario;
-		    Scanner usuarioInput = new Scanner(System.in);
-
-		    System.out.println("O que voce deseja fazer?");
-		    System.out.println("[1] Buscar cliente, produtos ou servicos");
-		    System.out.println("[2] Adicionar cliente, produtos ou servicos");
-		    System.out.println("[3] Atualizar estoque");
-
-		    comandoDoUsuario = usuarioInput.nextInt();
-
-		    switch (comandoDoUsuario) {
-		      case 1:
-		      case 2:
-		      case 3:
-		    }
-	 }
+public class Main{	
+	public static void main(String[] args) {
+		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+		ArrayList<Produto> produtos = new ArrayList<Produto>();
+		ArrayList<Servico> servicos = new ArrayList<Servico>();
+		Empresa empresa = new Empresa("Oficina", "1234568790");
+		
+		
+		
+		
+		
+		
+	}
 	 
-	private Cliente BuscarCliente(String nome) {
+	private Cliente BuscarCliente(ArrayList<Cliente> clientes, String nome) {
 		 for (int i = 0; i<clientes.size(); i++) {
 			 if (clientes.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
 				 return clientes.get(i);
@@ -35,7 +24,7 @@ public class Main{
 		  return null;
 	 }    
 	  
-	private Produto BuscarProduto(String nome) {
+	private Produto BuscarProduto(ArrayList<Produto> produtos, String nome) {
 		 for (int i = 0; i<produtos.size(); i++) {
 			 if (produtos.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
 				 return produtos.get(i);
@@ -44,35 +33,22 @@ public class Main{
 		  return null;
 	 }
 	  
-	private Servico BuscarServico(String nome) {
+	private Servico BuscarServico(ArrayList<Servico> servicos, String nome) {
 		for (int i = 0; i<servicos.size(); i++) {
-			if (servicos.get(i).getNome.toLowerCase() == nome) {
+			if (servicos.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
 				return servicos.get(i);
 			 }
 		 }
 		 return null;
 	 }
 	  
-	private boolean adicionarCliente(Cliente cliente) {
-		return clientes.add(cliente);
+	private void retirarDinheiro(Empresa empresa, float valor, String motivo) {
+		empresa.addMovimentacao(new Retirada(valor, motivo));
 	}
 	  
-	private boolean adicionarProduto(Produto produto) {
-		return produtos.add(produto);
-	}
-	  
-	private boolean adicionarServico(Servico servico) {
-		return servicos.add(servico);
-	}
-	  
-	private void retirarDinheiro(float valor) {
-		empresa.setCaixa(empresa.getCaixa() - valor);
-		// precisa da implementacao da movimentacao (motivo,...)
-	}
-	  
-	private boolean atualizarEstoque(String nome, int estoque) {
+	private boolean atualizarEstoque(Produto produto, int estoque) {
 		if (estoque >= 0) {
-			BuscarProduto(nome).setEstoque(estoque);
+			produto.setEstoque(estoque);
 			return true;
 		}
 		return false;
@@ -80,33 +56,34 @@ public class Main{
 	
 	private boolean checarEstoqueMinimo(Produto produto) {
 		if (produto.checarEstoqueMinimo() == true) {
-			System.out.println("AVISO: Estoque atual menor que o estoque minimo");
+			return true;
 		}
 		return false;
 	}
 	
 	private String imprimeEncerrante(ArrayList<Movimentacao> m){
-        String  out = "";
+        String  str = "";
 			
 		for (int i=0;i<m.size();i++) {
 			if(m.get(i) instanceof Entrada) {
 				Entrada e = (Entrada)m.get(i);
-				out += "-------------------------------------\n";
-				out += "Entrada!\n";
-				out += "Valor: R$" + e.getValor()+"\n";
-				out += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
+				str += "-------------------------------------\n";
+				str += "Entrada!\n";
+				str += "Valor: R$" + e.getValor()+"\n";
+				str += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
 			}else {
 				Retirada r = (Retirada)m.get(i);
-					out += "-------------------------------------\n";
-					out += "Retirada!\n";
-					out += "Valor: R$" + r.getValor()+"\n";
-					out += "Motivo: " + r.getMotivo()+"\n";	
+					str += "-------------------------------------\n";
+					str += "Retirada!\n";
+					str += "Valor: R$" + r.getValor()+"\n";
+					str += "Motivo: " + r.getMotivo()+"\n";	
 				}
 			}
-         return out;
+         return str;
     }
 	
 	private String printDadosCliente(Cliente cliente) {
+		if (cliente == null) return "Cliente nao encontrado!";
 		String str = "";
 		str += "Nome: " + cliente.getNome() + "\n";
 		str += "Telefone: " + cliente.getTelefone() + "\n";
@@ -136,21 +113,22 @@ public class Main{
 			return str;
 		}
 	
-	private String printHistoricoDeVendasCliente(Cliente cliente) {
-		String str = "Historico de vendas do cliente\n\n";
+	private String printHistoricoDeComprasCliente(Cliente cliente) {
+		String str = "Historico de compras do cliente\n\n";
 		for (int i = 0; i<cliente.getHistorico().size(); i++) {
 			Venda venda = cliente.getHistorico().get(i);
-			str += "Venda" + (i + 1) + "\n\n";
-			str += "Data da venda: " + venda.getData().getDia() + "/" + venda.getData().getMes() + "/" + venda.getData().getAno() + "\n";
+			str += "Compra" + (i + 1) + "\n\n";
+			str += "Data da compra: " + venda.getData().getDia() + "/" + venda.getData().getMes() + "/" + venda.getData().getAno() + "\n";
 			str += "Funcionario responsavel: " + venda.getFuncionario() + "\n"; 
 			str += "Forma de pagamento: " + venda.getFormaPagamento() + "\n";
+			
 			str += "Produtos comprados\n\n";
 			for (int j = 0; j<venda.getProdutos().size(); j++) {
 				str += venda.getQtd().get(j) + " " + venda.getProdutos().get(j).getNome() + "\n";
 			}
 			str += "Servicos comprados\n\n";
 			for (int j = 0; j<venda.getServicos().size(); j++) {
-				str += servicos.get(j).getNome() + "\n";
+				str += venda.getServicos().get(j).getNome() + "\n";
 			}
 			str += "Valor total da venda: " + venda.getTotal() + '\n';	
 		}
@@ -158,6 +136,7 @@ public class Main{
 	}
 	
 	private String printProduto(Produto produto) {
+		if (produto == null) return "Cliente nao encontrado!";
 		String str = "";
 		str += "ID: " + produto.getId() + "\n";
 		str += "Nome: " + produto.getNome() + "\n";
@@ -168,12 +147,12 @@ public class Main{
 	}
 	
 	private String printServico(Servico servico) {
+		if (servico == null) return "Cliente nao encontrado!";
 		String str = "";
 		str += "ID: " + servico.getId() + "\n";
 		str += "Nome: " + servico.getNome() + "\n";
 		str += "Valor" + servico.getValor() + "\n";
 		return str;
 	}
-  
-   
+
 }
