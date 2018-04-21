@@ -1,0 +1,82 @@
+Projeto 1 MC302
+Gustavo Henrique Libraiz Teixeira RA 198537
+Vicenzo Cano Cesconetto RA 206456
+Evandro Luis Araujo de Sousa RA 170701
+
+Neste projeto desenvolvemos um programa para gerenciar um oficina mecanica.
+Uma das principais diferenças do nosso programa é a possibilidade de prever o retorno do cliente a oficina, serviços ciclicos (trocas de oleo, filtros, limpezas, correias, balanceamento, etc...) devem ocorrer a cada x kms. Dada a previsao o funcionario da oficina pode entrar em contato com seu cliente e assim manter uma fidelização.
+Outro diferencial que temos é guardar os modelos de carro compativeis com um dado produto, não é raro ouvir casos de pessoas que tiveram o oleo/filtro errados colocados no seu carro, dessa forma o programa checa se o produto pode ser utilizado no carro do cliente.
+
+No programa é possivel:
+
+	- Controlar o caixa, o programa salva as entradas e saidas de dinheiro em todas as formas de pagamento aceitas. É possivel imprimir um encerrante que mostra todas as transações daquele turno.
+	
+	- Cadastrar e gerenciar o estoque de produtos.
+	
+	- Cadastrar serviços oferecidos pela oficina.
+
+	- Cadastrar e gerenciar os clientes. Existem dois tipos de cliente: Os que não tem carro, apenas compram produtos e não tem um carro cadastrado e o cliente que tem um carro cadastrado, um motorista.
+	Para cada cliente é associado um historico de compras e servicos realizados.
+	- Gerenciar os dados da empresa e os funcionarios presentes nela.
+
+	- Realizar vendas de diversos produtos e servicos cadastrados.
+
+Rotina do programa:
+
+	- O funcianario entra com seu login e senha (A ser implementado)
+	- Temos as funções iniciais:
+		- Realizar Venda:
+			- O funcionario entra com um cliente, é possivel cadastrar um novo ou buscar um cliente pelo nome.
+			- Então ele adiciona os produtos ou servicos que vai oferecer ao seu cliente, as buscas sao feitas por nome
+			- Quando ele adiciona um produto ele é questionado sobre a quantidade de itens desse produto
+			- Caso o funcionario seja o gerente é possivel dar um desconto para aquela venda. Caso o funcionario nao seja um gerente o programa pede o login e senha do gerente (a ser implementado).
+			- Apos o funcionario concluir a venda é exibido os detalhes da mesma
+
+		- Cadastrar ou Atualizar Cliente
+			- Cadastrar novo cliente:
+				- o funcionario é perguntado sobre os dados do cliente que quer cadastrar
+			- Atualizar Cadastro:
+				- o funcionario busca os dados do cliente ja cadastrado, pelo nome do mesmo
+				- apos a busca sao exibidos os dados do cliente e o funcionario é questionado quais dados quer atualizar
+
+	
+		- Cadastrar Produto/Servico
+			- Cadastrar produto
+				- o funcionario é questionado sobre os dados do produto que ele quer cadastrar.
+				- os dados sao exibidos para o funcionario, que se confirmar, o produto é adicionado aos ja cadastrados.
+
+			- Cadastrar Servico
+				- o funcionario é questionado sobre os dados do servico que ele quer cadastar.
+				- os dados sao exibidos para o funcionario, que se confirmar, o servico é adicionado aos ja cadastrados.
+
+		- Atualizar Estoque de produtos
+			- o funcionario faz uma busca do produto que quer atualizar o estoque, por nome.
+			- ele informa o novo valor do estoque
+			- apos o funcionario confirmar o novo valor ele é salvo na memoria.
+
+		- Caixa:
+			- Exibir caixa atual:
+				- é exibido na tela o valor atual do caixa.
+
+			- Imprimir encerrante:
+				- é impresso o nome do funcionario, a data e hora atuais e as movimentações do caixa até o presente momento
+
+		- Retorno de Clientes:
+			- São exibidos os clientes que devem retornar para algum serviço nos proximos 7 dias.
+
+		- Sair 
+			- Salvas os dados no disco (a ser implementadas)
+			- encerra o programa
+
+
+
+
+
+
+
+
+
+
+
+
+
