@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Venda {
 
-    private String client;
+    private String cliente;
     private ArrayList<Produtos> produtos;
     private ArrayList<Servicos> servicos;
     private FormaPagamento formaPagamento;
