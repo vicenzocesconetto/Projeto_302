@@ -66,6 +66,27 @@ public class Main{
 		}
 		return false;
 	}
+
+     private String imprimeEncerrante(ArrayList<Movimentacao> m){
+        String  out = "";
+			
+		for (int i=0;i<m.size();i++) {
+			if(m.get(i) instanceof Entrada) {
+				Entrada e = (Entrada)m.get(i);
+				out += "-------------------------------------\n";
+				out += "Entrada!\n";
+				out += "Valor: R$" + e.getValor()+"\n";
+				out += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
+			}else {
+				Retirada r = (Retirada)m.get(i);
+					out += "-------------------------------------\n";
+					out += "Retirada!\n";
+					out += "Valor: R$" + r.getValor()+"\n";
+					out += "Motivo: " + r.getMotivo()+"\n";	
+				}
+			}
+         return out;
+    }
 	
 	private String printCliente(Cliente cliente) {
 		String str = "";
