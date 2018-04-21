@@ -72,6 +72,10 @@ public class Venda {
 		return servicos;
 	}
 
+	public ArrayList<Integer> getQtd() {
+		return qtd;
+	}
+
 	public float getTotal() {
 		return total;
 	}
@@ -86,9 +90,7 @@ public class Venda {
 	}
 	
 	public void desconto(Float d) {
-		float aux=1;
-		aux -=d;
-		this.total=aux*total;
+		this.total=(1-d)*total;
 	}
 	
 	public void finalizarVenda() {
@@ -96,9 +98,9 @@ public class Venda {
 		this.cliente.addHistorico(this);
 		//Diminui o estoque dos produtos
 		for (int i=0; i<this.produtos.size(); i++) {
-			this.produtos.get(i).diminuirEstoque(1);
+			this.produtos.get(i).diminuirEstoque(qtd.get(i));
 		}
-		//Salva MOvimentacao
+		//Salva Movimentacao
 		empresa.addMovimentacao(new Entrada(this.getTotal(),this.getFormaPagamento()));		
 	}
 }
