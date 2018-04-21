@@ -6,6 +6,53 @@ public class Main{
   private ArrayList<Produto> produtos;
   private ArrayList<Servico> servicos;
   private Empresa empresa;
+  
+  private Cliente BuscarCliente(String nome) {
+	  for (int i = 0; i<clientes.size(); i++) {
+		  if (clientes.get(i).getNome() == nome) {
+			  return clientes.get(i);
+		  }
+	  }
+	  return null;
+  }
+  
+  private Produto BuscarProduto(String nome) {
+	  for (int i = 0; i<produtos.size(); i++) {
+		  if (produtos.get(i).getNome() == nome) {
+			  return produtos.get(i);
+		  }
+	  }
+	  return null;
+  }
+  
+  private Servico BuscarServico(String nome) {
+	  for (int i = 0; i<servicos.size(); i++) {
+		  if (servicos.get(i).getNome() == nome) {
+			  return servicos.get(i);
+		  }
+	  }
+	  return null;
+  }
+  
+  private boolean adicionarCliente(Cliente cliente) {
+	  return clientes.add(cliente);
+  }
+  
+  private boolean adicionarProduto(Produto produto) {
+	  return produtos.add(produto);
+  }
+  
+  private boolean adicionarServico(Servico servico) {
+	  return servicos.add(servico);
+  }
+  
+  private void retirarDinheiro(float valor) {
+	  empresa.setCaixa(empresa.getCaixa() - valor);
+	  // precisa da implementacao da movimentacao (motivo,...)
+  }
+  
+  
+  
 
   public static void main(String[] args) {
     int comandoDoUsuario;
@@ -16,7 +63,7 @@ public class Main{
     System.out.println("[2] Adicionar cliente, produtos ou servicos");
     System.out.println("[3] Atualizar estoque");
 
-    comandoDoUsuario = usuarioInput.NextLine();
+    comandoDoUsuario = usuarioInput.nextInt();
 
     switch (comandoDoUsuario) {
       case 1:
