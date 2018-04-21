@@ -102,10 +102,10 @@ public class Main{
 		return str;
 	}
 	
-	private String printVeiculosMotorista(Cliente cliente) {
+	private String printVeiculosMotorista(Motorista cliente) {
 		String str = "Veiculos do cliente\n\n";
-		for (int i = 0; i<((Motorista)cliente).getVeiculos().size(); i++) {
-				Veiculo veiculo = ((Motorista)cliente).getVeiculos().get(i);
+		for (int i = 0; i<cliente.getVeiculos().size(); i++) {
+				Veiculo veiculo = cliente.getVeiculos().get(i);
 				str += "Veiculo" + (i + 1) + "\n\n";
 				str += "Tipo " + veiculo.getTipo() + "\n";
 				str += "Marca: " + veiculo.getMarca() + "\n";
