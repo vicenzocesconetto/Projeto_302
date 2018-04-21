@@ -1,11 +1,11 @@
-Projeto 1 MC302
+﻿Projeto 1 MC302
 Gustavo Henrique Libraiz Teixeira RA 198537
 Vicenzo Cano Cesconetto RA 206456
 Evandro Luis Araujo de Sousa RA 170701
 
-Neste projeto desenvolvemos um programa para gerenciar um oficina mecanica.
-Uma das principais diferenças do nosso programa é a possibilidade de prever o retorno do cliente a oficina, serviços ciclicos (trocas de oleo, filtros, limpezas, correias, balanceamento, etc...) devem ocorrer a cada x kms. Dada a previsao o funcionario da oficina pode entrar em contato com seu cliente e assim manter uma fidelização.
-Outro diferencial que temos é guardar os modelos de carro compativeis com um dado produto, não é raro ouvir casos de pessoas que tiveram o oleo/filtro errados colocados no seu carro, dessa forma o programa checa se o produto pode ser utilizado no carro do cliente.
+Neste projeto desenvolvemos um programa para gerenciar uma oficina mecanica.
+Uma das principais diferenças do nosso programa é a possibilidade de prever o retorno do cliente a oficina, serviços ciclicos (trocas de oleo, filtros, limpezas, correias, balanceamento, etc...) devem ocorrer a cada x kms. Dada a previsao o funcionario da oficina pode entrar em contato com seu cliente e assim manter uma fidelização. (A ser implementado)
+Outro diferencial que temos é guardar os modelos de carro compativeis com um dado produto, não é raro ouvir casos de pessoas que tiveram o óleo/filtro errados colocados no seu carro, dessa forma o programa checa se o produto pode ser utilizado no carro do cliente. (A ser implementado)
 
 No programa é possivel:
 
@@ -23,20 +23,20 @@ No programa é possivel:
 
 Rotina do programa:
 
-	- O funcianario entra com seu login e senha (A ser implementado)
+	- O funcionário entra com seu login e senha (A ser implementado)
 	- Temos as funções iniciais:
 		- Realizar Venda:
-			- O funcionario entra com um cliente, é possivel cadastrar um novo ou buscar um cliente pelo nome.
-			- Então ele adiciona os produtos ou servicos que vai oferecer ao seu cliente, as buscas sao feitas por nome
+			- O funcionário entra com um cliente, é possivel cadastrar um novo ou buscar um cliente pelo nome.
+			- Então ele adiciona os produtos ou servicos que vai oferecer ao seu cliente, as buscas são feitas por nome
 			- Quando ele adiciona um produto ele é questionado sobre a quantidade de itens desse produto
-			- Caso o funcionario seja o gerente é possivel dar um desconto para aquela venda. Caso o funcionario nao seja um gerente o programa pede o login e senha do gerente (a ser implementado).
-			- Apos o funcionario concluir a venda é exibido os detalhes da mesma
+			- Caso o funcionário seja o gerente é possivel dar um desconto para aquela venda. Caso o funcionario nao seja um gerente o programa pede o login e senha do gerente (A ser implementado).
+			- Após o funcionário concluir a venda é exibido os detalhes da mesma
 
 		- Cadastrar ou Atualizar Cliente
 			- Cadastrar novo cliente:
 				- o funcionario é perguntado sobre os dados do cliente que quer cadastrar
 			- Atualizar Cadastro:
-				- o funcionario busca os dados do cliente ja cadastrado, pelo nome do mesmo
+				- o funcionário busca os dados do cliente já cadastrado, pelo nome do mesmo
 				- apos a busca sao exibidos os dados do cliente e o funcionario é questionado quais dados quer atualizar
 
 	
@@ -62,7 +62,7 @@ Rotina do programa:
 				- é impresso o nome do funcionario, a data e hora atuais e as movimentações do caixa até o presente momento
 
 		- Retorno de Clientes:
-			- São exibidos os clientes que devem retornar para algum serviço nos proximos 7 dias.
+			- São exibidos os clientes que devem retornar para algum serviço nos proximos x dias. (A ser implementado)
 
 		- Sair 
 			- Salvas os dados no disco (a ser implementadas)

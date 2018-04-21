@@ -15,7 +15,7 @@ public class Main{
 		
 	}
 	 
-	private Cliente BuscarCliente(ArrayList<Cliente> clientes, String nome) {
+	private Cliente buscarCliente(ArrayList<Cliente> clientes, String nome) {
 		 for (int i = 0; i<clientes.size(); i++) {
 			 if (clientes.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
 				 return clientes.get(i);
@@ -24,7 +24,7 @@ public class Main{
 		  return null;
 	 }    
 	  
-	private Produto BuscarProduto(ArrayList<Produto> produtos, String nome) {
+	private Produto buscarProduto(ArrayList<Produto> produtos, String nome) {
 		 for (int i = 0; i<produtos.size(); i++) {
 			 if (produtos.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
 				 return produtos.get(i);
@@ -33,7 +33,7 @@ public class Main{
 		  return null;
 	 }
 	  
-	private Servico BuscarServico(ArrayList<Servico> servicos, String nome) {
+	private Servico buscarServico(ArrayList<Servico> servicos, String nome) {
 		for (int i = 0; i<servicos.size(); i++) {
 			if (servicos.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
 				return servicos.get(i);
@@ -88,7 +88,7 @@ public class Main{
 		str += "Nome: " + cliente.getNome() + "\n";
 		str += "Telefone: " + cliente.getTelefone() + "\n";
 		str += "Email: " + cliente.getEmail() + "\n";
-		str += "Endere�o\n\n";
+		str += "Endereco\n\n";
 		str += "UF: " + cliente.getEndereco().getUf() + "\n"; 
 		str += "Cidade: " + cliente.getEndereco().getCidade() + "\n"; 
 		str += "Bairro: " + cliente.getEndereco().getBairro() + "\n"; 
@@ -98,6 +98,7 @@ public class Main{
 	}
 	
 	private String printVeiculosMotorista(Motorista cliente) {
+		if (cliente == null) return "Cliente nao encontrado!";
 		String str = "Veiculos do cliente\n\n";
 		for (int i = 0; i<cliente.getVeiculos().size(); i++) {
 				Veiculo veiculo = cliente.getVeiculos().get(i);
@@ -114,6 +115,7 @@ public class Main{
 		}
 	
 	private String printHistoricoDeComprasCliente(Cliente cliente) {
+		if (cliente == null) return "Cliente nao encontrado!";
 		String str = "Historico de compras do cliente\n\n";
 		for (int i = 0; i<cliente.getHistorico().size(); i++) {
 			Venda venda = cliente.getHistorico().get(i);
@@ -136,7 +138,7 @@ public class Main{
 	}
 	
 	private String printProduto(Produto produto) {
-		if (produto == null) return "Cliente nao encontrado!";
+		if (produto == null) return "Produto nao encontrado!";
 		String str = "";
 		str += "ID: " + produto.getId() + "\n";
 		str += "Nome: " + produto.getNome() + "\n";
@@ -147,7 +149,7 @@ public class Main{
 	}
 	
 	private String printServico(Servico servico) {
-		if (servico == null) return "Cliente nao encontrado!";
+		if (servico == null) return "Servico nao encontrado!";
 		String str = "";
 		str += "ID: " + servico.getId() + "\n";
 		str += "Nome: " + servico.getNome() + "\n";
