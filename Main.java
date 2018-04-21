@@ -67,7 +67,28 @@ public class Main{
 		return false;
 	}
 	
-	private String printCliente(Cliente cliente) {
+	private String imprimeEncerrante(ArrayList<Movimentacao> m){
+        String  out = "";
+			
+		for (int i=0;i<m.size();i++) {
+			if(m.get(i) instanceof Entrada) {
+				Entrada e = (Entrada)m.get(i);
+				out += "-------------------------------------\n";
+				out += "Entrada!\n";
+				out += "Valor: R$" + e.getValor()+"\n";
+				out += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
+			}else {
+				Retirada r = (Retirada)m.get(i);
+					out += "-------------------------------------\n";
+					out += "Retirada!\n";
+					out += "Valor: R$" + r.getValor()+"\n";
+					out += "Motivo: " + r.getMotivo()+"\n";	
+				}
+			}
+         return out;
+    }
+	
+	private String printDadosCliente(Cliente cliente) {
 		String str = "";
 		str += "Nome: " + cliente.getNome() + "\n";
 		str += "Telefone: " + cliente.getTelefone() + "\n";
@@ -77,32 +98,44 @@ public class Main{
 		str += "Cidade: " + cliente.getEndereco().getCidade() + "\n"; 
 		str += "Bairro: " + cliente.getEndereco().getBairro() + "\n"; 
 		str += "Rua: " + cliente.getEndereco().getRua() + "\n"; 
-		str += "Numero: " + cliente.getEndereco().getNumero() + "\n\n";
-		str += "Veiculos do cliente\n\n";
-		if (cliente instanceof Motorista) {
-			for (int i = 0; i<((Motorista)cliente).getVeiculos().size(); i++) {
+		str += "Numero: " + cliente.getEndereco().getNumero() + "\n\n";	
+		return str;
+	}
+	
+	private String printVeiculosMotorista(Cliente cliente) {
+		String str = "Veiculos do cliente\n\n";
+		for (int i = 0; i<((Motorista)cliente).getVeiculos().size(); i++) {
 				Veiculo veiculo = ((Motorista)cliente).getVeiculos().get(i);
 				str += "Veiculo" + (i + 1) + "\n\n";
 				str += "Tipo " + veiculo.getTipo() + "\n";
 				str += "Marca: " + veiculo.getMarca() + "\n";
 				str += "Modelo: " + veiculo.getModelo() + "\n";
-				// str += "Kilometragem da ultima visita: " + veiculo.getKms();
+				str += "Kilometragem da ultima visita: " + veiculo.getKms() + "\n";
 				str += "Ano de fabricacao: " + veiculo.getAnoFabricacao() + "\n";
 				str += "Ano do modelo: " + veiculo.getAnoModelo() + "\n";
 				str += "Placa: " + veiculo.getPlaca() + "\n";
 			}
+			return str;
 		}
-		str += "Historico de vendas do cliente\n\n";
+	
+	private String printHistoricoDeVendasCliente(Cliente cliente) {
+		String str = "Historico de vendas do cliente\n\n";
 		for (int i = 0; i<cliente.getHistorico().size(); i++) {
 			Venda venda = cliente.getHistorico().get(i);
 			str += "Venda" + (i + 1) + "\n\n";
 			str += "Data da venda: " + venda.getData().getDia() + "/" + venda.getData().getMes() + "/" + venda.getData().getAno() + "\n";
 			str += "Funcionario responsavel: " + venda.getFuncionario() + "\n"; 
 			str += "Forma de pagamento: " + venda.getFormaPagamento() + "\n";
-			str += "" + venda.getProdutos().toString();
-
+			str += "Produtos comprados\n\n";
+			for (int j = 0; j<venda.getProdutos().size(); j++) {
+				str += venda.getQtd().get(j) + " " + venda.getProdutos().get(j).getNome() + "\n";
+			}
+			str += "Servicos comprados\n\n";
+			for (int j = 0; j<venda.getServicos().size(); j++) {
+				str += servicos.get(j).getNome() + "\n";
+			}
+			str += "Valor total da venda: " + venda.getTotal() + '\n';	
 		}
-		str += "Modelos Compativeis: " + modelosCompativeis.toString() + "\n";
 		return str;
 	}
 	
