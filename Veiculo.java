@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Veiculo {
 	private TipoVeiculo tipo;
 	private String marca;
@@ -5,14 +7,17 @@ public class Veiculo {
 	private String placa;
 	private short anoFabricacao;
 	private short anoModelo;
+	private ArrayList<Integer> kms;
 	
-	public Veiculo(TipoVeiculo tipo, String marca, String modelo, String placa, short anoFabricacao, short anoModelo) {
+	public Veiculo(TipoVeiculo tipo, String marca, String modelo, String placa, short anoFabricacao, short anoModelo, int km) {
 		this.tipo = tipo;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.placa = placa;
 		this.anoFabricacao = anoFabricacao;
 		this.anoModelo = anoModelo;
+		this.kms = new ArrayList<Integer>();
+		this.kms.add(km);
 	}
 
 	public TipoVeiculo getTipo() {
@@ -62,4 +67,13 @@ public class Veiculo {
 	public void setAnoModelo(short anoModelo) {
 		this.anoModelo = anoModelo;
 	}
+	
+	public ArrayList<Integer> getKms() {
+		return kms;
+	}
+	
+	public void addkm (int km) {
+		this.kms.add(km);
+	}	
+	
 }
