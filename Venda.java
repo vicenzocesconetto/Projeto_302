@@ -10,8 +10,8 @@ public class Venda {
 
     public Venda() {}
 
-    public Venda(String client, ArrayList<Produtos> produtos, ArrayList<Servicos> servicos, FormaPagamento formaPagamento) {
-        this.client = client;
+    public Venda(String cliente, ArrayList<Produtos> produtos, ArrayList<Servicos> servicos, FormaPagamento formaPagamento) {
+        this.cliente = cliente;
         this.produtos = produtos;
         this.servicos = servicos;
         this.formaPagamento = formaPagamento;
@@ -44,12 +44,12 @@ public class Venda {
         }
     }
 
-    public String getClient() {
-        return client;
+    public String getCliente() {
+        return cliente;
     }
 
-    public void setClient(String client) {
-        this.client = client;
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
 
     public ArrayList<Produtos> getProdutos() {
