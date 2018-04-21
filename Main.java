@@ -1,63 +1,63 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main{
-  private ArrayList<Cliente> clientes;
-  private ArrayList<Produto> produtos;
-  private ArrayList<Servico> servicos;
-  private Empresa empresa;
+	public class Main{
+	private ArrayList<Cliente> clientes;
+	private ArrayList<Produto> produtos;
+	private ArrayList<Servico> servicos;
+	private Empresa empresa;
   
-  private Cliente BuscarCliente(String nome) {
-	  for (int i = 0; i<clientes.size(); i++) {
-		  if (clientes.get(i).getNome() == nome) {
-			  return clientes.get(i);
+	private Cliente BuscarCliente(String nome) {
+		 for (int i = 0; i<clientes.size(); i++) {
+			 if (clientes.get(i).getNome() == nome) {
+				 return clientes.get(i);
+			 }
 		  }
-	  }
-	  return null;
-  }
-  
-  private Produto BuscarProduto(String nome) {
-	  for (int i = 0; i<produtos.size(); i++) {
-		  if (produtos.get(i).getNome() == nome) {
-			  return produtos.get(i);
+		  return null;
+	 }
+	  
+	private Produto BuscarProduto(String nome) {
+		 for (int i = 0; i<produtos.size(); i++) {
+			 if (produtos.get(i).getNome() == nome) {
+				 return produtos.get(i);
+			  }
 		  }
-	  }
-	  return null;
-  }
-  
-  private Servico BuscarServico(String nome) {
-	  for (int i = 0; i<servicos.size(); i++) {
-		  if (servicos.get(i).getNome() == nome) {
-			  return servicos.get(i);
-		  }
-	  }
-	  return null;
-  }
-  
-  private boolean adicionarCliente(Cliente cliente) {
-	  return clientes.add(cliente);
-  }
-  
-  private boolean adicionarProduto(Produto produto) {
-	  return produtos.add(produto);
-  }
-  
-  private boolean adicionarServico(Servico servico) {
-	  return servicos.add(servico);
-  }
-  
-  private void retirarDinheiro(float valor) {
-	  empresa.setCaixa(empresa.getCaixa() - valor);
-	  // precisa da implementacao da movimentacao (motivo,...)
-  }
-  
-  private boolean atualizarEstoque(String nome, int estoque) {
-	  if (estoque >= 0) {
-		  BuscarProduto(nome).setEstoque(estoque);
-		  return true;
-	  }
-	  return false;
-  }
+		  return null;
+	 }
+	  
+	private Servico BuscarServico(String nome) {
+		for (int i = 0; i<servicos.size(); i++) {
+			if (servicos.get(i).getNome() == nome) {
+				return servicos.get(i);
+			 }
+		 }
+		 return null;
+	 }
+	  
+	private boolean adicionarCliente(Cliente cliente) {
+		return clientes.add(cliente);
+	}
+	  
+	private boolean adicionarProduto(Produto produto) {
+		return produtos.add(produto);
+	}
+	  
+	private boolean adicionarServico(Servico servico) {
+		return servicos.add(servico);
+	}
+	  
+	private void retirarDinheiro(float valor) {
+		empresa.setCaixa(empresa.getCaixa() - valor);
+		// precisa da implementacao da movimentacao (motivo,...)
+	}
+	  
+	private boolean atualizarEstoque(String nome, int estoque) {
+		if (estoque >= 0) {
+			BuscarProduto(nome).setEstoque(estoque);
+			return true;
+		}
+		return false;
+	}
   
   public static void main(String[] args) {
     int comandoDoUsuario;
