@@ -8,7 +8,11 @@ public class Venda {
     private FormaPagamento formaPagamento;
 
 
-    public Venda() {}
+    public Venda() {
+        produtos = new ArrayList<Produtos>();
+        servicos = new ArrayList<Servicos>();
+        formaPagamento = new FormaPagamento;
+    }
 
     public Venda(String cliente, ArrayList<Produtos> produtos, ArrayList<Servicos> servicos, FormaPagamento formaPagamento) {
         this.cliente = cliente;
