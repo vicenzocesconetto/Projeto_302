@@ -10,7 +10,6 @@ public class Main {
 		Date hoje = new Date();
 		Funcoes funcoes = new Funcoes(); 
 		
-		
-		
+			
 	}
 }

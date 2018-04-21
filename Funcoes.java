@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 
 public class Funcoes {
-	private Cliente buscarCliente(ArrayList<Cliente> clientes, String nome) {
+	
+	
+	
+	public Cliente buscarCliente(ArrayList<Cliente> clientes, String nome) {
 		 for (int i = 0; i<clientes.size(); i++) {
 			 if (clientes.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
 				 return clientes.get(i);
@@ -10,7 +13,7 @@ public class Funcoes {
 		  return null;
 	 }    
 	  
-	private Produto buscarProduto(ArrayList<Produto> produtos, String nome) {
+	public Produto buscarProduto(ArrayList<Produto> produtos, String nome) {
 		 for (int i = 0; i<produtos.size(); i++) {
 			 if (produtos.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
 				 return produtos.get(i);
@@ -19,7 +22,7 @@ public class Funcoes {
 		  return null;
 	 }
 	  
-	private Servico buscarServico(ArrayList<Servico> servicos, String nome) {
+	public Servico buscarServico(ArrayList<Servico> servicos, String nome) {
 		for (int i = 0; i<servicos.size(); i++) {
 			if (servicos.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
 				return servicos.get(i);
@@ -28,11 +31,11 @@ public class Funcoes {
 		 return null;
 	 }
 	  
-	private void retirarDinheiro(Empresa empresa, float valor, String motivo) {
+	public void retirarDinheiro(Empresa empresa, float valor, String motivo) {
 		empresa.addMovimentacao(new Retirada(valor, motivo));
 	}
 	  
-	private boolean atualizarEstoque(Produto produto, int estoque) {
+	public boolean atualizarEstoque(Produto produto, int estoque) {
 		if (estoque >= 0) {
 			produto.setEstoque(estoque);
 			return true;
@@ -40,14 +43,14 @@ public class Funcoes {
 		return false;
 	}
 	
-	private boolean checarEstoqueMinimo(Produto produto) {
+	public boolean checarEstoqueMinimo(Produto produto) {
 		if (produto.checarEstoqueMinimo() == true) {
 			return true;
 		}
 		return false;
 	}
 	
-	private String imprimeEncerrante(ArrayList<Movimentacao> m){
+	public String imprimeEncerrante(ArrayList<Movimentacao> m){
        String  str = "";
 			
 		for (int i=0;i<m.size();i++) {
@@ -68,7 +71,7 @@ public class Funcoes {
         return str;
    }
 	
-	private String printDadosCliente(Cliente cliente) {
+	public String printDadosCliente(Cliente cliente) {
 		if (cliente == null) return "Cliente nao encontrado!";
 		String str = "";
 		str += "Nome: " + cliente.getNome() + "\n";
@@ -83,7 +86,7 @@ public class Funcoes {
 		return str;
 	}
 	
-	private String printVeiculosMotorista(Motorista cliente) {
+	public String printVeiculosMotorista(Motorista cliente) {
 		if (cliente == null) return "Cliente nao encontrado!";
 		String str = "Veiculos do cliente\n\n";
 		for (int i = 0; i<cliente.getVeiculos().size(); i++) {
@@ -100,7 +103,7 @@ public class Funcoes {
 			return str;
 		}
 	
-	private String printHistoricoDeComprasCliente(Cliente cliente) {
+	public String printHistoricoDeComprasCliente(Cliente cliente) {
 		if (cliente == null) return "Cliente nao encontrado!";
 		String str = "Historico de compras do cliente\n\n";
 		for (int i = 0; i<cliente.getHistorico().size(); i++) {
@@ -123,7 +126,7 @@ public class Funcoes {
 		return str;
 	}
 	
-	private String printProduto(Produto produto) {
+	public String printProduto(Produto produto) {
 		if (produto == null) return "Produto nao encontrado!";
 		String str = "";
 		str += "ID: " + produto.getId() + "\n";
@@ -134,7 +137,7 @@ public class Funcoes {
 		return str;
 	}
 	
-	private String printServico(Servico servico) {
+	public String printServico(Servico servico) {
 		if (servico == null) return "Servico nao encontrado!";
 		String str = "";
 		str += "ID: " + servico.getId() + "\n";
