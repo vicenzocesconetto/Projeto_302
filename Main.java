@@ -39,8 +39,9 @@ public class Main {
 
 				System.out.println("Nome do Produto (aperte enter para pular):");
 				Produto produto = funcoes.buscarProduto(produtos, input.nextLine());
+				int qtd = 0;
 				if(produto != null) {
-					int qtd = 0;
+
 					System.out.println("Quantidade:");
 					qtd = Integer.parseInt(input.nextLine());
 					venda.addProduto(produto, qtd);
@@ -53,7 +54,20 @@ public class Main {
 				venda.addServico(servico);
 				cliente.addHistorico(venda);
 
+				System.out.println("Qual a forma de pagamento?");
+				System.out.println("[1] Dinheiro");
+				System.out.println("[2] Cartao de Credito");
+				System.out.println("[3] Cartao de Debito");
 
+				byte pag = Byte.parseByte(input.nextLine());
+				if(pag == 1)
+					venda.setFormaPagamento(FormaPagamento.DINHEIRO);
+				else if(pag == 2)
+					venda.setFormaPagamento(FormaPagamento.CARTAO_DE_CREDITO);
+				else if(pag == 3)
+					venda.setFormaPagamento(FormaPagamento.CARTAO_DE_DEBITO);
+
+				funcoes.printVenda(venda);
 			}
 
 			else if(comando.equals("2")) {
@@ -144,6 +158,6 @@ public class Main {
 
 		} while(comando.equals("8"));
 
-		System.out.println(funcoes.imprimeEncerrante());
+		System.out.println(funcoes.imprimeEncerrante(empresa.getMovimentacoes()));
 	}
 }

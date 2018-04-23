@@ -87,7 +87,17 @@ public class Funcoes {
 	}
 
 
-	public void
+	public String printVenda(Venda venda) {
+		if(venda == null) return "Venda nao encontrada";
+
+		return  "Venda:\n" +
+				"Nome: " + venda.getCliente().getNome() +
+				"Forma de Pagamento: " + venda.getFormaPagamento() +
+				"Data: " + venda.getData() +
+				"Funcionario: " + venda.getFuncionario() +
+				"Empresa: " + venda.getEmpresa() +
+				"Total: " + venda.getTotal();
+	}
 	
 	public String printVeiculosMotorista(Motorista cliente) {
 		if (cliente == null) return "Cliente nao encontrado!";
