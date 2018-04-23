@@ -15,6 +15,9 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 		String comando;
 
+		System.out.println("Qual o caixa atual?");
+		empresa.setCaixa(Float.parseFloat(input.nextLine()));
+
 		do {
 			System.out.println("O que voce quer fazer?");
 			System.out.println("[1] Realizar venda");
@@ -28,9 +31,28 @@ public class Main {
 
 			comando = input.nextLine();
 
+//			Switch is ugly and untransparent
 			if(comando.equals("1")) {
+				System.out.println("Qual o nome do cliente da compra?");
+				Cliente cliente = funcoes.buscarCliente(clientes, input.nextLine());
+				Venda venda = new Venda(cliente, "Joao", empresa);
 
-				System.out.println();
+				System.out.println("Nome do Produto (aperte enter para pular):");
+				Produto produto = funcoes.buscarProduto(produtos, input.nextLine());
+				if(produto != null) {
+					int qtd = 0;
+					System.out.println("Quantidade:");
+					qtd = Integer.parseInt(input.nextLine());
+					venda.addProduto(produto, qtd);
+				}
+
+				System.out.println("Nome do servico (aperte enter para pular):");
+				Servico servico = funcoes.buscarServico(servicos, input.nextLine());
+				venda.setCliente(cliente);
+				venda.setEmpresa(empresa);
+				venda.addServico(servico);
+				cliente.addHistorico(venda);
+
 
 			}
 
@@ -97,7 +119,7 @@ public class Main {
 				System.out.println("Qual o nome do Cliente?");
 				Cliente cliente = funcoes.buscarCliente(clientes, input.nextLine());
 				if(cliente != null)
-					funcoes.printDadosCliente(cliente);
+					System.out.println(funcoes.printDadosCliente(cliente));
 				else
 					System.out.println("Cliente nao encontrado");
 			}
@@ -106,7 +128,7 @@ public class Main {
 				System.out.println("Qual o nome do Produto?");
 				Produto produto = funcoes.buscarProduto(produtos, input.nextLine());
 				if(produto != null)
-					funcoes.printProduto(produto);
+					System.out.println(funcoes.printProduto(produto));
 				else
 					System.out.println("Produto nao encontrado");
 			}
@@ -115,13 +137,13 @@ public class Main {
 				System.out.println("Qual o nome do Servico?");
 				Servico servico = funcoes.buscarServico(servicos, input.nextLine());
 				if(servico != null)
-					funcoes.printServico(servico);
+					System.out.println(funcoes.printServico(servico));
 				else
 					System.out.println("Servico nao encontrado");
 			}
 
 		} while(comando.equals("8"));
 
-		funcoes.imprimeEncerrante();
+		System.out.println(funcoes.imprimeEncerrante());
 	}
 }

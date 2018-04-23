@@ -85,6 +85,9 @@ public class Funcoes {
 		str += "Numero: " + cliente.getEndereco().getNumero() + "\n\n";	
 		return str;
 	}
+
+
+	public void
 	
 	public String printVeiculosMotorista(Motorista cliente) {
 		if (cliente == null) return "Cliente nao encontrado!";

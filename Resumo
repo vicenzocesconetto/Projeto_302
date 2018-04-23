@@ -27,7 +27,7 @@ Rotina do programa:
     - O funcionario informa o caixa inicial do turno.
 	- Temos as funções iniciais:
 		- Realizar Venda:
-			- O funcionário entra com um cliente, é possivel cadastrar um novo ou buscar um cliente pelo nome.
+			- O funcionário entra com o nome do cliente.
 			- Então ele adiciona os produtos ou servicos que vai oferecer ao seu cliente, as buscas são feitas por nome
 			- Quando ele adiciona um produto ele é questionado sobre a quantidade de itens desse produto
 			- Caso o funcionário seja o gerente é possivel dar um desconto para aquela venda. Caso o funcionario nao seja um gerente o programa pede o login e senha do gerente (A ser implementado).
