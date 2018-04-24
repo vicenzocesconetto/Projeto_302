@@ -156,7 +156,7 @@ public class Main {
 					System.out.println("Servico nao encontrado");
 			}
 
-		} while(comando.equals("8"));
+		} while(!comando.equals("8"));
 
 		System.out.println(funcoes.imprimeEncerrante(empresa.getMovimentacoes()));
 	}
