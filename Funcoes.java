@@ -6,7 +6,7 @@ public class Funcoes {
 	
 	public Cliente buscarCliente(ArrayList<Cliente> clientes, String nome) {
 		 for (int i = 0; i<clientes.size(); i++) {
-			 if (clientes.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
+			 if (clientes.get(i).getNome().toLowerCase().equals(nome.toLowerCase())) {
 				 return clientes.get(i);
 			 }
 		  }
@@ -15,7 +15,7 @@ public class Funcoes {
 	  
 	public Produto buscarProduto(ArrayList<Produto> produtos, String nome) {
 		 for (int i = 0; i<produtos.size(); i++) {
-			 if (produtos.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
+			 if (produtos.get(i).getNome().toLowerCase().equals(nome.toLowerCase())) {
 				 return produtos.get(i);
 			  }
 		  }
@@ -24,7 +24,7 @@ public class Funcoes {
 	  
 	public Servico buscarServico(ArrayList<Servico> servicos, String nome) {
 		for (int i = 0; i<servicos.size(); i++) {
-			if (servicos.get(i).getNome().toLowerCase() == nome.toLowerCase()) {
+			if (servicos.get(i).getNome().toLowerCase().equals(nome.toLowerCase())) {
 				return servicos.get(i);
 			 }
 		 }

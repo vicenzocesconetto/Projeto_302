@@ -9,7 +9,7 @@ public class Servico {
 		id = geradorId++;
 	}
 	
-	public Servico(String nome, int valor) {
+	public Servico(String nome, float valor) {
 		this();
 		this.nome = nome;
 		this.valor = valor;

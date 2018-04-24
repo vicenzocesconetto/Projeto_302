@@ -118,14 +118,14 @@ public class Main {
 
 			else if(comando.equals("4")) {
 				String nome;
-				int valor;
+				float valor;
 
 				System.out.println("Insira os dados do servico");
 				System.out.println("Nome:");
 				nome = input.nextLine();
 				System.out.println("Valor:");
-				valor = Integer.parseInt(input.nextLine());
-
+				valor = Float.parseFloat(input.nextLine());
+				
 				servicos.add(new Servico(nome, valor));
 			}
 
