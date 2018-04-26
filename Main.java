@@ -15,6 +15,7 @@ public class Main {
 	
 	//INICIALIZA A CLASSE QUE GUARDA AS FUNÇOES USADAS NA MAIN
 	Funcoes funcoes = new Funcoes();
+
 	//VARIAVEIS PARA LER A ENTRADA DE DADOS DO USUARIO
 	Scanner input = new Scanner(System.in); 
 	int op=10;								
@@ -23,7 +24,7 @@ public class Main {
 	String aux;
 	boolean continua=true;
 	boolean bool=true;
-	
+		
 	//INICIANDO O SISTEMA
 	System.out.println("Bem-vindo a Oficina 3.0!");
 	System.out.println("Qual o valor do seu caixa atual?");
@@ -31,7 +32,7 @@ public class Main {
 		
 	while(continua) {
 		//MENU INICIAL
-		System.out.println("------------------------------------------------------------");
+		System.out.print("\033[H\033[2J");
 		System.out.println("O que voce quer fazer?");
 		System.out.println("[1] Realizar venda");
 		System.out.println("[2] Cadastrar cliente");
@@ -41,7 +42,6 @@ public class Main {
 		System.out.println("[6] Retorno de Clientes");
 		System.out.println("[7] Consultar/Atualizar Cliente/Produto/Servico");
 		System.out.println("[0] Sair do sistema");
-		System.out.println("------------------------------------------------------------");
 		op=input.nextInt();input.nextLine(); //LEITURA DE INTS, ESTOU USANDO UM "NEXTLINE" APOS A LEITURA DO INT PARA LER O "\N"
 			
 		switch(op) {
@@ -53,6 +53,8 @@ public class Main {
 		//BUSCA O CADASTRO DO CLIENTE
 		Cliente c=null;
 		while(true) {
+			System.out.print("\033[H\033[2J");
+			System.out.println("****************** Realizar venda! ******************\n");
 			System.out.println("Precione [0] para voltar");
 			System.out.print("Entre com nome do Cliente:");
 		
@@ -62,7 +64,11 @@ public class Main {
 			if(aux.equals("0")) break; 
 									
 			c=funcoes.buscarCliente(clientes, aux);
-			if(c==null) System.out.println("Cliente nao encontrado!");
+			if(c==null) {
+				System.out.println("------------------------------------------------------------");	
+				System.out.println("Cliente nao encontrado!");
+				System.out.println("------------------------------------------------------------");	
+			}
 			else break;	
 		}
 		//SE A PESSOA INTERROMPE A EXECUÇAO AQUI ELA E MANDADA PARA O MENU ANTERIOR
@@ -72,7 +78,7 @@ public class Main {
 						
 		//NOVO MENU
 		while(bool) {
-			System.out.println("------------------------------------------------------------");
+			System.out.print("\033[H\033[2J");
 			System.out.println("O que voce quer fazer?");
 			System.out.println("[1] Adicionar Produto");
 			System.out.println("[2] Remover Produto");
@@ -80,7 +86,7 @@ public class Main {
 			System.out.println("[4] Remover Servico");
 			System.out.println("[5] Concluir Venda");
 			System.out.println("Precione [0] para voltar");
-			System.out.println("------------------------------------------------------------");
+			
 			op=input.nextInt();input.nextLine();
 									
 			switch (op) {
@@ -89,6 +95,8 @@ public class Main {
 				Produto p=null;
 				//PROCURA O CADASTRO DO PRODUTO
 				while(true) {
+					System.out.print("\033[H\033[2J");
+					System.out.println("****************** Adicionar produto a venda! ******************\n");
 					System.out.println("Precione [0] para voltar");
 					System.out.print("Entre com nome do produto:");
 								
@@ -98,7 +106,11 @@ public class Main {
 					if(aux.equals("0")) break;
 												
 					p=funcoes.buscarProduto(produtos, aux);
-					if(p==null) System.out.println("Produto nao encontrado!");
+					if(p==null) {
+						System.out.println("------------------------------------------------------------");	
+						System.out.println("Produto nao encontrado!");
+						System.out.println("------------------------------------------------------------");	
+					}
 					else break;	
 				}
 				//SE A PESSOA INTERROMPE A EXECUÇAO AQUI ELA E MANDADA PARA O MENU ANTERIOR
@@ -108,6 +120,7 @@ public class Main {
 									
 				//ADICIONA A QTD DO PRODUTO
 				while (true) {
+					System.out.println(funcoes.printProduto(p));
 					System.out.println("Precione [0] para voltar");
 					System.out.print("Quantas unidades? ");					
 						
@@ -120,11 +133,16 @@ public class Main {
 							vendaNova.addProduto(p, op);
 							break;
 						}
-						else System.out.println("Sem Estoque!");
+						else {
+							System.out.println("------------------------------------------------------------");
+							System.out.println("Sem Estoque!");
+							System.out.println("------------------------------------------------------------");
+						}
 					}
 				}
 				//SE A PESSOA INTERROMPE A EXECUÇAO AQUI ELA E MANDADA PARA O MENU ANTERIOR
 				if(op==0) break;
+				
 				System.out.println("------------------------------------------------------------");							
 				System.out.println("Produto adicionado!");
 				System.out.println("------------------------------------------------------------");
@@ -132,16 +150,17 @@ public class Main {
 				
 			case 2:
 			//REMOVER PRODUTO					
+				System.out.print("\033[H\033[2J");
+				System.out.println("****************** Remover produtos da venda! ******************\n");
+								
 				if(vendaNova.getProdutos().size()==0) {
-					System.out.println("------------------------------------------------------------");
 					System.out.println("Nenhum produto adicionado!");
 					System.out.println("------------------------------------------------------------");
 					break;
 				}
 									
 				//LISTA PRODUTOS ADICIONADOS
-				System.out.println("------------------------------------------------------------");
-				System.out.println("Produtos adicionados: ");
+				System.out.println("Produtos adicionados:\n");
 				for (int i=0; i<vendaNova.getProdutos().size();i++) {
 					System.out.println("Item nº: " +(i+1));
 					System.out.println("Quantidade: " + vendaNova.getQtd().get(i));
@@ -150,16 +169,19 @@ public class Main {
 				System.out.println("------------------------------------------------------------");
 				//REMOVE OS PRODUTOS PELO N DO ITEM
 				while (true) {
-					;
 					System.out.println("Precione [0] para voltar");
-					System.out.println("Entre com o numero do item que voce quer excluir:");
+					System.out.print("Entre com o numero do item que voce quer excluir: ");
 										
 					op=input.nextInt();input.nextLine();;
 						
 					//AQUI A PESSOA PODE VOLTAR PARA O MENU ANTERIOR
 					if(op==0) break;
 										
-					if(op>vendaNova.getProdutos().size()) System.out.println("Numero do item incorreto!");
+					if(op>vendaNova.getProdutos().size()) {
+						System.out.println("------------------------------------------------------------");
+						System.out.println("Numero do item incorreto!");
+						System.out.println("------------------------------------------------------------");
+					}
 					else {								
 						vendaNova.removeProduto(op-1);
 						System.out.println("------------------------------------------------------------");
@@ -174,6 +196,8 @@ public class Main {
 					Servico s=null;
 					//PROCURA O CADASTRO DO SERVICO		
 					while(true) {
+						System.out.print("\033[H\033[2J");
+						System.out.println("****************** Adicionar servico a venda! ******************\n");
 						System.out.println("Precione [0] para voltar");
 						System.out.println("Entre com nome do servico: ");
 								
@@ -183,7 +207,11 @@ public class Main {
 						if(aux.equals("0")) break;										
 												
 						s=funcoes.buscarServico(servicos, aux);
-						if(s==null) System.out.println("Servico nao encontrado!");
+						if(s==null) {
+							System.out.println("------------------------------------------------------------");
+							System.out.println("Servico nao encontrado!");
+							System.out.println("------------------------------------------------------------");
+						}
 						else break;	
 					}
 					//SE A PESSOA INTERROMPE A EXECUÇAO AQUI ELA E MANDADA PARA O MENU ANTERIOR
@@ -197,16 +225,17 @@ public class Main {
 				break;									
 				
 				case 4:
-				//REMOVER SERVICO					
+				//REMOVER SERVICO
+					System.out.print("\033[H\033[2J");
+					System.out.println("****************** Remover servicos da venda! ******************\n");
+									
 					if(vendaNova.getServicos().size()==0) {
-						System.out.println("------------------------------------------------------------");
 						System.out.println("Nenhum servico adicionado!");
 						System.out.println("------------------------------------------------------------");
 						break;
 					}
 									
 					//LISTA OS SERVICO ADICIONADOS
-					System.out.println("------------------------------------------------------------");
 					System.out.println("Servico adicionados:");
 					for (int i=0; i<vendaNova.getProdutos().size();i++) {
 						System.out.println("Item nº: " +(i+1));
@@ -216,14 +245,18 @@ public class Main {
 					//REMOVE OS SERVICO PELO N DO ITEM
 					while (true) {
 						System.out.println("Precione [0] para voltar");
-						System.out.println("Entre com o numero do item que voce quer excluir:");
+						System.out.print("Entre com o numero do item que voce quer excluir: ");
 												
 						op=input.nextInt();input.nextLine();
 						
 						//AQUI A PESSOA PODE VOLTAR PARA O MENU ANTERIOR
 						if(op==0) break;
 												
-						if(op>vendaNova.getServicos().size()) System.out.println("Numero do item incorreto!");
+						if(op>vendaNova.getServicos().size()) {
+							System.out.println("------------------------------------------------------------");
+							System.out.println("Numero do item incorreto!");
+							System.out.println("------------------------------------------------------------");
+						}
 						else {								
 							vendaNova.removeServico(op-1);
 							System.out.println("------------------------------------------------------------");
@@ -235,14 +268,13 @@ public class Main {
 									
 				case 5:
 					while(bool) {
-						System.out.println("------------------------------------------------------------");
+						System.out.print("\033[H\033[2J");
 						System.out.printf("Valor da Venda: R$%.2f\n", vendaNova.getTotal());
 						System.out.println("Qual a forma de pagamento:");
 						System.out.println("[1] Dinheiro");
 						System.out.println("[2] Cartao de Credito");
 						System.out.println("[3] Cartao de Debito");
 						System.out.println("Precione [0] para voltar");
-						System.out.println("------------------------------------------------------------");
 						op=input.nextInt();input.nextLine();
 							
 						switch(op) {
@@ -266,15 +298,20 @@ public class Main {
 							break;
 							
 						default:
+							System.out.println("------------------------------------------------------------");
 							System.out.println("Opcao INVALIDA!");
+							System.out.println("Precione [ENTER] para voltar");
+							System.out.println("------------------------------------------------------------");
+							System.in.read();
 							break;
 						}
 					}			
 					bool=true;
 					if(op==0) break;
-					System.out.println(funcoes.printVenda(vendaNova)+"\n");
-														
+																			
 					while(bool) {
+						System.out.print("\033[H\033[2J");
+						System.out.println(funcoes.printVenda(vendaNova)+"\n");
 						System.out.println("Precione [1] para concluir venda");
 						System.out.println("Precione [0] para voltar");
 						
@@ -292,7 +329,11 @@ public class Main {
 							bool=false;
 							break;
 						default:
+							System.out.println("------------------------------------------------------------");
 							System.out.println("Opcao INVALIDA!");
+							System.out.println("Precione [ENTER] para voltar");
+							System.out.println("------------------------------------------------------------");
+							System.in.read();
 							break;
 						}
 					}
@@ -304,8 +345,12 @@ public class Main {
 					break;
 				
 				default:
+					System.out.println("------------------------------------------------------------");
 					System.out.println("Opcao INVALIDA!");
-					break;							
+					System.out.println("Precione [ENTER] para voltar");
+					System.out.println("------------------------------------------------------------");
+					System.in.read();
+					break;						
 			}			
 			}
 		break;	
@@ -316,14 +361,15 @@ public class Main {
 		bool=true;
 		
 		while(bool) {
-			System.out.println("------------------------------------------------------------");
+			System.out.print("\033[H\033[2J");
+			System.out.println("****************** Cadastrar Clientes! ******************\n");
 			System.out.println("Precione [1] para cadastrar de novo cliente:");
 			System.out.println("Precione [0] para voltar");
-			System.out.println("------------------------------------------------------------");
 			op=input.nextInt();input.nextLine();;
 				
 			switch (op) {
 			case 1:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Nome: ");
 				String nome = input.nextLine();
 				System.out.print("Telefone: ");
@@ -352,7 +398,8 @@ public class Main {
 					op=input.nextInt();input.nextLine();
 					
 					switch(op) {
-					case 1:		
+					case 1:
+						System.out.print("\033[H\033[2J");
 						System.out.print("Marca: ");
 						String marca = input.nextLine().toUpperCase();
 						System.out.print("Modelo: ");
@@ -389,7 +436,11 @@ public class Main {
 								bool=false;
 								break;
 							default:
+								System.out.println("------------------------------------------------------------");
 								System.out.println("Opcao INVALIDA!");
+								System.out.println("Precione [ENTER] para voltar");
+								System.out.println("------------------------------------------------------------");
+								System.in.read();
 								break;
 							}
 						}
@@ -402,7 +453,11 @@ public class Main {
 						bool=false;
 						break;
 					default:
+						System.out.println("------------------------------------------------------------");
 						System.out.println("Opcao INVALIDA!");
+						System.out.println("Precione [ENTER] para voltar");
+						System.out.println("------------------------------------------------------------");
+						System.in.read();
 						break;					
 					}
 				}
@@ -417,7 +472,11 @@ public class Main {
 				bool=false;
 				break;
 			default:
+				System.out.println("------------------------------------------------------------");
 				System.out.println("Opcao INVALIDA!");
+				System.out.println("Precione [ENTER] para voltar");
+				System.out.println("------------------------------------------------------------");
+				System.in.read();
 				break;
 			}
 		}
@@ -429,16 +488,18 @@ public class Main {
 		bool=true;	
 		
 		while (bool) {
-			System.out.println("------------------------------------------------------------");
+			System.out.print("\033[H\033[2J");
+			System.out.println("****************** Cadastrar Produto/Servico ******************\n");
+			
 			System.out.println("Precione [1] para cadastrar um produto");
 			System.out.println("Precione [2] para cadastrar um servico");
 			System.out.println("Precione [0] para voltar");
-			System.out.println("------------------------------------------------------------");
-
+			
 			op=input.nextInt();input.nextLine();
 					
 			switch(op) {
 			case 1:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Nome: ");
 				String nome = input.nextLine();
 				System.out.print("Valor: R$");
@@ -456,6 +517,7 @@ public class Main {
 				System.in.read();
 				break;
 			case 2:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Nome:");
 				String nome_s = input.nextLine();
 				System.out.print("Valor (R$):");
@@ -472,7 +534,11 @@ public class Main {
 				bool=false;
 				break;
 			default:
+				System.out.println("------------------------------------------------------------");
 				System.out.println("Opcao INVALIDA!");
+				System.out.println("Precione [ENTER] para voltar");
+				System.out.println("------------------------------------------------------------");
+				System.in.read();
 				break;
 			}
 		}
@@ -484,6 +550,9 @@ public class Main {
 		bool=true;
 		
 		while (bool) {
+			System.out.print("\033[H\033[2J");
+			System.out.println("****************** Consultar/Atualizar estoque ******************\n");
+	
 			System.out.println("Precione [0] para voltar");
 			System.out.print("Digite o nome do produto: ");
 					
@@ -492,13 +561,18 @@ public class Main {
 			switch(op) {
 			case 1:	
 			Produto produto = funcoes.buscarProduto(produtos, input.nextLine());
-				if(produto==null) System.out.println("Produto nao encontrado");
-				else {
+				if(produto==null) {
 					System.out.println("------------------------------------------------------------");
+					System.out.println("Produto nao encontrado");
+					System.out.println("------------------------------------------------------------");
+				}
+				else {
+					System.out.print("\033[H\033[2J");
 					System.out.println(produto.getNome());
 					System.out.println("Estoque atual: "+produto.getEstoque());
 										
 					while(bool) {
+						System.out.print("\033[H\033[2J");
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Precione [1] para atualizar o estoque");
 						System.out.println("Precione [0] para voltar");
@@ -511,7 +585,9 @@ public class Main {
 							produto.setEstoque(input.nextInt());
 							System.out.println("------------------------------------------------------------");
 							System.out.println("Novo valor de estoque salvo");
+							System.out.println("Precione [ENTER] para voltar");
 							System.out.println("------------------------------------------------------------");
+							System.in.read();
 							break;
 						
 						case 0:
@@ -519,7 +595,11 @@ public class Main {
 							break;
 						
 						default:
+							System.out.println("------------------------------------------------------------");
 							System.out.println("Opcao INVALIDA!");
+							System.out.println("Precione [ENTER] para voltar");
+							System.out.println("------------------------------------------------------------");
+							System.in.read();
 							break;
 						}
 					}
@@ -531,7 +611,11 @@ public class Main {
 				break;
 			
 			default:
+				System.out.println("------------------------------------------------------------");
 				System.out.println("Opcao INVALIDA!");
+				System.out.println("Precione [ENTER] para voltar");
+				System.out.println("------------------------------------------------------------");
+				System.in.read();
 				break;
 			}
 		}
@@ -543,24 +627,26 @@ public class Main {
 		bool = true;
 		
 		while(bool) {
-			System.out.println("------------------------------------------------------------");
+			System.out.print("\033[H\033[2J");
+			System.out.println("****************** Caixa ******************\n");
+			
 			System.out.println("O que voce quer fazer?");
 			System.out.println("[1] Exibir caixa atual");
 			System.out.println("[2] Imprimir encerrante");
 			System.out.println("[3] Fazer Retirada");
 			System.out.println("Precione [0] para voltar");
-			System.out.println("------------------------------------------------------------");
+			
 			op=input.nextInt();input.nextLine();
 				
 			switch (op) {
 			case 1:
-				System.out.println("------------------------------------------------------------");
+				System.out.print("\033[H\033[2J");
 				System.out.printf("Valor do Caixa: R$%.2f\n",  empresa.getCaixa() );
 				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
 				System.in.read();
 				break;
 			case 2:
+				System.out.print("\033[H\033[2J");
 				System.out.println(funcoes.imprimeEncerrante(empresa.getMovimentacoes()));
 				System.out.println("Precione [ENTER] para voltar");
 				System.out.println("------------------------------------------------------------");
@@ -568,6 +654,7 @@ public class Main {
 				break;
 					
 			case 3:
+				System.out.print("\033[H\033[2J");
 				System.out.println("Qual o valor da retirada(R$)?");
 				float valor = input.nextFloat();input.nextLine();
 				System.out.println("Qual o motivo da retirada?");
@@ -591,7 +678,11 @@ public class Main {
 				bool=false;
 				break;
 			default:
+				System.out.println("------------------------------------------------------------");
 				System.out.println("Opcao INVALIDA!");
+				System.out.println("Precione [ENTER] para voltar");
+				System.out.println("------------------------------------------------------------");
+				System.in.read();
 				break;
 			}
 		}		
@@ -601,6 +692,9 @@ public class Main {
 		case 6:
 		//A SER IMPLEMTENTADO
 			System.out.println("NÃO DISPONIVEL!");
+			System.out.println("Precione [ENTER] para voltar");
+			System.out.println("------------------------------------------------------------");
+			System.in.read();
 			break;
 		
 		//CONSULTAR/ATUALIZAR DADOS
@@ -609,19 +703,22 @@ public class Main {
 		bool=true;
 		
 		while(bool) {
-			System.out.println("------------------------------------------------------------");
+			System.out.print("\033[H\033[2J");
+			System.out.println("****************** Consultar/Atualizar dados ******************\n");
+					
 			System.out.println("O que voce quer consultar?");
 			System.out.println("[1] Cliente");
 			System.out.println("[2] Produto");
 			System.out.println("[3] Servico");
 			System.out.println("Precione [0] para voltar");
-			System.out.println("------------------------------------------------------------");
+			
 			op=input.nextInt();input.nextLine();
 					
 			switch(op) {
 			case 1:
 				Cliente cliente=null;
 				while (true) {
+					System.out.print("\033[H\033[2J");
 					System.out.println("Precione [0] para voltar");
 					System.out.print("Entre com o nome do Cliente: ");
 										
@@ -656,7 +753,11 @@ public class Main {
 						bool=false;
 						break;
 					default:
+						System.out.println("------------------------------------------------------------");
 						System.out.println("Opcao INVALIDA!");
+						System.out.println("Precione [ENTER] para voltar");
+						System.out.println("------------------------------------------------------------");
+						System.in.read();
 						break;
 					}
 				}
@@ -666,6 +767,7 @@ public class Main {
 			case 2:
 				Produto produto=null;
 				while (true) {
+					System.out.print("\033[H\033[2J");
 					System.out.println("Precione [0] para voltar");
 					System.out.print("Entre com o nome do Produto: ");
 										
@@ -700,7 +802,11 @@ public class Main {
 						bool=false;
 						break;
 					default:
+						System.out.println("------------------------------------------------------------");
 						System.out.println("Opcao INVALIDA!");
+						System.out.println("Precione [ENTER] para voltar");
+						System.out.println("------------------------------------------------------------");
+						System.in.read();
 						break;
 					}
 				}
@@ -710,6 +816,7 @@ public class Main {
 			case 3:
 				Servico servico=null;
 				while (true) {
+					System.out.print("\033[H\033[2J");
 					System.out.println("Precione [0] para voltar");
 					System.out.print("Entre com o nome do servico: ");
 					
@@ -744,7 +851,11 @@ public class Main {
 						bool=false;
 						break;
 					default:
+						System.out.println("------------------------------------------------------------");
 						System.out.println("Opcao INVALIDA!");
+						System.out.println("Precione [ENTER] para voltar");
+						System.out.println("------------------------------------------------------------");
+						System.in.read();
 						break;
 					}
 				}
@@ -756,13 +867,19 @@ public class Main {
 				break;
 		
 			default:
+				System.out.println("------------------------------------------------------------");
 				System.out.println("Opcao INVALIDA!");
+				System.out.println("Precione [ENTER] para voltar");
+				System.out.println("------------------------------------------------------------");
+				System.in.read();
+				break;
 			}
 		}
 		break;
 		
 		//ENCERRA O PROGRAMA
 		case 0:
+			System.out.print("\033[H\033[2J");
 			System.out.println("************************************************************");
 			System.out.println("Encerrando o sistema...");
 			continua=false;
@@ -771,58 +888,70 @@ public class Main {
 			break;
 		
 		default:
+			System.out.println("------------------------------------------------------------");
 			System.out.println("Opcao INVALIDA!");
+			System.out.println("Precione [ENTER] para voltar");
+			System.out.println("------------------------------------------------------------");
+			System.in.read();
 			break;
 		}
 	}
 	input.close();
 	}
 	
-	public static void atualizarCliente(Cliente cliente) {
+	public static void atualizarCliente(Cliente cliente) throws IOException {
 		int op;
 		Scanner input = new Scanner(System.in);
 		boolean bool=true;
 		
 		while(bool) {
-			System.out.println("------------------------------------------------------------");
+			System.out.print("\033[H\033[2J");
 			System.out.println("O que voce quer Atualizar?");
 			System.out.println("[1] Nome: "+cliente.getNome());
 			System.out.println("[2] Telefone: "+cliente.getTelefone());
 			System.out.println("[3] e-mail: "+cliente.getEmail());
 			System.out.println("[4] Endereco");
 			System.out.println("Precione [0] para voltar");
-			System.out.println("------------------------------------------------------------");
-
+			
 			op=input.nextInt();input.nextLine();
 					
 			switch(op) {
 			case 1:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Digite o novo Nome: ");
 				cliente.setNome(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
+				System.out.println("Precione [ENTER] para voltar");
 				System.out.println("------------------------------------------------------------");
+				System.in.read();
 			break;
 			
 			case 2:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Digite o novo Telefone: ");
 				cliente.setTelefone(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
+				System.out.println("Precione [ENTER] para voltar");
 				System.out.println("------------------------------------------------------------");
+				System.in.read();
 			break;
 			
 			case 3:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Digite o novo e-mail: ");
 				cliente.setEmail(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
+				System.out.println("Precione [ENTER] para voltar");
 				System.out.println("------------------------------------------------------------");
+				System.in.read();
 			break;
 			
 			case 4:
 				while(bool) {
-					System.out.println("------------------------------------------------------------");
+					System.out.print("\033[H\033[2J");
 					System.out.println("O que voce quer Atualizar?");
 					System.out.println("[1] Rua: "+cliente.getEndereco().getRua());
 					System.out.println("[2] Numero: "+cliente.getEndereco().getNumero());
@@ -830,55 +959,73 @@ public class Main {
 					System.out.println("[4] Cidade:"+cliente.getEndereco().getCidade());
 					System.out.println("[5] UF:"+cliente.getEndereco().getUf());
 					System.out.println("Precione [0] para voltar");
-					System.out.println("------------------------------------------------------------");
 					op=input.nextInt();input.nextLine();
 										
 					switch (op) {
 					case 1:
+						System.out.print("\033[H\033[2J");
 						System.out.print("Digite a nova Rua: ");
 						cliente.getEndereco().setRua(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
+						System.out.println("Precione [ENTER] para voltar");
 						System.out.println("------------------------------------------------------------");
+						System.in.read();
 					break;
 					
 					case 2:
+						System.out.print("\033[H\033[2J");
 						System.out.print("Digite o novo Numero: ");
 						cliente.getEndereco().setNumero(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
+						System.out.println("Precione [ENTER] para voltar");
 						System.out.println("------------------------------------------------------------");
+						System.in.read();
 					break;
 					
 					case 3:
+						System.out.print("\033[H\033[2J");
 						System.out.print("Digite o novo Bairro: ");
 						cliente.getEndereco().setBairro(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
+						System.out.println("Precione [ENTER] para voltar");
 						System.out.println("------------------------------------------------------------");
+						System.in.read();
 					break;
 						
 					case 4:
+						System.out.print("\033[H\033[2J");
 						System.out.print("Digite a nova Cidade: ");
 						cliente.getEndereco().setCidade(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
+						System.out.println("Precione [ENTER] para voltar");
 						System.out.println("------------------------------------------------------------");
+						System.in.read();
 					break;
 					
 					case 5:
+						System.out.print("\033[H\033[2J");
 						System.out.print("Digite a nova UF: ");
 						cliente.getEndereco().setUf(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
+						System.out.println("Precione [ENTER] para voltar");
 						System.out.println("------------------------------------------------------------");
+						System.in.read();
 					break;
 					
 					case 0:
 						bool=false;
 						break;
 					default:
+						System.out.println("------------------------------------------------------------");
 						System.out.println("Opcao INVALIDA!");
+						System.out.println("Precione [ENTER] para voltar");
+						System.out.println("------------------------------------------------------------");
+						System.in.read();
 						break;
 					}
 				}
@@ -887,100 +1034,126 @@ public class Main {
 				bool =false;
 				break;
 			default:
+				System.out.println("------------------------------------------------------------");
 				System.out.println("Opcao INVALIDA!");
+				System.out.println("Precione [ENTER] para voltar");
+				System.out.println("------------------------------------------------------------");
+				System.in.read();
 				break;
 			}			
 		}
 		input.close();	
 		}
 
-	public static void atualizarProduto(Produto produto) {
+	public static void atualizarProduto(Produto produto) throws IOException {
 		int op;
 		Scanner input = new Scanner(System.in);
 		boolean bool=true;
 		
 		while(bool) {
-			System.out.println("------------------------------------------------------------");
+			System.out.print("\033[H\033[2J");
 			System.out.println("O que voce quer Atualizar?");
 			System.out.println("[1] Nome: "+produto.getNome());
 			System.out.println("[2] Valor: R$"+produto.getValor());
 			System.out.println("[3] Estoque Minimo: "+produto.getEstoqueMinimo());
 			System.out.println("Precione [0] para voltar");
-			System.out.println("------------------------------------------------------------");
-
+			
 			op=input.nextInt();input.nextLine();
 					
 			switch(op) {
 			case 1:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Digite o novo Nome: ");
 				produto.setNome(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
+				System.out.println("Precione [ENTER] para voltar");
 				System.out.println("------------------------------------------------------------");
+				System.in.read();
 			break;
 			
 			case 2:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Digite o novo Valor: R$");
 				produto.setValor(input.nextFloat());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
+				System.out.println("Precione [ENTER] para voltar");
 				System.out.println("------------------------------------------------------------");
+				System.in.read();
 			break;
 			
 			case 3:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Digite o novo Estoque Minimo: ");
 				produto.setEstoqueMinimo(input.nextInt());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
+				System.out.println("Precione [ENTER] para voltar");
 				System.out.println("------------------------------------------------------------");
+				System.in.read();
 			break;
 			
 			case 0:
 				return;
 			default:
+				System.out.println("------------------------------------------------------------");
 				System.out.println("Opcao INVALIDA!");
+				System.out.println("Precione [ENTER] para voltar");
+				System.out.println("------------------------------------------------------------");
+				System.in.read();
 				break;
 			}			
 		}
 		input.close();	
 	}	
 	
-	public static void atualizarServico(Servico servico) {
+	public static void atualizarServico(Servico servico) throws IOException {
 		int op;
 		Scanner input = new Scanner(System.in);
 		boolean bool=true;
 		
 		while(bool) {
-			System.out.println("------------------------------------------------------------");
+			System.out.print("\033[H\033[2J");
 			System.out.println("O que voce quer Atualizar?");
 			System.out.println("[1] Nome: "+servico.getNome());
 			System.out.println("[2] Valor: "+servico.getValor());
 			System.out.println("Precione [0] para voltar");
-			System.out.println("------------------------------------------------------------");
+			
 			op=input.nextInt();input.nextLine();
 					
 			switch(op) {
 			case 1:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Digite o novo Nome: ");
 				servico.setNome(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
+				System.out.println("Precione [ENTER] para voltar");
 				System.out.println("------------------------------------------------------------");
+				System.in.read();
 			break;
 			
 			case 2:
+				System.out.print("\033[H\033[2J");
 				System.out.print("Digite o novo Valor: R$");
 				servico.setValor(input.nextFloat());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
+				System.out.println("Precione [ENTER] para voltar");
 				System.out.println("------------------------------------------------------------");
+				System.in.read();
 			break;
 			
 			case 0:
 				bool =false;
 				break;
 			default:
+				System.out.println("------------------------------------------------------------");
 				System.out.println("Opcao INVALIDA!");
+				System.out.println("Precione [ENTER] para voltar");
+				System.out.println("------------------------------------------------------------");
+				System.in.read();
 				break;
 			}
 		}
