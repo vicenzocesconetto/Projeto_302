@@ -67,7 +67,7 @@ public class Main {
 			if(c==null) {
 				System.out.println("------------------------------------------------------------");	
 				System.out.println("Cliente nao encontrado!");
-				System.out.println("------------------------------------------------------------");	
+				sleep();
 			}
 			else break;	
 		}
@@ -109,7 +109,7 @@ public class Main {
 					if(p==null) {
 						System.out.println("------------------------------------------------------------");	
 						System.out.println("Produto nao encontrado!");
-						System.out.println("------------------------------------------------------------");	
+						sleep();
 					}
 					else break;	
 				}
@@ -136,7 +136,7 @@ public class Main {
 						else {
 							System.out.println("------------------------------------------------------------");
 							System.out.println("Sem Estoque!");
-							System.out.println("------------------------------------------------------------");
+							sleep();
 						}
 					}
 				}
@@ -145,7 +145,7 @@ public class Main {
 				
 				System.out.println("------------------------------------------------------------");							
 				System.out.println("Produto adicionado!");
-				System.out.println("------------------------------------------------------------");
+				sleep();
 			break;						
 				
 			case 2:
@@ -155,7 +155,7 @@ public class Main {
 								
 				if(vendaNova.getProdutos().size()==0) {
 					System.out.println("Nenhum produto adicionado!");
-					System.out.println("------------------------------------------------------------");
+					sleep();
 					break;
 				}
 									
@@ -180,13 +180,13 @@ public class Main {
 					if(op>vendaNova.getProdutos().size()) {
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Numero do item incorreto!");
-						System.out.println("------------------------------------------------------------");
+						sleep();
 					}
 					else {								
 						vendaNova.removeProduto(op-1);
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Produto removido!");
-						System.out.println("------------------------------------------------------------");
+						sleep();
 					}
 				}
 				break;
@@ -210,7 +210,7 @@ public class Main {
 						if(s==null) {
 							System.out.println("------------------------------------------------------------");
 							System.out.println("Servico nao encontrado!");
-							System.out.println("------------------------------------------------------------");
+							sleep();
 						}
 						else break;	
 					}
@@ -221,7 +221,7 @@ public class Main {
 					//NA PROXIMA IMPLEMENTACAO SE O CLIENTE TIVER UM CARRO CADASTRADO (MOTORISTA) VAMOS ATUALIZAR O VETOR KMS DO MESMO
 					System.out.println("------------------------------------------------------------");
 					System.out.println("Servico adicionado!");
-					System.out.println("------------------------------------------------------------");					
+					sleep();					
 				break;									
 				
 				case 4:
@@ -231,7 +231,7 @@ public class Main {
 									
 					if(vendaNova.getServicos().size()==0) {
 						System.out.println("Nenhum servico adicionado!");
-						System.out.println("------------------------------------------------------------");
+						sleep();
 						break;
 					}
 									
@@ -255,13 +255,13 @@ public class Main {
 						if(op>vendaNova.getServicos().size()) {
 							System.out.println("------------------------------------------------------------");
 							System.out.println("Numero do item incorreto!");
-							System.out.println("------------------------------------------------------------");
+							sleep();
 						}
 						else {								
 							vendaNova.removeServico(op-1);
 							System.out.println("------------------------------------------------------------");
 							System.out.println("Servico removido!");
-							System.out.println("------------------------------------------------------------");
+							sleep();
 						}
 					}
 				break;
@@ -298,11 +298,7 @@ public class Main {
 							break;
 							
 						default:
-							System.out.println("------------------------------------------------------------");
-							System.out.println("Opcao INVALIDA!");
-							System.out.println("Precione [ENTER] para voltar");
-							System.out.println("------------------------------------------------------------");
-							System.in.read();
+							Default();
 							break;
 						}
 					}			
@@ -322,18 +318,14 @@ public class Main {
 							vendaNova.finalizarVenda();
 							System.out.println("------------------------------------------------------------");
 							System.out.println("Venda concluida!");
-							System.out.println("------------------------------------------------------------");
+							sleep();
 							bool=false;
 							break;
 						case 0:
 							bool=false;
 							break;
 						default:
-							System.out.println("------------------------------------------------------------");
-							System.out.println("Opcao INVALIDA!");
-							System.out.println("Precione [ENTER] para voltar");
-							System.out.println("------------------------------------------------------------");
-							System.in.read();
+							Default();
 							break;
 						}
 					}
@@ -345,11 +337,7 @@ public class Main {
 					break;
 				
 				default:
-					System.out.println("------------------------------------------------------------");
-					System.out.println("Opcao INVALIDA!");
-					System.out.println("Precione [ENTER] para voltar");
-					System.out.println("------------------------------------------------------------");
-					System.in.read();
+					Default();
 					break;						
 			}			
 			}
@@ -436,11 +424,7 @@ public class Main {
 								bool=false;
 								break;
 							default:
-								System.out.println("------------------------------------------------------------");
-								System.out.println("Opcao INVALIDA!");
-								System.out.println("Precione [ENTER] para voltar");
-								System.out.println("------------------------------------------------------------");
-								System.in.read();
+								Default();
 								break;
 							}
 						}
@@ -453,30 +437,20 @@ public class Main {
 						bool=false;
 						break;
 					default:
-						System.out.println("------------------------------------------------------------");
-						System.out.println("Opcao INVALIDA!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						Default();
 						break;					
 					}
 				}
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Cliente Cadastrado");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 				break;
 
 			case 0:
 				bool=false;
 				break;
 			default:
-				System.out.println("------------------------------------------------------------");
-				System.out.println("Opcao INVALIDA!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				Default();
 				break;
 			}
 		}
@@ -512,9 +486,7 @@ public class Main {
 				produtos.add(new Produto(estoqueMinimo, estoque, valor, nome));
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Novo Produto Cadastrado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 				break;
 			case 2:
 				System.out.print("\033[H\033[2J");
@@ -526,19 +498,13 @@ public class Main {
 				servicos.add(new Servico(nome_s, valor_s));
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Novo Servico Cadastrado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 				break;
 			case 0:
 				bool=false;
 				break;
 			default:
-				System.out.println("------------------------------------------------------------");
-				System.out.println("Opcao INVALIDA!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				Default();
 				break;
 			}
 		}
@@ -565,7 +531,7 @@ public class Main {
 			if(produto==null) {
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Produto nao encontrado");
-				System.out.println("------------------------------------------------------------");
+				sleep();				
 			}
 			else {
 				while(bool) {
@@ -585,9 +551,7 @@ public class Main {
 						produto.setEstoque(input.nextInt());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Novo valor de estoque salvo");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						sleep();
 						bool=false;
 						break;
 					
@@ -596,11 +560,7 @@ public class Main {
 						break;
 						
 					default:
-						System.out.println("------------------------------------------------------------");
-						System.out.println("Opcao INVALIDA!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						Default();
 						break;
 					}
 				}
@@ -629,15 +589,12 @@ public class Main {
 			case 1:
 				System.out.print("\033[H\033[2J");
 				System.out.printf("Valor do Caixa: R$%.2f\n",  empresa.getCaixa() );
-				System.out.println("Precione [ENTER] para voltar");
-				System.in.read();
+				sleep();
 				break;
 			case 2:
 				System.out.print("\033[H\033[2J");
 				System.out.println(funcoes.imprimeEncerrante(empresa.getMovimentacoes()));
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 				break;
 					
 			case 3:
@@ -649,27 +606,19 @@ public class Main {
 				if(funcoes.retirarDinheiro(empresa, valor, motivo)) {
 					System.out.println("------------------------------------------------------------");
 					System.out.println("Retirada Autorizada!");
-					System.out.println("Precione [ENTER] para voltar");
-					System.out.println("------------------------------------------------------------");
-					System.in.read();
+					sleep();;
 				}
 				else {
 					System.out.println("------------------------------------------------------------");
 					System.out.println("Retirada NAO Autorizada!");
-					System.out.println("Precione [ENTER] para voltar");
-					System.out.println("------------------------------------------------------------");
-					System.in.read();
+					sleep();
 				}
 				break;
 			case 0:
 				bool=false;
 				break;
 			default:
-				System.out.println("------------------------------------------------------------");
-				System.out.println("Opcao INVALIDA!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				Default();
 				break;
 			}
 		}		
@@ -679,9 +628,7 @@ public class Main {
 		case 6:
 		//A SER IMPLEMTENTADO
 			System.out.println("NÃO DISPONIVEL!");
-			System.out.println("Precione [ENTER] para voltar");
-			System.out.println("------------------------------------------------------------");
-			System.in.read();
+			sleep();
 			break;
 		
 		//CONSULTAR/ATUALIZAR DADOS
@@ -719,7 +666,11 @@ public class Main {
 						System.out.println(funcoes.printDadosCliente(cliente));
 						break;
 					}
-					else System.out.println("Cliente nao encontrado");
+					else {
+						System.out.println("------------------------------------------------------------");
+						System.out.println("Cliente nao encontrado");
+						sleep();
+					}
 				}
 				//SE A PESSOA INTERROMPE A EXECUÇAO AQUI ELA E MANDADA PARA O MENU ANTERIOR
 				if(cliente==null) break;
@@ -740,11 +691,7 @@ public class Main {
 						bool=false;
 						break;
 					default:
-						System.out.println("------------------------------------------------------------");
-						System.out.println("Opcao INVALIDA!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						Default();
 						break;
 					}
 				}
@@ -768,7 +715,11 @@ public class Main {
 						System.out.println(funcoes.printProduto(produto));
 						break;
 					}
-					else System.out.println("Produto nao encontrado");
+					else {
+						System.out.println("------------------------------------------------------------");
+						System.out.println("Produto nao encontrado");
+						sleep();
+					}
 				}
 				//SE A PESSOA INTERROMPE A EXECUÇAO AQUI ELA E MANDADA PARA O MENU ANTERIOR
 				if(produto==null) break;
@@ -789,11 +740,7 @@ public class Main {
 						bool=false;
 						break;
 					default:
-						System.out.println("------------------------------------------------------------");
-						System.out.println("Opcao INVALIDA!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						Default();
 						break;
 					}
 				}
@@ -817,7 +764,11 @@ public class Main {
 						System.out.println(funcoes.printServico(servico));
 						break;
 					}
-					else System.out.println("Servico nao encontrado");
+					else {
+						System.out.println("------------------------------------------------------------");
+						System.out.println("Cliente nao encontrado");
+						sleep();
+					}
 				}
 				//SE A PESSOA INTERROMPE A EXECUÇAO AQUI ELA E MANDADA PARA O MENU ANTERIOR
 				if(servico==null) break;
@@ -838,11 +789,7 @@ public class Main {
 						bool=false;
 						break;
 					default:
-						System.out.println("------------------------------------------------------------");
-						System.out.println("Opcao INVALIDA!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						Default();
 						break;
 					}
 				}
@@ -854,11 +801,7 @@ public class Main {
 				break;
 		
 			default:
-				System.out.println("------------------------------------------------------------");
-				System.out.println("Opcao INVALIDA!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				Default();
 				break;
 			}
 		}
@@ -875,11 +818,7 @@ public class Main {
 			break;
 		
 		default:
-			System.out.println("------------------------------------------------------------");
-			System.out.println("Opcao INVALIDA!");
-			System.out.println("Precione [ENTER] para voltar");
-			System.out.println("------------------------------------------------------------");
-			System.in.read();
+			Default();
 			break;
 		}
 	}
@@ -909,9 +848,7 @@ public class Main {
 				cliente.setNome(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 			break;
 			
 			case 2:
@@ -920,9 +857,7 @@ public class Main {
 				cliente.setTelefone(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 			break;
 			
 			case 3:
@@ -931,9 +866,7 @@ public class Main {
 				cliente.setEmail(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 			break;
 			
 			case 4:
@@ -955,9 +888,7 @@ public class Main {
 						cliente.getEndereco().setRua(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						sleep();
 					break;
 					
 					case 2:
@@ -966,9 +897,7 @@ public class Main {
 						cliente.getEndereco().setNumero(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						sleep();
 					break;
 					
 					case 3:
@@ -977,9 +906,7 @@ public class Main {
 						cliente.getEndereco().setBairro(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						sleep();
 					break;
 						
 					case 4:
@@ -988,9 +915,7 @@ public class Main {
 						cliente.getEndereco().setCidade(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						sleep();
 					break;
 					
 					case 5:
@@ -999,20 +924,14 @@ public class Main {
 						cliente.getEndereco().setUf(input.nextLine());
 						System.out.println("------------------------------------------------------------");
 						System.out.println("Dado Atualizado!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						sleep();
 					break;
 					
 					case 0:
 						bool=false;
 						break;
 					default:
-						System.out.println("------------------------------------------------------------");
-						System.out.println("Opcao INVALIDA!");
-						System.out.println("Precione [ENTER] para voltar");
-						System.out.println("------------------------------------------------------------");
-						System.in.read();
+						Default();
 						break;
 					}
 				}
@@ -1021,11 +940,7 @@ public class Main {
 				bool =false;
 				break;
 			default:
-				System.out.println("------------------------------------------------------------");
-				System.out.println("Opcao INVALIDA!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				Default();
 				break;
 			}			
 		}
@@ -1054,9 +969,7 @@ public class Main {
 				produto.setNome(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 			break;
 			
 			case 2:
@@ -1065,9 +978,7 @@ public class Main {
 				produto.setValor(input.nextFloat());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 			break;
 			
 			case 3:
@@ -1075,20 +986,13 @@ public class Main {
 				System.out.print("Digite o novo Estoque Minimo: ");
 				produto.setEstoqueMinimo(input.nextInt());
 				System.out.println("------------------------------------------------------------");
-				System.out.println("Dado Atualizado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 			break;
 			
 			case 0:
 				return;
 			default:
-				System.out.println("------------------------------------------------------------");
-				System.out.println("Opcao INVALIDA!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				Default();
 				break;
 			}			
 		}
@@ -1116,9 +1020,7 @@ public class Main {
 				servico.setNome(input.nextLine());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 			break;
 			
 			case 2:
@@ -1127,23 +1029,33 @@ public class Main {
 				servico.setValor(input.nextFloat());
 				System.out.println("------------------------------------------------------------");
 				System.out.println("Dado Atualizado!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				sleep();
 			break;
 			
 			case 0:
 				bool =false;
 				break;
 			default:
-				System.out.println("------------------------------------------------------------");
-				System.out.println("Opcao INVALIDA!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
+				Default();
 				break;
 			}
 		}
 		input.close();
 	}
+
+	public static void sleep() throws IOException {
+		System.out.println("Precione [ENTER] para voltar");
+		System.out.println("------------------------------------------------------------");
+		System.in.read();
+	}
+	
+	public static void Default() throws IOException {
+		System.out.println("------------------------------------------------------------");
+		System.out.println("Opcao INVALIDA!");
+		sleep();;
+	}
+	
+	
+	
+	
 }		
