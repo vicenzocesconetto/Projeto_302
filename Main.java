@@ -376,7 +376,7 @@ public class Main {
 				String telefone = input.nextLine();
 				System.out.print("e-mail: ");
 				String email = input.nextLine();
-				System.out.println("Endereco:");
+				System.out.println("\nEndereco\n");
 				System.out.print("Rua: ");
 				String rua = input.nextLine();
 				System.out.print("Numero: ");
@@ -549,74 +549,61 @@ public class Main {
 
 		bool=true;
 		
-		while (bool) {
+		while (true) {
 			System.out.print("\033[H\033[2J");
 			System.out.println("****************** Consultar/Atualizar estoque ******************\n");
 	
 			System.out.println("Precione [0] para voltar");
 			System.out.print("Digite o nome do produto: ");
 					
-			op=input.nextInt();input.nextLine();
+			aux=input.nextLine();
 			
-			switch(op) {
-			case 1:	
-			Produto produto = funcoes.buscarProduto(produtos, input.nextLine());
-				if(produto==null) {
-					System.out.println("------------------------------------------------------------");
-					System.out.println("Produto nao encontrado");
-					System.out.println("------------------------------------------------------------");
-				}
-				else {
+			//AQUI A PESSOA PODE VOLTAR PARA O MENU ANTERIOR
+			if(aux.equals("0")) break; 
+			
+			Produto produto=funcoes.buscarProduto(produtos, aux);
+			if(produto==null) {
+				System.out.println("------------------------------------------------------------");
+				System.out.println("Produto nao encontrado");
+				System.out.println("------------------------------------------------------------");
+			}
+			else {
+				while(bool) {
 					System.out.print("\033[H\033[2J");
 					System.out.println(produto.getNome());
 					System.out.println("Estoque atual: "+produto.getEstoque());
-										
-					while(bool) {
-						System.out.print("\033[H\033[2J");
+					System.out.println("------------------------------------------------------------");
+					System.out.println("Precione [1] para atualizar o estoque");
+					System.out.println("Precione [0] para voltar");
+					System.out.println("------------------------------------------------------------");
+					
+					op=input.nextInt();input.nextLine();
+						
+					switch (op) {
+					case 1:					
+						System.out.print("Digite o valor do estoque: ");
+						produto.setEstoque(input.nextInt());
 						System.out.println("------------------------------------------------------------");
-						System.out.println("Precione [1] para atualizar o estoque");
-						System.out.println("Precione [0] para voltar");
+						System.out.println("Novo valor de estoque salvo");
+						System.out.println("Precione [ENTER] para voltar");
 						System.out.println("------------------------------------------------------------");
-						op=input.nextInt();input.nextLine();
+						System.in.read();
+						bool=false;
+						break;
+					
+					case 0:
+						bool=false;
+						break;
 						
-						switch (op) {
-						case 1:					
-							System.out.print("Digite o valor do estoque: ");
-							produto.setEstoque(input.nextInt());
-							System.out.println("------------------------------------------------------------");
-							System.out.println("Novo valor de estoque salvo");
-							System.out.println("Precione [ENTER] para voltar");
-							System.out.println("------------------------------------------------------------");
-							System.in.read();
-							break;
-						
-						case 0:
-							bool=false;
-							break;
-						
-						default:
-							System.out.println("------------------------------------------------------------");
-							System.out.println("Opcao INVALIDA!");
-							System.out.println("Precione [ENTER] para voltar");
-							System.out.println("------------------------------------------------------------");
-							System.in.read();
-							break;
-						}
+					default:
+						System.out.println("------------------------------------------------------------");
+						System.out.println("Opcao INVALIDA!");
+						System.out.println("Precione [ENTER] para voltar");
+						System.out.println("------------------------------------------------------------");
+						System.in.read();
+						break;
 					}
 				}
-			break;
-			
-			case 0:
-				bool=false;
-				break;
-			
-			default:
-				System.out.println("------------------------------------------------------------");
-				System.out.println("Opcao INVALIDA!");
-				System.out.println("Precione [ENTER] para voltar");
-				System.out.println("------------------------------------------------------------");
-				System.in.read();
-				break;
 			}
 		}
 		break;
