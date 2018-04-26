@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1230.155413145055" y="2410.0">Motorista</node>
+    <node x="36.333333333333485" y="2410.5">Cargo</node>
+    <node x="393.0000000000002" y="434.0">Empresa</node>
+    <node x="947.155413145055" y="1814.0">Veiculo</node>
+    <node x="270.5000000000002" y="184.0">Retirada</node>
+    <node x="10.5" y="2614.0">Funcionario</node>
+    <node x="1677.9090909090912" y="1010.0">Venda</node>
+    <node x="562.2463222359642" y="0.0">Movimentacao</node>
+    <node x="1700.4869444444448" y="1874.0">Cliente</node>
+    <node x="2003.3915242561661" y="338.0">Produto</node>
+    <node x="1762.3915242561661" y="422.0">Servico</node>
+    <node x="708.1213222359642" y="184.0">Entrada</node>
+    <node x="1426.9090909090912" y="1166.0">Endereco</node>
+    <node x="567.7840909090911" y="2614.5">Funcoes</node>
+    <node x="1644.8915242561661" y="0.5">FormaPagamento</node>
+    <node x="1608.9066596234468" y="3074.0">Main</node>
+    <node x="1066.3709453377323" y="1310.5">TipoVeiculo</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Main" target="Servico">
+      <point x="92.94999999999987" y="-63.5" />
+      <point x="1844.8566596234466" y="3024.0" />
+      <point x="2149.0026353672774" y="3024.0" />
+      <point x="2149.0026353672774" y="870.0" />
+      <point x="1961.2915242561662" y="870.0" />
+      <point x="88.40000000000009" y="172.0" />
+    </edge>
+    <edge source="Main" target="Funcoes">
+      <point x="-50.05000000000007" y="-63.5" />
+      <point x="1701.8566596234466" y="2994.0" />
+      <point x="895.5340909090911" y="2994.0" />
+      <point x="109.25" y="159.5" />
+    </edge>
+    <edge source="Main" target="Endereco">
+      <point x="7.149999999999977" y="-63.5" />
+      <point x="1759.0566596234466" y="2954.0" />
+      <point x="1543.655413145055" y="2954.0" />
+      <point x="1543.655413145055" y="1784.0" />
+      <point x="1513.5340909090912" y="1784.0" />
+      <point x="-28.875" y="196.0" />
+    </edge>
+    <edge source="Funcoes" target="Empresa">
+      <point x="-79.4545454545455" y="-159.5" />
+      <point x="706.8295454545456" y="2564.0" />
+      <point x="590.0000000000002" y="2564.0" />
+      <point x="0.0" y="160.0" />
+    </edge>
+    <edge source="Empresa" target="Entrada">
+      <point x="147.75" y="-160.0" />
+      <point x="737.7500000000002" y="313.0" />
+      <point x="771.2879889026309" y="313.0" />
+      <point x="-126.33333333333326" y="52.0" />
+    </edge>
+    <edge source="Motorista" target="Cliente">
+      <point x="58.39999999999998" y="-52.0" />
+      <point x="1434.5554131450551" y="2370.0" />
+      <point x="1729.4869444444448" y="2370.0" />
+      <point x="-116.0" y="208.0" />
+    </edge>
+    <edge source="Entrada" target="FormaPagamento">
+      <point x="142.125" y="-52.0" />
+      <point x="1039.7463222359643" y="164.0" />
+      <point x="1702.4915242561663" y="164.0" />
+      <point x="-38.39999999999998" y="51.5" />
+    </edge>
+    <edge source="Funcoes" target="Motorista">
+      <point x="158.909090909091" y="-159.5" />
+      <point x="945.1931818181821" y="2584.0" />
+      <point x="1303.155413145055" y="2584.0" />
+      <point x="-73.0" y="52.0" />
+    </edge>
+    <edge source="Cliente" target="Endereco">
+      <point x="-120.83333333333337" y="-208.0" />
+      <point x="1724.6536111111113" y="1784.0" />
+      <point x="1571.2840909090912" y="1784.0" />
+      <point x="28.875" y="196.0" />
+    </edge>
+    <edge source="Cliente" target="Venda">
+      <point x="-24.166666666666742" y="-208.0" />
+      <point x="1821.3202777777778" y="1764.0" />
+      <point x="1759.1233766233768" y="1764.0" />
+      <point x="-108.28571428571433" y="352.0" />
+    </edge>
+    <edge source="Main" target="FormaPagamento">
+      <point x="135.84999999999997" y="-63.5" />
+      <point x="1887.7566596234467" y="3054.0" />
+      <point x="2407.461547619048" y="3054.0" />
+      <point x="2407.461547619048" y="164.0" />
+      <point x="1817.691524256166" y="164.0" />
+      <point x="76.7999999999999" y="51.5" />
+    </edge>
+    <edge source="Motorista" target="Veiculo">
+      <point x="-116.80000000000001" y="-52.0" />
+      <point x="1259.355413145055" y="2390.0" />
+      <point x="1110.905413145055" y="2390.0" />
+      <point x="32.75" y="268.0" />
+    </edge>
+    <edge source="Main" target="Cliente">
+      <point x="35.75" y="-63.5" />
+      <point x="1787.6566596234468" y="2984.0" />
+      <point x="2047.3455988455992" y="2984.0" />
+      <point x="2047.3455988455992" y="2380.0" />
+      <point x="1961.4869444444448" y="2380.0" />
+      <point x="116.0" y="208.0" />
+    </edge>
+    <edge source="Entrada" target="Movimentacao">
+      <point x="-142.125" y="-52.0" />
+      <point x="755.4963222359642" y="164.0" />
+      <point x="721.7463222359642" y="164.0" />
+      <point x="58.0" y="52.0" />
+    </edge>
+    <edge source="Motorista" target="Endereco">
+      <point x="0.0" y="-52.0" />
+      <point x="1376.155413145055" y="1784.0" />
+      <point x="1455.7840909090912" y="1784.0" />
+      <point x="-86.625" y="196.0" />
+    </edge>
+    <edge source="Empresa" target="Movimentacao">
+      <point x="-49.25" y="-160.0" />
+      <point x="540.7500000000002" y="313.0" />
+      <point x="627.7726587301589" y="313.0" />
+      <point x="627.7726587301589" y="154.0" />
+      <point x="663.7463222359642" y="154.0" />
+      <point x="0.0" y="52.0" />
+    </edge>
+    <edge source="Main" target="Produto">
+      <point x="121.55000000000001" y="-63.5" />
+      <point x="1873.4566596234467" y="3044.0" />
+      <point x="2282.3313131313134" y="3044.0" />
+      <point x="2282.3313131313134" y="980.0" />
+      <point x="2266.1915242561663" y="980.0" />
+      <point x="116.79999999999995" y="256.0" />
+    </edge>
+    <edge source="Venda" target="Produto">
+      <point x="168.44444444444434" y="-352.0" />
+      <point x="2035.8535353535356" y="990.0" />
+      <point x="2149.391524256166" y="990.0" />
+      <point x="0.0" y="256.0" />
+    </edge>
+    <edge source="Main" target="Venda">
+      <point x="64.34999999999997" y="-63.5" />
+      <point x="1816.2566596234467" y="3004.0" />
+      <point x="2083.595598845599" y="3004.0" />
+      <point x="2083.595598845599" y="1784.0" />
+      <point x="2029.8376623376628" y="1784.0" />
+      <point x="162.42857142857156" y="352.0" />
+    </edge>
+    <edge source="Main" target="Funcionario">
+      <point x="-107.25000000000011" y="-63.5" />
+      <point x="1644.6566596234466" y="3034.0" />
+      <point x="173.25" y="3034.0" />
+      <point x="54.25" y="160.0" />
+    </edge>
+    <edge source="Funcoes" target="Retirada">
+      <point x="-119.18181818181824" y="-159.5" />
+      <point x="667.1022727272729" y="2574.0" />
+      <point x="382.5000000000002" y="2574.0" />
+      <point x="0.0" y="52.0" />
+    </edge>
+    <edge source="Empresa" target="Retirada">
+      <point x="-147.75" y="-160.0" />
+      <point x="442.2500000000002" y="313.0" />
+      <point x="457.16666666666697" y="313.0" />
+      <point x="74.66666666666674" y="52.0" />
+    </edge>
+    <edge source="Venda" target="Cliente">
+      <point x="0.0" y="352.0" />
+      <point x="1867.4090909090912" y="1744.0" />
+      <point x="1917.9869444444448" y="1744.0" />
+      <point x="72.5" y="-208.0" />
+    </edge>
+    <edge source="Funcoes" target="Veiculo">
+      <point x="119.18181818181824" y="-159.5" />
+      <point x="905.4659090909093" y="2574.0" />
+      <point x="977.2726587301589" y="2574.0" />
+      <point x="977.2726587301589" y="2390.0" />
+      <point x="979.905413145055" y="2390.0" />
+      <point x="-98.25" y="268.0" />
+    </edge>
+    <edge source="Retirada" target="Movimentacao">
+      <point x="56.0" y="-52.0" />
+      <point x="438.5000000000002" y="144.0" />
+      <point x="634.7463222359642" y="144.0" />
+      <point x="-29.0" y="52.0" />
+    </edge>
+    <edge source="Funcoes" target="Entrada">
+      <point x="-39.72727272727275" y="-159.5" />
+      <point x="746.5568181818184" y="2534.0" />
+      <point x="818.3750000000002" y="2534.0" />
+      <point x="818.3750000000002" y="313.0" />
+      <point x="897.6213222359642" y="313.0" />
+      <point x="0.0" y="52.0" />
+    </edge>
+    <edge source="Venda" target="Empresa">
+      <point x="-168.44444444444446" y="-352.0" />
+      <point x="1698.9646464646466" y="950.0" />
+      <point x="668.8000000000004" y="950.0" />
+      <point x="78.80000000000018" y="160.0" />
+    </edge>
+    <edge source="Venda" target="Servico">
+      <point x="42.111111111111086" y="-352.0" />
+      <point x="1909.5202020202023" y="900.0" />
+      <point x="1828.691524256166" y="900.0" />
+      <point x="-44.200000000000045" y="172.0" />
+    </edge>
+    <edge source="Main" target="Veiculo">
+      <point x="-35.75" y="-63.5" />
+      <point x="1716.1566596234468" y="2984.0" />
+      <point x="1045.405413145055" y="2984.0" />
+      <point x="-32.75" y="268.0" />
+    </edge>
+    <edge source="Main" target="Motorista">
+      <point x="-7.150000000000091" y="-63.5" />
+      <point x="1744.7566596234467" y="2964.0" />
+      <point x="1449.155413145055" y="2964.0" />
+      <point x="73.0" y="52.0" />
+    </edge>
+    <edge source="Venda" target="Entrada">
+      <point x="-84.22222222222217" y="-352.0" />
+      <point x="1783.186868686869" y="930.0" />
+      <point x="1699.54797979798" y="930.0" />
+      <point x="1699.54797979798" y="313.0" />
+      <point x="1023.9546555692974" y="313.0" />
+      <point x="126.33333333333326" y="52.0" />
+    </edge>
+    <edge source="Funcoes" target="Servico">
+      <point x="0.0" y="-159.5" />
+      <point x="786.2840909090911" y="2544.0" />
+      <point x="846.0446088435375" y="2544.0" />
+      <point x="846.0446088435375" y="960.0" />
+      <point x="1784.491524256166" y="960.0" />
+      <point x="-88.40000000000009" y="172.0" />
+    </edge>
+    <edge source="Main" target="Empresa">
+      <point x="-78.65000000000009" y="-63.5" />
+      <point x="1673.2566596234467" y="3014.0" />
+      <point x="249.0" y="3014.0" />
+      <point x="249.0" y="990.0" />
+      <point x="511.2000000000003" y="990.0" />
+      <point x="-78.79999999999995" y="160.0" />
+    </edge>
+    <edge source="Funcoes" target="Cliente">
+      <point x="198.63636363636374" y="-159.5" />
+      <point x="984.9204545454548" y="2594.0" />
+      <point x="1532.655413145055" y="2594.0" />
+      <point x="1532.655413145055" y="2390.0" />
+      <point x="1845.4869444444448" y="2390.0" />
+      <point x="0.0" y="208.0" />
+    </edge>
+    <edge source="Main" target="Cargo">
+      <point x="-135.85000000000014" y="-63.5" />
+      <point x="1616.0566596234466" y="3054.0" />
+      <point x="0.0" y="3054.0" />
+      <point x="0.0" y="2594.0" />
+      <point x="57.00000000000023" y="2594.0" />
+      <point x="-41.33333333333326" y="51.5" />
+    </edge>
+    <edge source="Funcoes" target="Movimentacao">
+      <point x="-198.63636363636374" y="-159.5" />
+      <point x="587.6477272727274" y="2594.0" />
+      <point x="260.0000000000001" y="2594.0" />
+      <point x="260.0000000000001" y="124.0" />
+      <point x="576.7463222359642" y="124.0" />
+      <point x="-87.0" y="52.0" />
+    </edge>
+    <edge source="Funcionario" target="Cargo">
+      <point x="-54.25" y="-160.0" />
+      <point x="64.75" y="2594.0" />
+      <point x="98.33333333333348" y="2594.0" />
+      <point x="0.0" y="51.5" />
+    </edge>
+    <edge source="Funcoes" target="Produto">
+      <point x="39.72727272727275" y="-159.5" />
+      <point x="826.0113636363639" y="2554.0" />
+      <point x="919.6213222359642" y="2554.0" />
+      <point x="919.6213222359642" y="970.0" />
+      <point x="2032.5915242561662" y="970.0" />
+      <point x="-116.79999999999995" y="256.0" />
+    </edge>
+    <edge source="Main" target="TipoVeiculo">
+      <point x="-21.450000000000045" y="-63.5" />
+      <point x="1730.4566596234467" y="2974.0" />
+      <point x="1219.655413145055" y="2974.0" />
+      <point x="1219.655413145055" y="1784.0" />
+      <point x="1173.8709453377323" y="1784.0" />
+      <point x="43.0" y="51.5" />
+    </edge>
+    <edge source="Funcoes" target="Venda">
+      <point x="79.4545454545455" y="-159.5" />
+      <point x="865.7386363636366" y="2564.0" />
+      <point x="930.6213222359642" y="2564.0" />
+      <point x="930.6213222359642" y="1794.0" />
+      <point x="1704.98051948052" y="1794.0" />
+      <point x="-162.42857142857144" y="352.0" />
+    </edge>
+    <edge source="Venda" target="FormaPagamento">
+      <point x="0.0" y="-352.0" />
+      <point x="1867.4090909090912" y="910.0" />
+      <point x="1751.8915242561661" y="910.0" />
+      <point x="1751.8915242561661" y="164.0" />
+      <point x="1779.2915242561662" y="164.0" />
+      <point x="38.40000000000009" y="51.5" />
+    </edge>
+    <edge source="Veiculo" target="TipoVeiculo">
+      <point x="-65.5" y="-268.0" />
+      <point x="1012.655413145055" y="1784.0" />
+      <point x="1087.8709453377323" y="1784.0" />
+      <point x="-43.0" y="51.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.30000000000000004" x="1855.8531468531467" y="1883.9999999999998" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
