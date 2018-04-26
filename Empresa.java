@@ -8,7 +8,7 @@ public class Empresa {
     private ArrayList<Movimentacao> movimentacoes;
 
     public Empresa(String nome, String cnpj) {
-    	this.nome = nome;
+    	this.nome = nome.toUpperCase();
         this.cnpj = cnpj;
         this.movimentacoes = new ArrayList<Movimentacao>();
     }
@@ -18,7 +18,7 @@ public class Empresa {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.toUpperCase();
     }
 
     public String getCnpj() {
@@ -42,13 +42,9 @@ public class Empresa {
 	}
 	
 	public void addMovimentacao(Movimentacao m) {
+		if(m instanceof Entrada) this.caixa += m.getValor();
+		else if(m instanceof Retirada) this.caixa -= m.getValor();
+		else return;
 		movimentacoes.add(m);
-		
-		if(m instanceof Entrada) {
-			this.caixa += m.getValor();
-		}
-		if(m instanceof Retirada) {
-			this.caixa -= m.getValor();
-		}
 	}	
 }

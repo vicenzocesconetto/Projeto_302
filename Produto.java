@@ -19,7 +19,7 @@ public class Produto {
 		this.estoqueMinimo = estoqueMinimo;
 		this.estoque = estoque;
 		this.valor = valor;
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}
 
 	public int getId() {
@@ -31,7 +31,7 @@ public class Produto {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}
 
 	public float getValor() {
@@ -66,6 +66,11 @@ public class Produto {
 		if (estoque < estoqueMinimo) {
 			return true;
 		}
+		return false;
+	}
+	
+	public boolean checarEstoque(int q) {
+		if(q<=this.estoque) return true;
 		return false;
 	}
 	

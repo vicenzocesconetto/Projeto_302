@@ -11,7 +11,7 @@ public class Servico {
 	
 	public Servico(String nome, float valor) {
 		this();
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 		this.valor = valor;
 	}
 	
@@ -28,7 +28,7 @@ public class Servico {
 	}
 	
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}
 	
 	public float getValor() {
