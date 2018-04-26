@@ -95,4 +95,5 @@ Classes bases:
 		+ Buscas (Cliente/Produto/Servicos)
 		+ Adicionar (Cliente/Produto/Servicos)
 		+ Atualizar estoque
-		+ Retirar
+		+ Retira
+		+ ImprimirEncerrante

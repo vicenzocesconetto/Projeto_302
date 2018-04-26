@@ -5,15 +5,15 @@ public class Veiculo {
 	private String marca;
 	private String modelo;
 	private String placa;
-	private short anoFabricacao;
-	private short anoModelo;
+	private int anoFabricacao;
+	private int anoModelo;
 	private ArrayList<Integer> kms;
 	
-	public Veiculo(TipoVeiculo tipo, String marca, String modelo, String placa, short anoFabricacao, short anoModelo, int km) {
+	public Veiculo(TipoVeiculo tipo, String marca, String modelo, String placa, int anoFabricacao, int anoModelo, int km) {
 		this.tipo = tipo;
-		this.marca = marca;
-		this.modelo = modelo;
-		this.placa = placa;
+		this.marca = marca.toUpperCase();
+		this.modelo = modelo.toUpperCase();
+		this.placa = placa.toUpperCase();
 		this.anoFabricacao = anoFabricacao;
 		this.anoModelo = anoModelo;
 		this.kms = new ArrayList<Integer>();
@@ -33,7 +33,7 @@ public class Veiculo {
 	}
 
 	public void setMarca(String marca) {
-		this.marca = marca;
+		this.marca = marca.toUpperCase();
 	}
 
 	public String getModelo() {
@@ -41,7 +41,7 @@ public class Veiculo {
 	}
 
 	public void setModelo(String modelo) {
-		this.modelo = modelo;
+		this.modelo = modelo.toUpperCase();
 	}
 
 	public String getPlaca() {
@@ -49,22 +49,22 @@ public class Veiculo {
 	}
 
 	public void setPlaca(String placa) {
-		this.placa = placa;
+		this.placa = placa.toUpperCase();
 	}
 
-	public short getAnoFabricacao() {
+	public int getAnoFabricacao() {
 		return anoFabricacao;
 	}
 
-	public void setAnoFabricacao(short anoFabricacao) {
+	public void setAnoFabricacao(int anoFabricacao) {
 		this.anoFabricacao = anoFabricacao;
 	}
 
-	public short getAnoModelo() {
+	public int getAnoModelo() {
 		return anoModelo;
 	}
 
-	public void setAnoModelo(short anoModelo) {
+	public void setAnoModelo(int anoModelo) {
 		this.anoModelo = anoModelo;
 	}
 	
@@ -75,5 +75,4 @@ public class Veiculo {
 	public void addkm (int km) {
 		this.kms.add(km);
 	}	
-	
 }

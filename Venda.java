@@ -5,7 +5,7 @@ public class Venda {
     private Cliente cliente;
     private ArrayList<Produto> produtos;
     private ArrayList<Servico> servicos;
-    private ArrayList<Integer> qtd;
+    private ArrayList<Integer> qtd; //GUARDA A QTD DE ITENS COMPRADOS DO PRODUTO I, QUE ESTA NA IESIMA POSICAO DO ARRAY THIS.PRODUTOS
     private FormaPagamento formaPagamento;
     private final Date data;
     private String funcionario;
@@ -81,24 +81,38 @@ public class Venda {
 	public void addProduto(Produto p, int q) {
 		qtd.add(q);	
 		produtos.add(p);
+		this.total += (p.getValor()*q);
 	}
 	
 	public void addServico(Servico s) {
 		servicos.add(s);
+		this.total += (s.getValor());
 	}
+	
+	public void removeProduto(int i){
+		this.total -= (produtos.get(i).getValor()*qtd.get(i));
+		qtd.remove(i);
+		produtos.remove(i);		
+	}
+	
+	public void removeServico(int i) {
+		this.total -= (servicos.get(i).getValor());
+		servicos.remove(i);		
+	}	
 	
 	public void desconto(Float d) {
 		this.total=(1-d)*total;
 	}
 	
 	public void finalizarVenda() {
-		//Salva no historico do Produto
+		//SALVA HISTORICO DO CLIENTE
 		this.cliente.addHistorico(this);
-		//Diminui o estoque dos produtos
+		
+		//DIMINUI O ESTOQUE DOS PRODUTOS
 		for (int i=0; i<this.produtos.size(); i++) {
 			this.produtos.get(i).diminuirEstoque(qtd.get(i));
 		}
-		//Salva Movimentacao
+		//SALVA MOVIMENTACAO
 		empresa.addMovimentacao(new Entrada(this.getTotal(),this.getFormaPagamento()));		
 	}
 }

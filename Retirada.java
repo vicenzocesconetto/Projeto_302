@@ -3,7 +3,7 @@ public class Retirada extends Movimentacao {
 
 	public Retirada(float valor, String motivo) {
 		super(valor);
-		this.motivo = motivo;
+		this.motivo = motivo.toUpperCase();
 	}
 
 	public String getMotivo() {
@@ -11,6 +11,6 @@ public class Retirada extends Movimentacao {
 	}
 
 	public void setMotivo(String motivo) {
-		this.motivo = motivo;
+		this.motivo = motivo.toUpperCase();
 	}
 }

@@ -11,9 +11,9 @@ public class Cliente {
 	private ArrayList<Venda> historico;
 	
 	public Cliente(String nome, String telefone, String email, Endereco endereco) {
-		this.nome = nome;
-		this.telefone = telefone;
-		this.email = email;
+		this.nome = nome.toUpperCase();
+		this.telefone = telefone.toUpperCase();
+		this.email = email.toLowerCase();
 		this.endereco = endereco;
 		this.historico = new ArrayList<Venda>();
 		numClientes++;
@@ -28,7 +28,7 @@ public class Cliente {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}
 
 	public String getTelefone() {
@@ -36,7 +36,7 @@ public class Cliente {
 	}
 
 	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+		this.telefone = telefone.toUpperCase();
 	}
 
 	public String getEmail() {
@@ -44,7 +44,7 @@ public class Cliente {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 
 	public Endereco getEndereco() {

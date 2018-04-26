@@ -5,7 +5,7 @@ public class Funcionario {
 	private Cargo cargo;
 	
 	public Funcionario(String nome, String login, String senha, Cargo cargo) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 		this.login = login;
 		this.senha = senha;
 		this.cargo = cargo;
@@ -16,7 +16,7 @@ public class Funcionario {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}
 
 	public String getLogin() {

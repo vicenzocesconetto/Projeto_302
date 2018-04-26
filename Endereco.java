@@ -1,18 +1,18 @@
 
 public class Endereco {
 	private String rua;
-	private short numero;
+	private String numero;
 	private String bairro;
 	private String cidade;
 	private String uf;
 	
-	public Endereco(String rua, short numero, String bairro, String cidade, String uf) {
+	public Endereco(String rua, String numero, String bairro, String cidade, String uf) {
 		super();
-		this.rua = rua;
-		this.numero = numero;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.uf = uf;
+		this.rua = rua.toUpperCase();
+		this.numero = numero.toUpperCase();
+		this.bairro = bairro.toUpperCase();
+		this.cidade = cidade.toUpperCase();
+		this.uf = uf.toUpperCase();
 	}
 
 	public String getRua() {
@@ -20,15 +20,15 @@ public class Endereco {
 	}
 
 	public void setRua(String rua) {
-		this.rua = rua;
+		this.rua = rua.toUpperCase();
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(short numero) {
-		this.numero = numero;
+	public void setNumero(String numero) {
+		this.numero = numero.toUpperCase();
 	}
 
 	public String getBairro() {
@@ -36,7 +36,7 @@ public class Endereco {
 	}
 
 	public void setBairro(String bairro) {
-		this.bairro = bairro;
+		this.bairro = bairro.toUpperCase();
 	}
 
 	public String getCidade() {
@@ -44,7 +44,7 @@ public class Endereco {
 	}
 
 	public void setCidade(String cidade) {
-		this.cidade = cidade;
+		this.cidade = cidade.toUpperCase();
 	}
 
 	public String getUf() {
@@ -52,6 +52,6 @@ public class Endereco {
 	}
 
 	public void setUf(String uf) {
-		this.uf = uf;
+		this.uf = uf.toUpperCase();
 	}	
 }
