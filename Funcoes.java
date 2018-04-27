@@ -81,7 +81,7 @@ public class Funcoes {
 		
 		String str="Detalhes da venda:\n";
 		str+="Nome: " + venda.getCliente().getNome() +"\n";
-		str+="Forma de Pagamento: \n" + venda.getFormaPagamento()+"\n";
+		str+="Forma de Pagamento: " + venda.getFormaPagamento()+"\n";
 		str+="Data: " + venda.getData()+"\n";
 		str+="Funcionario: " + venda.getFuncionario()+"\n";
 		str+="Total: " + venda.getTotal();
