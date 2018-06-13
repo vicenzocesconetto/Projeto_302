@@ -1,4 +1,4 @@
-public class Movimentacao {
+public abstract class Movimentacao {
 	private float valor;
 
 	public Movimentacao(float valor) {
