@@ -16,7 +16,7 @@ public class Cliente {
 		this.email = email.toLowerCase();
 		this.endereco = endereco;
 		this.historico = new ArrayList<Venda>();
-		numClientes++;
+		++numClientes;
 	}
 
 	public static int getNumClientes() {
