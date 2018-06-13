@@ -25,4 +25,17 @@ No nosso programa de gerenciamento é possível:
 
 ### Feito
 
+#### Gustavo
+
+#### Evandro
+
+#### Vicenzo
+
+
 ### A FAZER
+
+#### Gustavo
+
+#### Evandro
+
+#### Vicenzo
