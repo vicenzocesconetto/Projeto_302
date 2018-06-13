@@ -37,10 +37,10 @@ No nosso programa de gerenciamento é possível:
 #### Gustavo
 Serializar classes:
 		
-		Cliente/Motorista
-		Produto
-		Servico
-		Funcionario
+	Cliente/Motorista
+	Produto
+	Servico
+	Funcionario
 
 #### Evandro
 Dados para o programa
@@ -50,8 +50,8 @@ Dados para o programa
 	
 #### Vicenzo
 
-Tratamento de excecao
-Classe Abstrata: Movimentacao
+	Tratamento de excecao
+	Classe Abstrata: Movimentacao
 
 #### Tarefas Livres
 	-Adicionar carros a um cliente
