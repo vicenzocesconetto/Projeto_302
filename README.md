@@ -19,3 +19,10 @@ No nosso programa de gerenciamento é possível:
  5. Gerenciar os dados da empresa e os funcionários presentes nela.
 
  6. Realizar vendas de diversos produtos e serviços cadastrados.
+
+
+#TO DO LIST
+
+## Feito
+
+## A FAZER
