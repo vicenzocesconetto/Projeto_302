@@ -35,7 +35,30 @@ No nosso programa de gerenciamento é possível:
 ### A FAZER
 
 #### Gustavo
+Serializar classes:
+		
+		Cliente/Motorista
+		Produto
+		Servico
+		Funcionario
 
 #### Evandro
-
+Dados para o programa
+	
+	Salvar o caixa
+	Salvar dados da empresa
+	
 #### Vicenzo
+
+Tratamento de excecao
+Classe Abstrata: Movimentacao
+
+#### Tarefas Livres
+	-Adicionar carros a um cliente
+	-Trocar modelo do carro
+	-Adicionar mais de um carro
+	-Calcular retorno
+	-Login/Senha
+	-Desconto
+	-Detalhe na impressão do encerrante
+	-Adicionar a empresa ArrayList de funcionarios
