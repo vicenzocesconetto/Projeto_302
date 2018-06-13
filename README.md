@@ -21,9 +21,9 @@ No nosso programa de gerenciamento é possível:
  6. Realizar vendas de diversos produtos e serviços cadastrados.
 
 
-## TO DO LIST
+## To Do List
 
-### Feito
+### FEITO
 
 #### Gustavo
 
