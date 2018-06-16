@@ -1075,6 +1075,7 @@ public class Main {
 			System.out.print("\033[H\033[2J");
 			System.out.println("************************************************************");
 			System.out.println("Encerrando o sistema...");
+			continua=false;
 			System.out.println("Encerrado");
 			System.out.println("************************************************************");
 			break;
