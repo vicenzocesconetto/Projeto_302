@@ -1,9 +1,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class Main {
+	
 	public static void main(String[] args) throws IOException {
+	String serFilename = "serializationData.ser";
 	//INICIALIZA O ARRAYLIST QUE SALVAM OS DADOS DO SISTEMA
 	ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	ArrayList<Produto> produtos = new ArrayList<Produto>();
@@ -29,6 +36,28 @@ public class Main {
 	System.out.println("Bem-vindo a Oficina 3.0!");
 	System.out.println("Qual o valor do seu caixa atual?");
 	empresa.setCaixa(input.nextFloat());
+	empresa.getFuncionarios().add(funcionario);
+	ObjectInputStream in = null;
+	try { //desserialização
+		in = new ObjectInputStream(new FileInputStream(serFilename));
+		try {
+			clientes = (ArrayList<Cliente>) in.readObject();
+			produtos = (ArrayList<Produto>) in.readObject();
+			servicos = (ArrayList<Servico>) in.readObject();
+			// funcionarios
+			Cliente.setNumClientes(clientes.size()); // Os atributos estaticos precisam ser atualizados na memoria
+			Produto.setNumeroProdutos(produtos.size()); 
+			Servico.setGeradorId(servicos.size()); 
+	 	}catch (IOException ex){
+			
+	 	}catch (ClassNotFoundException ex) {
+	 		
+		}finally {
+			in.close();
+		}
+	}catch(FileNotFoundException ex) {
+		 
+	}
 		
 	while(continua) {
 		//MENU INICIAL
@@ -664,6 +693,9 @@ public class Main {
 								
 						if(c1 != null) { 
 							System.out.println(funcoes.printDadosCliente(c1));
+							if (c1 instanceof Motorista) {
+								System.out.println(funcoes.printVeiculosMotorista((Motorista)c1));
+							}
 							break;
 						}else {
 							System.out.println("------------------------------------------------------------");
@@ -1026,10 +1058,23 @@ public class Main {
 			
 		//ENCERRA O PROGRAMA
 		case 0:
+			ObjectOutputStream out = null; //serialização
+			try {
+				out = new ObjectOutputStream(new FileOutputStream(serFilename));
+				out.writeObject(clientes);
+				out.writeObject(produtos);
+				out.writeObject(servicos);
+				// funcionarios
+				out.flush();
+			}catch(IOException ex) {
+				
+			}finally {
+				out.close();
+			}
+			
 			System.out.print("\033[H\033[2J");
 			System.out.println("************************************************************");
 			System.out.println("Encerrando o sistema...");
-			continua=false;
 			System.out.println("Encerrado");
 			System.out.println("************************************************************");
 			break;

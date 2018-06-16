@@ -1,7 +1,10 @@
+import java.io.Serializable;
+
 //import java.util.ArrayList;
 
-public class Produto {
-	final private int id;
+public class Produto implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private int id;
 	private String nome;
 	private float valor;
 	private int estoque;
@@ -60,6 +63,10 @@ public class Produto {
 
 	public static int getNumeroProdutos() {
 		return numeroProdutos;
+	}
+	
+	public static void setNumeroProdutos(int numeroProdutos) {
+		Produto.numeroProdutos = numeroProdutos;
 	}
 	
 	public boolean checarEstoqueMinimo() { // Retorna true se o estoqueAtual esta menor que o estoqueMinimo. False caso contrario

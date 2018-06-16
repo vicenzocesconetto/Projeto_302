@@ -6,11 +6,13 @@ public class Empresa {
     private String cnpj;
     private float caixa;
     private ArrayList<Movimentacao> movimentacoes;
+    private ArrayList<Funcionario> funcionarios;
 
     public Empresa(String nome, String cnpj) {
     	this.nome = nome.toUpperCase();
         this.cnpj = cnpj;
         this.movimentacoes = new ArrayList<Movimentacao>();
+        this.funcionarios = new ArrayList<Funcionario>();
     }
 
     public String getNome() {
@@ -41,6 +43,10 @@ public class Empresa {
 		return movimentacoes;
 	}
 	
+	public ArrayList<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
 	public void addMovimentacao(Movimentacao m) {
 		if(m instanceof Entrada) this.caixa += m.getValor();
 		else if(m instanceof Retirada) this.caixa -= m.getValor();

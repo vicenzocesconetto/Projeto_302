@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cliente {
+public class Cliente implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private static int numClientes=0;
-	
 	private String nome;
 	private String telefone;
 	private String email;
@@ -21,6 +22,10 @@ public class Cliente {
 
 	public static int getNumClientes() {
 		return numClientes;
+	}
+	
+	public static void setNumClientes(int numClientes) {
+		Cliente.numClientes = numClientes;
 	}
 
 	public String getNome() {

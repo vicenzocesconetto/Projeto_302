@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Veiculo {
+public class Veiculo implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private TipoVeiculo tipo;
 	private String marca;
 	private String modelo;

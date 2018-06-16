@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Funcoes {
+
 	
 	public Cliente buscarCliente(ArrayList<Cliente> clientes, String nome) {
 		 for (int i = 0; i<clientes.size(); i++) {
@@ -93,7 +94,7 @@ public class Funcoes {
 		String str = "Veiculos do cliente\n\n";
 		for (int i = 0; i<cliente.getVeiculos().size(); i++) {
 				Veiculo veiculo = cliente.getVeiculos().get(i);
-				str += "Veiculo" + (i + 1) + "\n\n";
+				str += "Veiculo " + (i + 1) + "\n\n";
 				str += "Tipo " + veiculo.getTipo() + "\n";
 				str += "Marca: " + veiculo.getMarca() + "\n";
 				str += "Modelo: " + veiculo.getModelo() + "\n";

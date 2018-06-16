@@ -1,5 +1,7 @@
-public class Servico {
-	
+import java.io.Serializable;
+
+public class Servico implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private static int geradorId = 0;
 	private String nome;
@@ -9,7 +11,7 @@ public class Servico {
 		id = geradorId++;
 	}
 	
-	public Servico(String nome, float valor) {
+	public Servico (String nome, float valor) {
 		this();
 		this.nome = nome.toUpperCase();
 		this.valor = valor;
