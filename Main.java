@@ -24,7 +24,7 @@ public class Main {
 	Funcoes funcoes = new Funcoes();
 
 	//VARIAVEIS PARA LER A ENTRADA DE DADOS DO USUARIO
-	Scanner input = new Scanner(System.in); 
+	Scanner input = new Scanner(System.in);
 	int op=10;								
 		
 	//VARIAVEIS AUXILIARES
@@ -38,7 +38,7 @@ public class Main {
 	empresa.setCaixa(input.nextFloat());
 	empresa.getFuncionarios().add(funcionario);
 	ObjectInputStream in = null;
-	try { //desserialização
+	try { //desserializaï¿½ï¿½o
 		in = new ObjectInputStream(new FileInputStream(serFilename));
 		try {
 			clientes = (ArrayList<Cliente>) in.readObject();
@@ -1058,7 +1058,7 @@ public class Main {
 			
 		//ENCERRA O PROGRAMA
 		case 0:
-			ObjectOutputStream out = null; //serialização
+			ObjectOutputStream out = null; //serializaï¿½ï¿½o
 			try {
 				out = new ObjectOutputStream(new FileOutputStream(serFilename));
 				out.writeObject(clientes);

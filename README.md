@@ -31,6 +31,8 @@ No nosso programa de gerenciamento é possível:
 
 #### Vicenzo
 
+    Tratamento de excecao
+	Classe Abstrata: Movimentacao
 
 ### A FAZER
 
@@ -49,9 +51,6 @@ Dados para o programa
 	Salvar dados da empresa
 	
 #### Vicenzo
-
-	Tratamento de excecao
-	Classe Abstrata: Movimentacao
 
 #### Tarefas Livres
 	-Adicionar carros a um cliente
