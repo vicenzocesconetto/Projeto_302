@@ -38,7 +38,7 @@ public class Main {
 	empresa.setCaixa(input.nextFloat());
 	empresa.getFuncionarios().add(funcionario);
 	ObjectInputStream in = null;
-	try { //desserializa��o
+	try { //desserializacao
 		in = new ObjectInputStream(new FileInputStream(serFilename));
 		try {
 			clientes = (ArrayList<Cliente>) in.readObject();
@@ -1058,7 +1058,7 @@ public class Main {
 			
 		//ENCERRA O PROGRAMA
 		case 0:
-			ObjectOutputStream out = null; //serializa��o
+			ObjectOutputStream out = null; //serializacao
 			try {
 				out = new ObjectOutputStream(new FileOutputStream(serFilename));
 				out.writeObject(clientes);
