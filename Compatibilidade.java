@@ -38,7 +38,4 @@ public class Compatibilidade {
 	public ArrayList<Float> getPotencias() {
 		return potencias;
 	}
-
-
-	
 }

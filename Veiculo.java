@@ -31,7 +31,7 @@ public class Veiculo implements Serializable{
 	public void setkmDia(float km, boolean evento) {
 		if(evento)return;
 		Date dtInicio = this.ultimaKm;//Data menor  
-		Date dtFim = new Date( System.currentTimeMillis());//Data maior  
+		Date dtFim = new Date(System.currentTimeMillis());//Data maior  
 		int dias;
 		for (dias = 0; dtFim.after(dtInicio); dias++) {  
 		   dtFim.setDate(dtFim.getDate() - 1);  
@@ -41,7 +41,7 @@ public class Veiculo implements Serializable{
 		this.kmDia = km/dias;
 	}
 	@SuppressWarnings("deprecation")
-	public void setkmDiaInicial(float km) {
+	private void setkmDiaInicial(float km) {
 		Date dtInicio;
 		if(anoFabricacao==anoModelo) {
 			dtInicio = new Date(anoFabricacao, 06, 01);//Data menor  
@@ -54,7 +54,6 @@ public class Veiculo implements Serializable{
 		   dtFim.setDate(dtFim.getDate() - 1);  
 		}  
 		this.ultimaKm=dtFim;
-		this.kmAtual=km;
 		this.kmDia = km/dias;
 	}
 	
