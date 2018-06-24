@@ -46,7 +46,7 @@ public class Main {
 			servicos = (ArrayList<Servico>) in.readObject();
 			// funcionarios
 			Cliente.setNumClientes(clientes.size()); // Os atributos estaticos precisam ser atualizados na memoria
-			Produto.setNumeroProdutos(produtos.size()); 
+//			Produto.setNumeroProdutos(produtos.size()); TEM UM ERRO AKI
 			Servico.setGeradorId(servicos.size()); 
 	 	}catch (IOException ex){
 			
