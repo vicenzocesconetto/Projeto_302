@@ -39,7 +39,7 @@ public class Funcoes {
 	}
 	
 	public boolean login(Empresa empresa, String login, String password) {
-		for (int i=0;i<empresa.getFuncionarios().size();i++) {
+		for (int i = 0; i<empresa.getFuncionarios().size() ;i++) {
 			if(empresa.getFuncionarios().get(i).getLogin().equals(login))
 				if(empresa.getFuncionarios().get(i).getSenha().equals(password))return true;
 		}

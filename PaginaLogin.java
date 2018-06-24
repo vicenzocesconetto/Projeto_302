@@ -5,24 +5,36 @@ import java.awt.event.ActionListener;
 
 public class PaginaLogin extends JFrame implements ActionListener{
 
+    private JTextField campoDoUsuario;
+    private JPasswordField campoDaSenha;
+
     public PaginaLogin() {
+
+        Container contentPane = getContentPane();
+        JLabel labelUsuario = new JLabel("Usuario");
+        JLabel labelSenha = new JLabel("Senha");
+        campoDoUsuario = new JTextField(10);
+        campoDaSenha = new JPasswordField(10);
+        JButton login = new JButton("Login!");
 
         setTitle("Login");
 
-        JLabel labelUsuario = new JLabel("Usuario");
-        JTextField campoDoUsuario = new JTextField(10);
-        labelUsuario.setLabelFor(campoDoUsuario);
+        labelUsuario.setBounds(80, 70, 200, 30);
+        labelSenha.setBounds(80, 110, 200, 30);
+        campoDoUsuario.setBounds(140, 70, 200, 30);
+        campoDaSenha.setBounds(140, 110, 200, 30);
+        login.setBounds(150, 160, 100, 30);
 
-        JLabel labelSenha = new JLabel("Senha");
-        JPasswordField campoDaSenha = new JPasswordField(10);
-        labelSenha.setLabelFor(campoDaSenha);
+        login.setBackground(new Color(59, 89, 182));
+        login.setForeground(Color.white);
 
-        JButton login = new JButton("Login!");
+//        labelUsuario.setLabelFor(campoDoUsuario);
+//        labelSenha.setLabelFor(campoDaSenha);
+
+
         login.addActionListener(this);
 
-        Container contentPane = getContentPane();
-
-        contentPane.setLayout(new FlowLayout());
+        contentPane.setLayout(null);
         contentPane.add(labelUsuario);
         contentPane.add(campoDoUsuario);
         contentPane.add(labelSenha);
@@ -30,14 +42,15 @@ public class PaginaLogin extends JFrame implements ActionListener{
         contentPane.add(login);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 100);
+        setSize(500, 500);
         setVisible(true);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        String login = campoDoUsuario.getText();
+        String senha = String.valueOf(campoDaSenha.getPassword());
     }
 
     public static void main(String[] args) {
