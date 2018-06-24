@@ -41,13 +41,14 @@ public class Cliente implements Serializable{
 		this.veiculos.add(novo);
 	}
 	
-	public void removeVeiculo (int i) {
+	public boolean removeVeiculo (int i) {
 		try {
 			this.veiculos.remove(i);
+			return true;
 		}catch(ArrayIndexOutOfBoundsException e) {
-			e.printStackTrace();
+			return false;
 		}catch(Exception e2) {
-			e2.printStackTrace();
+			return false;
 		}
 	}
 

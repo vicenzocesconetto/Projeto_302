@@ -79,7 +79,6 @@ public class Funcoes {
 		}
 		//SALVA MOVIMENTACAO
 		venda.getEmpresa().addMovimentacao(new Entrada(venda.getTotal(),venda.getFormaPagamento()));
-		
 	}
 	
 	public void finalizarVendaServico(Venda venda, Veiculo veiculo) {

@@ -1,4 +1,3 @@
-
 public enum Cargo {
-	MECANICO, ATENDENTE, GERENTE
+	ATENDENTE, GERENTE
 }
