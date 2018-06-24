@@ -6,17 +6,24 @@ public class Servico implements Serializable {
 	private static int geradorId = 0;
 	private String nome;
 	private float valor;
+	private boolean retorno;
 	
 	public Servico() {
 		id = geradorId++;
 	}
 	
-	public Servico (String nome, float valor) {
+	public Servico (String nome, float valor, boolean retorno) {
 		this();
 		this.nome = nome.toUpperCase();
 		this.valor = valor;
+		this.retorno=retorno;
 	}
 	
+	public void setNome(String nome) {
+		this.nome = nome.toUpperCase();
+	}
+	
+	//GETTERS E SETTER PADROES
 	public int getId() {
 		return id;
 	}
@@ -28,11 +35,7 @@ public class Servico implements Serializable {
 	public String getNome() {
 		return nome;
 	}
-	
-	public void setNome(String nome) {
-		this.nome = nome.toUpperCase();
-	}
-	
+		
 	public float getValor() {
 		return valor;
 	}
@@ -49,13 +52,15 @@ public class Servico implements Serializable {
 		Servico.geradorId = geradorId;
 	}
 
-	@Override
-	public String toString(){
-		String str = "";
-		str += "ID: " + id + "\n";
-		str += "Nome: " + nome + "\n";
-		str += "Valor: " + valor + "\n";
-		return str;
+	public boolean isRetorno() {
+		return retorno;
 	}
-	
+
+	public void setRetorno(boolean retorno) {
+		this.retorno = retorno;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

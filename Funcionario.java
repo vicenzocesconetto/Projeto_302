@@ -14,12 +14,13 @@ public class Funcionario implements Serializable {
 		this.cargo = cargo;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
 	public void setNome(String nome) {
 		this.nome = nome.toUpperCase();
+	}
+
+	 //GETTERS E SETTER PADROES
+	public String getNome() {
+		return nome;
 	}
 
 	public String getLogin() {

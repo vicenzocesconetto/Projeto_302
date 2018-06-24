@@ -6,10 +6,10 @@ public class Retirada extends Movimentacao {
 		this.motivo = motivo.toUpperCase();
 	}
 
+	//GETTERS E SETTER PADROES
 	public String getMotivo() {
 		return motivo;
 	}
-
 	public void setMotivo(String motivo) {
 		this.motivo = motivo.toUpperCase();
 	}

@@ -30,7 +30,7 @@ public class PaginaLogin extends JFrame implements ActionListener{
         contentPane.add(login);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 500);
+        setSize(500, 100);
         setVisible(true);
     }
 

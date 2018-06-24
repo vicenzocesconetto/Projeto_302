@@ -1,7 +1,97 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Funcoes {
-
+	
+	public boolean salvarEncerrante(String m) throws IOException {
+		String caminho = "/home/greenseiya/Documents/Oficina/src/encerrantes/" +dataHoje();
+		System.out.println(caminho);
+		try {
+			FileWriter arquivo = new FileWriter (caminho);
+			arquivo.write(m);
+			arquivo.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+		
+	public String dataHoje() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy");
+		return sdf.format( new Date( System.currentTimeMillis() ) );
+	}
+	
+	public String dataHojeBarra() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format( new Date( System.currentTimeMillis() ) );
+	}
+	
+	public String horaSistema() {
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		return  sdf.format( new Date( System.currentTimeMillis())) ;
+	}
+	
+	public boolean login(Empresa empresa, String login, String password) {
+		for (int i=0;i<empresa.getFuncionarios().size();i++) {
+			if(empresa.getFuncionarios().get(i).getLogin().equals(login))
+				if(empresa.getFuncionarios().get(i).getSenha().equals(password))return true;
+		}
+		return false;
+	}
+	
+	public boolean loginGerente(Empresa empresa, String login, String password) {
+		for (int i=0;i<empresa.getFuncionarios().size();i++) {
+			if(empresa.getFuncionarios().get(i).getLogin().equals(login))
+				if(empresa.getFuncionarios().get(i).getSenha().equals(password)) {
+					if(empresa.getFuncionarios().get(i).getCargo()==Cargo.GERENTE)return true;
+				}
+			}
+		return false;
+	}
+	
+	public boolean produtoCompativel(Produto p, Veiculo veiculo) {
+		for(int i=0;i<p.getModelosCompativeis().size();i++) {	
+			if(p.getModelosCompativeis().get(i).getMarca().equals(veiculo.getMarca())) {
+				if(p.getModelosCompativeis().get(i).getModelo().equals(veiculo.getModelo())) {
+					for(int a=0;a<p.getModelosCompativeis().get(i).getPotencias().size();a++) {
+						if(p.getModelosCompativeis().get(i).getPotencias().get(a)==veiculo.getPotencia()) return true;
+					}
+				}
+			}
+		}
+		return false;		
+	}
+	
+	public void finalizarVenda(Venda venda) {
+		//SALVA HISTORICO DO CLIENTE
+		venda.getCliente().addHistorico(venda);
+		
+		//DIMINUI O ESTOQUE DOS PRODUTOS
+		for (int i=0; i<venda.getProdutos().size(); i++) {
+			venda.getProdutos().get(i).diminuirEstoque(venda.getQtd().get(i));
+		}
+		//SALVA MOVIMENTACAO
+		venda.getEmpresa().addMovimentacao(new Entrada(venda.getTotal(),venda.getFormaPagamento()));
+		
+	}
+	
+	public void finalizarVendaServico(Venda venda, Veiculo veiculo) {
+		finalizarVenda(venda);
+		
+		//CALCULA DATA DE RETORNO DO CLIENTE SE FOR O CASO
+		for (int i=0; i<venda.getServicos().size(); i++) {
+			if(venda.getServicos().get(i).isRetorno()) {
+				venda.getCliente().setRetorno(new Retorno(venda, veiculo));
+			}
+		}
+	}
 	
 	public Cliente buscarCliente(ArrayList<Cliente> clientes, String nome) {
 		 for (int i = 0; i<clientes.size(); i++) {
@@ -38,113 +128,5 @@ public class Funcoes {
 			return true;
 		}
 		return false;
-	}
-	
-	public String imprimeEncerrante(ArrayList<Movimentacao> m){
-       String  str = "";
-			
-		for (int i=0;i<m.size();i++) {
-			if(m.get(i) instanceof Entrada) {
-				Entrada e = (Entrada)m.get(i);
-				str += "-------------------------------------\n";
-				str += "Entrada!\n";
-				str += "Valor: R$" + e.getValor()+"\n";
-				str += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
-			}else {
-				Retirada r = (Retirada)m.get(i);
-					str += "-------------------------------------\n";
-					str += "Retirada!\n";
-					str += "Valor: R$" + r.getValor()+"\n";
-					str += "Motivo: " + r.getMotivo()+"\n";	
-				}
-			}
-        return str;
-   }
-	
-	public String printDadosCliente(Cliente cliente) {
-		if (cliente == null) return "Cliente nao encontrado!";
-		String str = "";
-		str += "Nome: " + cliente.getNome() + "\n";
-		str += "Telefone: " + cliente.getTelefone() + "\n";
-		str += "Email: " + cliente.getEmail() + "\n";
-		str += "Endereco\n";
-		str += "Rua: " + cliente.getEndereco().getRua() + "\n";
-		str += "Numero: " + cliente.getEndereco().getNumero() + "\n";
-		str += "Bairro: " + cliente.getEndereco().getBairro() + "\n";
-		str += "Cidade: " + cliente.getEndereco().getCidade() + "\n";
-		str += "UF: " + cliente.getEndereco().getUf() + "\n"; 
-		 	
-		return str;
-	}
-
-	public String printVenda(Venda venda) {
-		if(venda == null) return "Venda nao encontrada";
-		
-		String str="Detalhes da venda:\n";
-		str+="Nome: " + venda.getCliente().getNome() +"\n";
-		str+="Forma de Pagamento: " + venda.getFormaPagamento()+"\n";
-		str+="Data: " + venda.getData()+"\n";
-		str+="Funcionario: " + venda.getFuncionario()+"\n";
-		str+="Total: " + venda.getTotal();
-		return str;
-	}
-	
-	public String printVeiculosMotorista(Motorista cliente) {
-		if (cliente == null) return "Cliente nao encontrado!";
-		String str = "Veiculos do cliente\n\n";
-		for (int i = 0; i<cliente.getVeiculos().size(); i++) {
-				Veiculo veiculo = cliente.getVeiculos().get(i);
-				str += "Veiculo " + (i + 1) + "\n\n";
-				str += "Tipo " + veiculo.getTipo() + "\n";
-				str += "Marca: " + veiculo.getMarca() + "\n";
-				str += "Modelo: " + veiculo.getModelo() + "\n";
-				str += "Kilometragem da ultima visita: " + veiculo.getKms() + "\n";
-				str += "Ano de fabricacao: " + veiculo.getAnoFabricacao() + "\n";
-				str += "Ano do modelo: " + veiculo.getAnoModelo() + "\n";
-				str += "Placa: " + veiculo.getPlaca() + "\n";
-			}
-			return str;
-		}
-	
-	public String printHistoricoDeComprasCliente(Cliente cliente) {
-		if (cliente == null) return "Cliente nao encontrado!";
-		String str = "Historico de compras do cliente\n\n";
-		for (int i = 0; i<cliente.getHistorico().size(); i++) {
-			Venda venda = cliente.getHistorico().get(i);
-			str += "Compra" + (i + 1) + "\n\n";
-			str += "Data da compra: " + venda.getData() + "\n";
-			str += "Funcionario responsavel: " + venda.getFuncionario() + "\n"; 
-			str += "Forma de pagamento: " + venda.getFormaPagamento() + "\n";
-			
-			str += "Produtos comprados\n\n";
-			for (int j = 0; j<venda.getProdutos().size(); j++) {
-				str += venda.getQtd().get(j) + " " + venda.getProdutos().get(j).getNome() + "\n";
-			}
-			str += "Servicos comprados\n\n";
-			for (int j = 0; j<venda.getServicos().size(); j++) {
-				str += venda.getServicos().get(j).getNome() + "\n";
-			}
-			str += "Valor total da venda: " + venda.getTotal() + '\n';	
-		}
-		return str;
-	}
-	
-	public String printProduto(Produto produto) {
-		if (produto == null) return "Produto nao encontrado!";
-		String str = "";
-		str += "ID: " + produto.getId() + "\n";
-		str += "Nome: " + produto.getNome() + "\n";
-		str += "Valor: R$" + produto.getValor() + "\n";
-		str += "Quantidade em estoque: " + produto.getEstoque() + "\n";
-		return str;
-	}
-	
-	public String printServico(Servico servico) {
-		if (servico == null) return "Servico nao encontrado!";
-		String str = "";
-		str += "ID: " + servico.getId() + "\n";
-		str += "Nome: " + servico.getNome() + "\n";
-		str += "Valor: R$" + servico.getValor() + "\n";
-		return str;
 	}
 }

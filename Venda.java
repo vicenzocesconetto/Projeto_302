@@ -1,13 +1,13 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Venda {
-    private Cliente cliente;
+	private Funcoes funcoes;
+	private Cliente cliente;
     private ArrayList<Produto> produtos;
     private ArrayList<Servico> servicos;
     private ArrayList<Integer> qtd; //GUARDA A QTD DE ITENS COMPRADOS DO PRODUTO I, QUE ESTA NA IESIMA POSICAO DO ARRAY THIS.PRODUTOS
     private FormaPagamento formaPagamento;
-    private final Date data;
+    private final String data;
     private String funcionario;
     private Empresa empresa;
     private float total;
@@ -16,7 +16,8 @@ public class Venda {
     	this.produtos = new ArrayList<Produto>();
     	this.servicos = new ArrayList<Servico>();
     	this.qtd = new ArrayList<Integer>();
-    	this.data = new Date();
+    	this.funcoes= new Funcoes();
+    	this.data = funcoes.dataHojeBarra();
     }
 
 	public Venda(Cliente cliente, String funcionario, Empresa empresa) {
@@ -24,58 +25,6 @@ public class Venda {
 		this.cliente = cliente;
 		this.funcionario = funcionario;
 		this.empresa = empresa;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public FormaPagamento getFormaPagamento() {
-		return formaPagamento;
-	}
-
-	public void setFormaPagamento(FormaPagamento formaPagamento) {
-		this.formaPagamento = formaPagamento;
-	}
-
-	public Date getData() {
-		return data;
-	}
-
-	public String getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(String funcionario) {
-		this.funcionario = funcionario;
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-	public ArrayList<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public ArrayList<Servico> getServicos() {
-		return servicos;
-	}
-
-	public ArrayList<Integer> getQtd() {
-		return qtd;
-	}
-
-	public float getTotal() {
-		return total;
 	}
 	
 	public void addProduto(Produto p, int q) {
@@ -100,19 +49,81 @@ public class Venda {
 		servicos.remove(i);		
 	}	
 	
-	public void desconto(Float d) {
-		this.total=(1-d)*total;
+	public boolean descontoPorcentagem (Float desconto, Empresa empresa, String login, String password) {
+		if(funcoes.loginGerente(empresa, login, password)) {
+			if(desconto<=100) {
+				desconto = desconto/100;
+				this.total= this.total*desconto;				
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	public void finalizarVenda() {
-		//SALVA HISTORICO DO CLIENTE
-		this.cliente.addHistorico(this);
-		
-		//DIMINUI O ESTOQUE DOS PRODUTOS
-		for (int i=0; i<this.produtos.size(); i++) {
-			this.produtos.get(i).diminuirEstoque(qtd.get(i));
+	public boolean descontoValor (Float valor, Float desconto, Empresa empresa, String login, String password) {
+		if(funcoes.loginGerente(empresa, login, password)) {
+			if(desconto<=valor) {
+				this.total = this.total-desconto;
+				return true;
+			}
 		}
-		//SALVA MOVIMENTACAO
-		empresa.addMovimentacao(new Entrada(this.getTotal(),this.getFormaPagamento()));		
+		return false;
+	}
+	
+	//GETS E SETS PADROES
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public FormaPagamento getFormaPagamento() {
+		return formaPagamento;
+	}
+
+	public void setFormaPagamento(FormaPagamento formaPagamento) {
+		this.formaPagamento = formaPagamento;
+	}
+
+	public String getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(String funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
+
+	public ArrayList<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public ArrayList<Servico> getServicos() {
+		return servicos;
+	}
+
+	public ArrayList<Integer> getQtd() {
+		return qtd;
+	}
+
+	public String getData() {
+		return data;
 	}
 }

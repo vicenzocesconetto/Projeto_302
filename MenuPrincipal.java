@@ -16,7 +16,8 @@ public class MenuPrincipal extends JFrame {
     	ArrayList<Servico> servicos = new ArrayList<Servico>();
     	produtos.add(new Produto(3,3,3,"BATATA"));
     	produtos.add(new Produto(3,3,3,"EITA"));
-        botoes[0] = new JButton("Realizar venda");
+        
+    	botoes[0] = new JButton("Realizar venda");
         botoes[1] = new JButton("Cadastrar cliente");
         botoes[2] = new JButton("Cadastrar produto/servico");
         botoes[3] = new JButton("Consultar/Atualizar Estoque de Produtos");
@@ -24,11 +25,13 @@ public class MenuPrincipal extends JFrame {
         botoes[5] = new JButton("Retorno de Clientes");
         botoes[6] = new JButton("Consultar/Atualizar Cliente/Produto/Servico");
         botoes[7] = new JButton("Sair do sistema"); 
+        
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         JComboBox listaSuspensa = new JComboBox(model);
         listaSuspensa.setRenderer(new ObjectNameListCellRenderer());
         JTextField text = new JTextField("", 20);
         text.getDocument().addDocumentListener(new DocumentListener() {
+        
         	public void changedUpdate(DocumentEvent e) {
         		
         	}

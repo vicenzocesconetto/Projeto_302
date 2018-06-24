@@ -5,11 +5,11 @@ public class Entrada extends Movimentacao {
 		super(valor);
 		this.formaPagamento = formaPagamento;
 	}
-
+	
+	 //GETTERS E SETTER PADROES
 	public FormaPagamento getFormaPagamento() {
 		return formaPagamento;
 	}
-
 	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
