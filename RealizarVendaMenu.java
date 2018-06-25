@@ -35,7 +35,7 @@ public class RealizarVendaMenu extends JDialog {
 		JButton btnAdicionarProduto = new JButton("Adicionar Produto");
 		btnAdicionarProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RealizarVendaAdicionarProdutos addProdutos = new RealizarVendaAdicionarProdutos(produtos);
+				RealizarVendaAdicionarProdutos addProdutos = new RealizarVendaAdicionarProdutos(venda, produtos);
 				addProdutos.setVisible(true);
 			}
 		});
