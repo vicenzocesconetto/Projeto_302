@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -128,6 +129,8 @@ public class RealizarVendaAdicionarProdutos extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						int comboSelected = comboBoxProdutos.getSelectedIndex();
 						venda.addProduto(produtos.get(comboSelected), qtd);
+						JOptionPane.showMessageDialog(null, "Produto Adicionado", null, JOptionPane.INFORMATION_MESSAGE);
+						dispose();
 					}
 				});
 				okButton.setActionCommand("OK");

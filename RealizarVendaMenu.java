@@ -35,7 +35,7 @@ public class RealizarVendaMenu extends JDialog {
 		JButton btnAdicionarProduto = new JButton("Adicionar Produto");
 		btnAdicionarProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RealizarVendaAdicionarProdutos addProdutos = new RealizarVendaAdicionarProdutos(produtos);
+				RealizarVendaAdicionarProdutos addProdutos = new RealizarVendaAdicionarProdutos(venda, produtos);
 				addProdutos.setVisible(true);
 			}
 		});
@@ -49,7 +49,7 @@ public class RealizarVendaMenu extends JDialog {
 		JButton btnNewButton_1 = new JButton("Adicionar Servicos");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RealizarVendaAdicionarServicos addServicos = new RealizarVendaAdicionarServicos(servicos);
+				RealizarVendaAdicionarServicos addServicos = new RealizarVendaAdicionarServicos(venda, servicos);
 				addServicos.setVisible(true);
 			}
 		});

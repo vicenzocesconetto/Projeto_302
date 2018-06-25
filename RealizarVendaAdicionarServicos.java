@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -18,7 +19,7 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JComboBox comboBoxServicos;
 	
-	public RealizarVendaAdicionarServicos(ArrayList<Servico> servicos){
+	public RealizarVendaAdicionarServicos(Venda venda, ArrayList<Servico> servicos){
 		setTitle("Adicionar Servico");
 		contentPanel.setLayout(null);
         setModalityType(DEFAULT_MODALITY_TYPE);
@@ -80,6 +81,14 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 			//BOTAO ADICIONAR
 			{
 				JButton okButton = new JButton("Adicionar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						int comboSelected = comboBoxServicos.getSelectedIndex();
+						venda.addServico(servicos.get(comboSelected));
+						JOptionPane.showMessageDialog(null, "Servico Adicionado", null, JOptionPane.INFORMATION_MESSAGE);
+						dispose();
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
