@@ -60,7 +60,7 @@ public class PaginaCaixa extends JFrame implements ActionListener {
         Object source = event.getSource();
 
         if(source.toString().contains("Fazer retirada")) {
-
+            PaginaRetirada paginaRetirada = new PaginaRetirada(empresa, clientes, produtos, servicos, funcionario);
         }
         else if(source.toString().contains("Voltar")) {
             MenuPrincipal menuPrincipal = new MenuPrincipal(empresa, clientes, produtos, servicos, funcionario);

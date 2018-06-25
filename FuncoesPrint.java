@@ -9,13 +9,13 @@ public class FuncoesPrint {
 	       for (int i=0;i<empresa.getMovimentacoes().size();i++) {
 				if(empresa.getMovimentacoes().get(i) instanceof Entrada) {
 					Entrada e = (Entrada)empresa.getMovimentacoes().get(i);
-					str += "-------------------------------------\n";
+					str += "---\n";
 					str += "Entrada!\n";
 					str += "Valor: R$" + e.getValor()+"\n";
 					str += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
 				}else {
 					Retirada r = (Retirada)empresa.getMovimentacoes().get(i);
-						str += "-------------------------------------\n";
+						str += "---\n";
 						str += "Retirada!\n";
 						str += "Valor: R$" + r.getValor()+"\n";
 						str += "Motivo: " + r.getMotivo()+"\n";	
