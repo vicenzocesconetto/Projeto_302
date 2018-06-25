@@ -23,63 +23,29 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         
         Funcoes funcoes = new Funcoes();
 
-
-        JButton[] botoes = new JButton[8];
+        JButton[] botoes = new JButton[9];
 
     	botoes[0] = new JButton("Realizar venda");
         botoes[1] = new JButton("Cadastrar cliente");
-        botoes[2] = new JButton("Cadastrar produto/servico");
-        botoes[3] = new JButton("Consultar/Atualizar Estoque de Produtos");
-        botoes[4] = new JButton("Caixa");
-        botoes[5] = new JButton("Retorno de Clientes");
-        botoes[6] = new JButton("Consultar/Atualizar Cliente/Produto/Servico");
-        botoes[7] = new JButton("Sair do sistema"); 
-        
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        JComboBox listaSuspensa = new JComboBox(model);
-        listaSuspensa.setRenderer(new ObjectNameListCellRenderer());
-        JTextField text = new JTextField("", 20);
-        text.getDocument().addDocumentListener(new DocumentListener() {
-        
-        	public void changedUpdate(DocumentEvent e) {
-        		
-        	}
-        	public void removeUpdate(DocumentEvent e) {
-        		for (int i = 0; i<produtos.size(); i++) {
-        			if (produtos.get(i).getNome().toLowerCase().contains(text.getText().toLowerCase())) {
-        				if (model.getIndexOf(produtos.get(i)) == -1) {
-            				listaSuspensa.addItem(produtos.get(i));
-        				}
-        			}else {
-        				listaSuspensa.removeItem(produtos.get(i));
-        			}
-            	}
-        	}
-        	public void insertUpdate(DocumentEvent e) {
-        		for (int i = 0; i<produtos.size(); i++) {
-        			if (produtos.get(i).getNome().toLowerCase().contains(text.getText().toLowerCase())) {
-        				if (model.getIndexOf(produtos.get(i)) == -1) {
-            				listaSuspensa.addItem(produtos.get(i));
-        				}
-        			}else {
-        				listaSuspensa.removeItem(produtos.get(i));
-        			}
-            	}
-        	}
-        });
-        
+        botoes[2] = new JButton("Cadastrar produto");
+        botoes[3] = new JButton("Cadastrar servico");
+        botoes[4] = new JButton("Consultar/Atualizar Estoque de Produtos");
+        botoes[5] = new JButton("Caixa");
+        botoes[6] = new JButton("Retorno de Clientes");
+        botoes[7] = new JButton("Consultar/Atualizar Cliente/Produto/Servico");
+        botoes[8] = new JButton("Sair do sistema");
+
         Container contentPane = getContentPane();
         contentPane.setLayout(new FlowLayout());
 
-        for(int i = 0; i < 8; ++i) {
+        for(int i = 0; i < 9; ++i) {
             botoes[i].addActionListener(this);
             contentPane.add(botoes[i]);
         }
-        contentPane.add(text);
-        contentPane.add(listaSuspensa);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(Main.TAMANAHO_DA_JANELA, Main.TAMANAHO_DA_JANELA);
+
         setVisible(true);
     }
 
@@ -99,15 +65,17 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         else if(source.toString().contains("Cadastrar cliente")) {
             System.out.println("Rollo Lothbrok");
         }
-        else if(source.toString().contains("Cadastrar produto/servico")) {
-            System.out.println("Broonhilda");
+        else if(source.toString().contains("Cadastrar produto")) {
     		CadastroCliente cadastro = new CadastroCliente(clientes, carros);
+        }
+        else if(source.toString().contains("Cadastrar servico")) {
+
         }
         else if(source.toString().contains("Consultar/Atualizar Estoque de Produtos")) {
             System.out.println("Helga");
         }
         else if(source.toString().contains("Caixa")) {
-            System.out.println("Bjorn");
+            PaginaCaixa paginaCaixa = new PaginaCaixa(empresa);
         }
         else if(source.toString().contains("Retorno de Clientes")) {
             System.out.println("Siggy");
@@ -118,6 +86,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         else if(source.toString().contains("Sair do sistema")) {
             System.out.println("Mjolnir");
         }
+
+        setVisible(false);
     }
 
 
