@@ -31,11 +31,11 @@ public class FuncoesPrint {
 			str += "Telefone: " + cliente.getTelefone() + "\n";
 			str += "Email: " + cliente.getEmail() + "\n";
 			str += "Endereco\n";
-			str += "Rua: " + cliente.getEndereco().getRua() + "\n";
-			str += "Numero: " + cliente.getEndereco().getNumero() + "\n";
-			str += "Bairro: " + cliente.getEndereco().getBairro() + "\n";
-			str += "Cidade: " + cliente.getEndereco().getCidade() + "\n";
-			str += "UF: " + cliente.getEndereco().getUf() + "\n"; 
+			str += "Rua: " + cliente.getEndereco().getRua();
+			str += "\tNumero: " + cliente.getEndereco().getNumero() + "\n";
+			str += "Bairro: " + cliente.getEndereco().getBairro();
+			str += "\tCidade: " + cliente.getEndereco().getCidade();
+			str += "\tUF: " + cliente.getEndereco().getUf() + "\n"; 
 			 	
 			return str;
 		}
