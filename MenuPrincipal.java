@@ -20,8 +20,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         this.clientes = clientes;
         this.produtos = produtos;
         this.servicos = servicos;
+        
+        Funcoes funcoes = new Funcoes();
 
-    	Funcoes funcoes = new Funcoes();
+
         JButton[] botoes = new JButton[8];
 
     	botoes[0] = new JButton("Realizar venda");
@@ -84,16 +86,22 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
+    	Funcoes funcoes = new Funcoes();
+		ArrayList<Modelos> carros = funcoes.carregaModelos("C:/Users/Pichau/Desktop/UNICAMP/3SEM/MC302/Proj - MyClasses/src/dados/marcas-carros.txt" , "C:/Users/Pichau/Desktop/UNICAMP/3SEM/MC302/Proj - MyClasses/src/dados/modelos-carro.txt");
         Object source = event.getSource();
 
         if(source.toString().contains("Realizar venda")) {
             System.out.println("Ragnar Lothbrok");
+    		for (int i = 0; i<clientes.size(); i++) {
+    			System.out.println(clientes.get(i).getNome());
+    		}
         }
         else if(source.toString().contains("Cadastrar cliente")) {
             System.out.println("Rollo Lothbrok");
         }
         else if(source.toString().contains("Cadastrar produto/servico")) {
             System.out.println("Broonhilda");
+    		CadastroCliente cadastro = new CadastroCliente(clientes, carros);
         }
         else if(source.toString().contains("Consultar/Atualizar Estoque de Produtos")) {
             System.out.println("Helga");

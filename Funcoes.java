@@ -1,11 +1,50 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Funcoes {
 	
+	public ArrayList<Modelos> carregaModelos (String caminhoMarcas, String caminhoModelos ){
+		ArrayList<Modelos> modelos = new ArrayList<Modelos>();
+		
+		try {
+			Scanner input = new Scanner(new File(caminhoMarcas));
+			while(input.hasNext()) {
+				String ler = input.nextLine();
+				Scanner lineScanner = new Scanner(ler);
+			    lineScanner.useDelimiter("\\s*,\\s*");
+			    modelos.add(new Modelos(lineScanner.nextInt(), lineScanner.next()));
+			    lineScanner.close();
+			}
+			input.close();
+		}catch(IOException e) {
+			return null;
+		}
+		
+		try {
+			Scanner input = new Scanner(new File(caminhoModelos));
+			while(input.hasNext()) {
+				String ler = input.nextLine();
+				Scanner lineScanner = new Scanner(ler);
+			    lineScanner.useDelimiter("\\s*,\\s*");
+			    int idMarca=lineScanner.nextInt();
+			    for(int i=0; i<modelos.size();i++) {
+			    	if(modelos.get(i).getId()==idMarca) modelos.get(i).addModelos(lineScanner.next());
+			    }
+			    lineScanner.close();
+			}
+			input.close();
+		}catch(IOException e) {
+			return null;
+		}
+		
+		return modelos;
+	}	
+
 	public boolean salvarEncerrante(String m) throws IOException {
 		String caminho = "/home/greenseiya/Documents/Oficina/src/encerrantes/" +dataHoje();
 		System.out.println(caminho);
@@ -14,10 +53,8 @@ public class Funcoes {
 			arquivo.write(m);
 			arquivo.close();
 		} catch (IOException e) {
-			e.printStackTrace();
 			return false;
 		} catch (Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 		return true;
