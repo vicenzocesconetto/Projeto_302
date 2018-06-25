@@ -54,7 +54,7 @@ public class PaginaLogin extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         Funcoes biblioteca = new Funcoes();
 
-        if(biblioteca.loginGerente(empresa, campoDoUsuario.getText(), String.valueOf(campoDaSenha.getPassword()))) {
+        if(biblioteca.login(empresa, campoDoUsuario.getText(), String.valueOf(campoDaSenha.getPassword()))) {
             setVisible(false);
             MenuPrincipal menuPrincipal = new MenuPrincipal(empresa, clientes, produtos, servicos);
         } else {
@@ -64,6 +64,8 @@ public class PaginaLogin extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        PaginaLogin p = new PaginaLogin(new Empresa("er", "er"), new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>());
+        Empresa empresa = new Empresa("imperio", "1234");
+        empresa.addFuncionario(new Funcionario("Jobs", "jobs", "123", Cargo.ATENDENTE));
+        PaginaLogin p = new PaginaLogin(empresa, new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>());
     }
 }
