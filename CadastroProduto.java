@@ -239,13 +239,10 @@ public class CadastroProduto extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			for (int i = 0; i< textTextosProduto.size(); i++) {
-				if (textTextosProduto.get(i).getText() ==  "") {
+				if (textTextosProduto.get(i).getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "NENHUM campo pode estar vazio", null, JOptionPane.ERROR_MESSAGE);
+					return;
 				}
-			}
-			if (textNome.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "O campo NOME nao pode estar vazio", null, JOptionPane.ERROR_MESSAGE);
-				return;
 			}
 			try{
 				Produto p = new Produto(Integer.parseInt(textEstoqueMinimo.getText()), Integer.parseInt(textEstoque.getText()), Float.parseFloat(textEstoqueMinimo.getText()), textNome.getText());
