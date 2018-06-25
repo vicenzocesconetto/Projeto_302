@@ -37,7 +37,7 @@ public class MainTeste {
 		//RealizarVendaAdicionarServicos addServico = new RealizarVendaAdicionarServicos(servicos);
 		//addServico.setVisible(true);
 		
-		RealizarVendaMenu venda = new RealizarVendaMenu(servicos, produtos);
-		venda.setVisible(true);
+//		RealizarVendaMenu venda = new RealizarVendaMenu(servicos, produtos);
+//		venda.setVisible(true);
 	}
 }

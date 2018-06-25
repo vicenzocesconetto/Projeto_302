@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 public class RealizarVendaMenu extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	
+
 	public RealizarVendaMenu(ArrayList<Servico> servicos,ArrayList<Produto> produtos) {
 		setTitle("NOVA VENDA");
 		setBounds(100, 100, 450, 300);
@@ -31,7 +31,7 @@ public class RealizarVendaMenu extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		JButton btnAdicionarProduto = new JButton("Adicionar Produto");
 		btnAdicionarProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -41,11 +41,11 @@ public class RealizarVendaMenu extends JDialog {
 		});
 		btnAdicionarProduto.setBounds(138, 18, 170, 25);
 		contentPanel.add(btnAdicionarProduto);
-		
+
 		JButton btnNewButton = new JButton("Remover Produto");
 		btnNewButton.setBounds(138, 61, 170, 25);
 		contentPanel.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("Adicionar Servicos");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -55,11 +55,11 @@ public class RealizarVendaMenu extends JDialog {
 		});
 		btnNewButton_1.setBounds(138, 104, 170, 25);
 		contentPanel.add(btnNewButton_1);
-		
+
 		JButton btnNewButton_2 = new JButton("Remover Produto");
 		btnNewButton_2.setBounds(138, 147, 170, 25);
 		contentPanel.add(btnNewButton_2);
-		
+
 		JButton btnNewButton_3 = new JButton("Concluir Venda");
 		btnNewButton_3.setBounds(138, 190, 170, 25);
 		contentPanel.add(btnNewButton_3);

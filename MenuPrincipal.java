@@ -45,7 +45,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(Main.TAMANAHO_DA_JANELA, Main.TAMANAHO_DA_JANELA);
-
         setVisible(true);
     }
 
