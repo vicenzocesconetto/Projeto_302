@@ -65,6 +65,7 @@ public class PaginaLogin extends JFrame implements ActionListener{
 
     public static void main(String[] args) {
         Empresa empresa = new Empresa("imperio", "1234");
+        empresa.setCaixa(420.69f);
         empresa.addFuncionario(new Funcionario("Jobs", "jobs", "123", Cargo.ATENDENTE));
         PaginaLogin p = new PaginaLogin(empresa, new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>());
     }

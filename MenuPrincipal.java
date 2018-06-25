@@ -100,14 +100,13 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             System.out.println("Rollo Lothbrok");
         }
         else if(source.toString().contains("Cadastrar produto/servico")) {
-            System.out.println("Broonhilda");
     		CadastroCliente cadastro = new CadastroCliente(clientes, carros);
         }
         else if(source.toString().contains("Consultar/Atualizar Estoque de Produtos")) {
             System.out.println("Helga");
         }
         else if(source.toString().contains("Caixa")) {
-            System.out.println("Bjorn");
+            PaginaCaixa paginaCaixa = new PaginaCaixa(empresa);
         }
         else if(source.toString().contains("Retorno de Clientes")) {
             System.out.println("Siggy");
@@ -118,6 +117,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         else if(source.toString().contains("Sair do sistema")) {
             System.out.println("Mjolnir");
         }
+
+        setVisible(false);
     }
 
 
