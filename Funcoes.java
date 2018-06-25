@@ -69,13 +69,13 @@ public class Funcoes {
 		return false;		
 	}
 	
-	public void finalizarVenda(Venda venda) {
+	public void finalizarVenda(Venda venda) throws EstoqueInsuficienteException {
 		//SALVA HISTORICO DO CLIENTE
 		venda.getCliente().addHistorico(venda);
 		
 		//DIMINUI O ESTOQUE DOS PRODUTOS
 		for (int i=0; i<venda.getProdutos().size(); i++) {
-			venda.getProdutos().get(i).diminuirEstoque(venda.getQtd().get(i));
+		    venda.getProdutos().get(i).diminuirEstoque(venda.getQtd().get(i));
 		}
 		//SALVA MOVIMENTACAO
 		venda.getEmpresa().addMovimentacao(new Entrada(venda.getTotal(),venda.getFormaPagamento()));
