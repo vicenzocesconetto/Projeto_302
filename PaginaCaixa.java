@@ -20,7 +20,7 @@ public class PaginaCaixa extends JFrame implements ActionListener {
 
         caixa.setBounds(140, 30, 200, 35);
         caixa.setEditable(false);
-        caixa.setText(Float.toString(empresa.getCaixa()));
+        caixa.setText("R$" + Float.toString(empresa.getCaixa()));
         encerrante.setBounds(140, 70, 200, 30);
         retirada.setBounds(140, 110, 200, 30);
         voltar.setBounds(140, 150, 200, 30);
@@ -42,6 +42,7 @@ public class PaginaCaixa extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         Empresa empresa = new Empresa("imperio", "12345678");
+        empresa.setCaixa(420.69f);
         PaginaCaixa p = new PaginaCaixa(empresa);
     }
 
