@@ -9,17 +9,19 @@ import java.util.ArrayList;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
-    Empresa empresa;
-    ArrayList<Cliente> clientes;
-    ArrayList<Produto> produtos;
-    ArrayList<Servico> servicos;
+    private Empresa empresa;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<Produto> produtos;
+    private ArrayList<Servico> servicos;
+    private Funcionario funcionario;
 
-    public MenuPrincipal(Empresa empresa, ArrayList<Cliente> clientes, ArrayList<Produto> produtos, ArrayList<Servico> servicos) {
+    public MenuPrincipal(Empresa empresa, ArrayList<Cliente> clientes, ArrayList<Produto> produtos, ArrayList<Servico> servicos, Funcionario funcionario) {
 
         this.empresa = empresa;
         this.clientes = clientes;
         this.produtos = produtos;
         this.servicos = servicos;
+        this.funcionario = funcionario;
         
         Funcoes funcoes = new Funcoes();
 
@@ -74,7 +76,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             System.out.println("Helga");
         }
         else if(source.toString().contains("Caixa")) {
-            PaginaCaixa paginaCaixa = new PaginaCaixa(empresa);
+            PaginaCaixa paginaCaixa = new PaginaCaixa(empresa, clientes, produtos, servicos, funcionario);
         }
         else if(source.toString().contains("Retorno de Clientes")) {
             System.out.println("Siggy");
@@ -84,10 +86,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         }
         else if(source.toString().contains("Sair do sistema")) {
             System.out.println("Mjolnir");
-            dispose();
         }
+        dispose();
     }  
     public static void main(String[] args) {
-        MenuPrincipal m = new MenuPrincipal(new Empresa("e", "er"), new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>());
+        MenuPrincipal m = new MenuPrincipal(new Empresa("e", "er"), new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>(), new Funcionario("jaeer", "etrtrrt", "errt", Cargo.ATENDENTE));
     }
 }
