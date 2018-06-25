@@ -1,19 +1,11 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JOptionPane;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import javax.swing.JFormattedTextField;
 
-public class CadastroCliente extends JFrame {
+public class CadastroCliente extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textNome;
