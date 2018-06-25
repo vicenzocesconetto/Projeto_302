@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JFormattedTextField;
 
 public class CadastroCliente extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -23,8 +24,6 @@ public class CadastroCliente extends JFrame {
 	private JTextField textCidade;
 	private JTextField textEstado;
 	private JTextField textNumero;
-	private JTextField textMarca;
-	private JTextField textModelo;
 	private JTextField textPotencia;
 	private JTextField textPlaca;
 	private JTextField textAnoFabricacao;
@@ -150,7 +149,7 @@ public class CadastroCliente extends JFrame {
 		JLabel lblMarca = new JLabel("Marca:");
 		lblMarca.setBounds(276, 40, 60, 29);
 		contentPane.add(lblMarca);
-		
+	
 		comboBoxMarca = new JComboBox();
 		comboBoxMarca.setBounds(362, 44, 146, 20);
 		contentPane.add(comboBoxMarca);
@@ -158,16 +157,11 @@ public class CadastroCliente extends JFrame {
 		for(int i=0; i<marcas.size(); i++) {				
 			comboBoxMarca.addItem(marcas.get(i).getNome());
 		}	
-		/*
-		textMarca = new JTextField();
-		textMarca.setColumns(10);
-		textMarca.setBounds(362, 44, 146, 20);
-		contentPane.add(textMarca);
-		*/
+
 		JLabel lblModelo = new JLabel("Modelo:");
 		lblModelo.setBounds(276, 68, 60, 29);
 		contentPane.add(lblModelo);
-		
+	
 		comboBoxModelo = new JComboBox();
 		comboBoxModelo.setBounds(362, 72, 146, 20);
 		contentPane.add(comboBoxModelo);
@@ -194,20 +188,14 @@ public class CadastroCliente extends JFrame {
 			}
 		};			
 		comboBoxMarca.addActionListener(comboBoxSelect);
-		
-		/*
-		textModelo = new JTextField();
-		textModelo.setColumns(10);
-		textModelo.setBounds(362, 72, 146, 20);
-		contentPane.add(textModelo);
-		*/
+	
 		JLabel lblPotencia = new JLabel("Potencia:");
-		lblPotencia.setBounds(276, 98, 60, 29);
+		lblPotencia.setBounds(276, 95, 79, 29);
 		contentPane.add(lblPotencia);
 		
 		textPotencia = new JTextField();
 		textPotencia.setColumns(10);
-		textPotencia.setBounds(362, 99, 146, 20);
+		textPotencia.setBounds(362, 99, 50, 20);
 		contentPane.add(textPotencia);
 		
 		JLabel lblPlaca = new JLabel("Placa:");
@@ -245,15 +233,15 @@ public class CadastroCliente extends JFrame {
 		textQuilometragem = new JTextField();
 		textQuilometragem.setColumns(10);
 		textQuilometragem.setBounds(362, 212, 146, 20);
+		
 		contentPane.add(textQuilometragem);
-
-		textVeiculos.add(textMarca);
-		textVeiculos.add(textModelo);
+		
 		textVeiculos.add(textPotencia);
 		textVeiculos.add(textPlaca);
 		textVeiculos.add(textAnoFabricacao);
 		textVeiculos.add(textAnoModelo);
 		textVeiculos.add(textQuilometragem);
+		
 		JButton btnAdicionarVeiculo = new JButton("ADICIONAR VEICULO");
 		comboBoxTipo = new JComboBox();
 		comboBoxTipo.setBounds(372, 244, 136, 29);
@@ -286,8 +274,8 @@ public class CadastroCliente extends JFrame {
 			}
 			
 			try {
-				clienteVeiculos.add(new Veiculo((TipoVeiculo)comboBoxTipo.getSelectedItem(), textMarca.getText(), textModelo.getText(), textPlaca.getText(), 
-						Integer.parseInt("123"), Integer.parseInt(textAnoModelo.getText()), Integer.parseInt(textQuilometragem.getText()), Float.parseFloat(textPotencia.getText())));
+				 clienteVeiculos.add(new Veiculo((TipoVeiculo)comboBoxTipo.getSelectedItem(), (String) comboBoxMarca.getSelectedItem(), (String) comboBoxMarca.getSelectedItem(), textPlaca.getText(), 
+						Integer.parseInt(textAnoFabricacao.getText()), Integer.parseInt(textAnoModelo.getText()), Integer.parseInt(textQuilometragem.getText()), Float.parseFloat(textPotencia.getText())));
 			}catch(NumberFormatException ex) {
 				JOptionPane.showMessageDialog(null, ex.toString(), null, JOptionPane.ERROR_MESSAGE);
 				return;
