@@ -46,7 +46,7 @@ public class Produto implements Serializable {
 		if (estoque >= quantia)
 			estoque -= quantia;
 		else
-			throw new EstoqueInsuficienteException();
+			throw new EstoqueInsuficienteException("Estoque insuficiente de " + nome);
 	}
 	
 	public void setNome(String nome) {
