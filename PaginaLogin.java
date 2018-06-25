@@ -13,7 +13,7 @@ public class PaginaLogin extends JFrame implements ActionListener{
     ArrayList<Produto> produtos;
     ArrayList<Servico> servicos;
 
-    public PaginaLogin(Empresa empresa) {
+    public PaginaLogin(Empresa empresa, ArrayList<Cliente> clientes, ArrayList<Produto> produtos, ArrayList<Servico> servicos) {
 
         this.empresa = empresa;
 
@@ -56,11 +56,14 @@ public class PaginaLogin extends JFrame implements ActionListener{
 
         if(biblioteca.loginGerente(empresa, campoDoUsuario.getText(), String.valueOf(campoDaSenha.getPassword()))) {
             setVisible(false);
-//            MenuPrincipal menuPrincipal = new MenuPrincipal(empresa);
+            MenuPrincipal menuPrincipal = new MenuPrincipal(empresa, clientes, produtos, servicos);
+        } else {
+            JOptionPane.showMessageDialog(this,"Usuario ou senha incorretos",
+                    "Erro",JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public static void main(String[] args) {
-        PaginaLogin p = new PaginaLogin(new Empresa("er", "er"));
+        PaginaLogin p = new PaginaLogin(new Empresa("er", "er"), new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>());
     }
 }
