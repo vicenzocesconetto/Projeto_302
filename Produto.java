@@ -106,6 +106,10 @@ public class Produto implements Serializable {
 		return numeroProdutos;
 	}
 
+	public static void setNumeroProdutos(int numeroProdutos) {
+		Produto.numeroProdutos = numeroProdutos;
+	}
+
 	public int getId() {
 		return id;
 	}
