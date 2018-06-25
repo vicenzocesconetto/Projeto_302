@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -30,11 +31,13 @@ public class CadastroCliente extends JFrame {
 	private JTextField textAnoModelo;
 	private JTextField textQuilometragem;
 	private JComboBox comboBoxTipo;
+	private JComboBox comboBoxMarca;
+	private JComboBox comboBoxModelo;
 	private ArrayList<JTextField> textVeiculos; 
 	private ArrayList<Veiculo> clienteVeiculos;
 	private ArrayList<Cliente> clientes;
 
-	public CadastroCliente(ArrayList<Cliente> clientes) {
+	public CadastroCliente(ArrayList<Cliente> clientes, ArrayList<Modelos> marcas) {
 		setTitle("CADASTRO CLIENTE");
 		this.clientes = clientes;
 		this.textVeiculos = new ArrayList<JTextField>();
@@ -57,28 +60,28 @@ public class CadastroCliente extends JFrame {
 		
 		textNome = new JTextField();
 		lblNome.setLabelFor(textNome);
-		textNome.setBounds(59, 44, 146, 20);
+		textNome.setBounds(80, 45, 146, 20);
 		contentPane.add(textNome);
 		textNome.setColumns(10);
 		
 		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(5, 75, 65, 14);
+		lblTelefone.setBounds(5, 75, 79, 14);
 		contentPane.add(lblTelefone);
 		
 		textTelefone = new JTextField();
 		lblTelefone.setLabelFor(textTelefone);
 		textTelefone.setColumns(10);
-		textTelefone.setBounds(59, 72, 146, 20);
+		textTelefone.setBounds(80, 75, 146, 20);
 		contentPane.add(textTelefone);
 		
-		JLabel lblEmail = new JLabel("Email: ");
-		lblEmail.setBounds(5, 105, 65, 14);
+		JLabel lblEmail = new JLabel("e-mail: ");
+		lblEmail.setBounds(5, 104, 65, 14);
 		contentPane.add(lblEmail);
 		
 		textEmail = new JTextField();
 		lblEmail.setLabelFor(textEmail);
 		textEmail.setColumns(10);
-		textEmail.setBounds(59, 99, 146, 20);
+		textEmail.setBounds(80, 101, 146, 20);
 		contentPane.add(textEmail);
 		
 		JLabel lblRua = new JLabel("Rua:");
@@ -88,8 +91,17 @@ public class CadastroCliente extends JFrame {
 		
 		textRua = new JTextField();
 		textRua.setColumns(10);
-		textRua.setBounds(59, 170, 146, 20);
+		textRua.setBounds(80, 170, 146, 20);
 		contentPane.add(textRua);
+		
+		JLabel lblNumero = new JLabel("Numero:");
+		lblNumero.setBounds(5, 198, 65, 14);
+		contentPane.add(lblNumero);
+		
+		textNumero = new JTextField();
+		textNumero.setColumns(10);
+		textNumero.setBounds(80, 195, 50, 20);
+		contentPane.add(textNumero);
 		
 		JLabel lblEndereo = new JLabel("ENDERECO");
 		lblEndereo.setBounds(5, 141, 103, 14);
@@ -100,40 +112,32 @@ public class CadastroCliente extends JFrame {
 		contentPane.add(lblInformacoesPessoais);
 		
 		JLabel lblBairro = new JLabel("Bairro: ");
-		lblBairro.setBounds(5, 198, 65, 14);
+		lblBairro.setBounds(5, 223, 65, 14);
 		contentPane.add(lblBairro);
 		
 		textBairro = new JTextField();
 		textBairro.setColumns(10);
-		textBairro.setBounds(59, 198, 146, 20);
+		textBairro.setBounds(80, 220, 146, 20);
 		contentPane.add(textBairro);
 		
 		JLabel lblCidade = new JLabel("Cidade:");
-		lblCidade.setBounds(5, 223, 65, 14);
+		lblCidade.setBounds(5, 248, 65, 14);
 		contentPane.add(lblCidade);
 		
 		textCidade = new JTextField();
 		textCidade.setColumns(10);
-		textCidade.setBounds(59, 223, 146, 20);
+		textCidade.setBounds(80, 245, 146, 20);
 		contentPane.add(textCidade);
 		
 		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(5, 251, 65, 14);
+		lblEstado.setBounds(5, 274, 60, 20);
 		contentPane.add(lblEstado);
 		
 		textEstado = new JTextField();
 		textEstado.setColumns(10);
-		textEstado.setBounds(59, 248, 146, 20);
+		textEstado.setBounds(80, 274, 146, 20);
 		contentPane.add(textEstado);
 		
-		JLabel lblNumero = new JLabel("Numero:");
-		lblNumero.setBounds(5, 276, 65, 14);
-		contentPane.add(lblNumero);
-		
-		textNumero = new JTextField();
-		textNumero.setColumns(10);
-		textNumero.setBounds(59, 273, 146, 20);
-		contentPane.add(textNumero);
 		JButton btnAdicionarCliente = new JButton("ADICIONAR CLIENTE");
 		
 		btnAdicionarCliente.setBounds(5, 314, 296, 79);
@@ -147,20 +151,56 @@ public class CadastroCliente extends JFrame {
 		lblMarca.setBounds(276, 40, 60, 29);
 		contentPane.add(lblMarca);
 		
+		comboBoxMarca = new JComboBox();
+		comboBoxMarca.setBounds(362, 44, 146, 20);
+		contentPane.add(comboBoxMarca);
+		
+		for(int i=0; i<marcas.size(); i++) {				
+			comboBoxMarca.addItem(marcas.get(i).getNome());
+		}	
+		/*
 		textMarca = new JTextField();
 		textMarca.setColumns(10);
 		textMarca.setBounds(362, 44, 146, 20);
 		contentPane.add(textMarca);
-		
+		*/
 		JLabel lblModelo = new JLabel("Modelo:");
 		lblModelo.setBounds(276, 68, 60, 29);
 		contentPane.add(lblModelo);
 		
+		comboBoxModelo = new JComboBox();
+		comboBoxModelo.setBounds(362, 72, 146, 20);
+		contentPane.add(comboBoxModelo);
+		
+		for(int i=0; i<=marcas.get(0).getModelos().size(); i++) {
+			if(comboBoxMarca.getSelectedItem().equals(marcas.get(i).getNome())) {
+				for(int a=0;a<marcas.get(i).getModelos().size();a++) {
+					comboBoxModelo.addItem(marcas.get(i).getModelos().get(a));
+				}
+			}
+		}	
+		
+		ActionListener comboBoxSelect = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int comboSelected = comboBoxMarca.getSelectedIndex();
+				ArrayList<String> modelosMarca = marcas.get(comboSelected).getModelos();
+				DefaultComboBoxModel model = new DefaultComboBoxModel();//Cria um novo model de listaMunicipio
+				model.removeAllElements(); //Remove todos elementos
+				
+				for(Object obj: modelosMarca){ //Para cada Objeto add
+					model.addElement(obj);						
+				}
+				comboBoxModelo.setModel(model); //Set o modelo na comboBox 
+			}
+		};			
+		comboBoxMarca.addActionListener(comboBoxSelect);
+		
+		/*
 		textModelo = new JTextField();
 		textModelo.setColumns(10);
 		textModelo.setBounds(362, 72, 146, 20);
 		contentPane.add(textModelo);
-		
+		*/
 		JLabel lblPotencia = new JLabel("Potencia:");
 		lblPotencia.setBounds(276, 98, 60, 29);
 		contentPane.add(lblPotencia);
