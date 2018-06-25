@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class PaginaLogin extends JDialog implements ActionListener{
+public class PaginaLogin extends JFrame implements ActionListener{
 
     private JTextField campoDoUsuario;
     private JPasswordField campoDaSenha;
@@ -55,8 +55,10 @@ public class PaginaLogin extends JDialog implements ActionListener{
         Funcoes biblioteca = new Funcoes();
 
         if(biblioteca.login(empresa, campoDoUsuario.getText(), String.valueOf(campoDaSenha.getPassword()))) {
-            setVisible(false);
-            MenuPrincipal menuPrincipal = new MenuPrincipal(empresa, clientes, produtos, servicos);
+//            setVisible(false);
+            Funcionario funcionario = empresa.getFuncionarioPeloLogin(campoDoUsuario.getText());
+            MenuPrincipal menuPrincipal = new MenuPrincipal(empresa, clientes, produtos, servicos, funcionario);
+            dispose();
         } else {
             JOptionPane.showMessageDialog(this,"Usuario ou senha incorretos",
                     "Erro",JOptionPane.ERROR_MESSAGE);
@@ -66,7 +68,8 @@ public class PaginaLogin extends JDialog implements ActionListener{
     public static void main(String[] args) {
         Empresa empresa = new Empresa("imperio", "1234");
         empresa.setCaixa(420.69f);
-        empresa.addFuncionario(new Funcionario("Jobs", "jobs", "123", Cargo.ATENDENTE));
+        Funcionario funcionario = new Funcionario("Jobs", "jobs", "123", Cargo.ATENDENTE);
+        empresa.addFuncionario(funcionario);
         PaginaLogin p = new PaginaLogin(empresa, new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>());
     }
 }

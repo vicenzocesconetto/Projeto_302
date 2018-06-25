@@ -32,7 +32,15 @@ public class Empresa implements Serializable {
 		funcionarios.add(novo);
 		return true;
 	}
-	
+
+	public Funcionario getFuncionarioPeloLogin(String loginFuncionario) {
+        for (Funcionario f: funcionarios) {
+            if(f.getLogin().equals(loginFuncionario))
+                return f;
+        }
+        return null;
+    }
+
 	public void limpaMovimentacoes() {
 		this.movimentacoes.clear();
 	}
