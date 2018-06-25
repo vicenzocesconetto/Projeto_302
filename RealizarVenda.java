@@ -17,7 +17,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 
 public class RealizarVenda extends JDialog {
-	
+
 	private JComboBox comboBoxClientes;
 
 	private final JPanel contentPanel = new JPanel();
@@ -32,23 +32,23 @@ public class RealizarVenda extends JDialog {
         setBounds(100, 100, 450, 300);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-        
+
         //DEFINE O TAMANHO DA LABEL: ENTRE COM O NOME...
         lblPesquisa.setBounds(12, 15, 205, 15);
-        
+
         //DEFINE AS COMBOBOX
         comboBoxClientes = new JComboBox();
         comboBoxClientes.setBounds(22, 42, 383, 24);
-				
-		for(int i=0; i<clientes.size(); i++) {				
+
+		for(int i=0; i<clientes.size(); i++) {
 			comboBoxClientes.addItem(clientes.get(i).getNome());
-		}	
-        
+		}
+
         //DEFINE O JTEXTPANE
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setBounds(12, 78, 416, 127);
-		
+
 		ActionListener comboBoxSelect = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int comboSelected = comboBoxClientes.getSelectedIndex();
@@ -60,27 +60,27 @@ public class RealizarVenda extends JDialog {
 						str += "\tNumero: " + clientes.get(comboSelected).getEndereco().getNumero() + "\n";
 						str += "Bairro: " + clientes.get(comboSelected).getEndereco().getBairro();
 						str += "\tCidade: " + clientes.get(comboSelected).getEndereco().getCidade();
-						str += "\tUF: " + clientes.get(comboSelected).getEndereco().getUf() + "\n"; 
+						str += "\tUF: " + clientes.get(comboSelected).getEndereco().getUf() + "\n";
 				textPane.setText(str);
 			}
-		};			
+		};
 		comboBoxClientes.addActionListener(comboBoxSelect);
-		
-        
+
+
 		contentPanel.add(lblPesquisa);
 		contentPanel.add(comboBoxClientes);
 		contentPanel.add(textPane);
-		
-		
+
+
 		//BOTOES DA BASE
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			
+
 			//BOTAO CADASTRAR NOVO CLIENTE
 			buttonPane.add(btnCadastrarCliente);
-			
+
 			//BOTAO AVANCAR
 			buttonPane.add(btnAvancar);
 			btnAvancar.addActionListener(new ActionListener() {
