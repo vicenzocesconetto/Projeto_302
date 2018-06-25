@@ -81,7 +81,7 @@ public class Funcoes {
 		venda.getEmpresa().addMovimentacao(new Entrada(venda.getTotal(),venda.getFormaPagamento()));
 	}
 	
-	public void finalizarVendaServico(Venda venda, Veiculo veiculo) {
+	public void finalizarVendaServico(Venda venda, Veiculo veiculo) throws EstoqueInsuficienteException {
 		finalizarVenda(venda);
 		
 		//CALCULA DATA DE RETORNO DO CLIENTE SE FOR O CASO
