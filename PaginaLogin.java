@@ -35,10 +35,6 @@ public class PaginaLogin extends JFrame implements ActionListener{
         login.setBackground(new Color(59, 89, 182));
         login.setForeground(Color.white);
 
-//        labelUsuario.setLabelFor(campoDoUsuario);
-//        labelSenha.setLabelFor(campoDaSenha);
-
-
         login.addActionListener(this);
 
         contentPane.setLayout(null);
