@@ -43,6 +43,12 @@ public class RealizarVendaMenu extends JDialog {
 		
 		//REMOVER PRODUTO
 		JButton btnRemoverProduto = new JButton("Remover Produto");
+		btnRemoverProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RealizarVendaRemoverProdutos removeProdutos = new RealizarVendaRemoverProdutos(venda);
+				removeProdutos.setVisible(true);
+			}
+		});
 		btnRemoverProduto.setBounds(138, 61, 170, 25);
 		
 		//ADICIONAR SERVICO
@@ -57,6 +63,12 @@ public class RealizarVendaMenu extends JDialog {
 		
 		//REMOVER SERVICO
 		JButton btnRemoverServico = new JButton("Remover Servico");
+		btnRemoverServico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RealizarVendaRemoverServicos removeServicos = new RealizarVendaRemoverServicos(venda);
+				removeServicos.setVisible(true);
+			}
+		});
 		btnRemoverServico.setBounds(138, 147, 170, 25);
 		
 		//CONCLUIR

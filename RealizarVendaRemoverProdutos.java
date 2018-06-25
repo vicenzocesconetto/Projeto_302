@@ -25,7 +25,7 @@ public class RealizarVendaRemoverProdutos extends JDialog {
 	private int qtd=1;
 	
 	public RealizarVendaRemoverProdutos(Venda venda) {
-		setTitle("Adicionar Servico");
+		setTitle("Remover Servico");
 		contentPanel.setLayout(null);
         setModalityType(DEFAULT_MODALITY_TYPE);
         setBounds(100, 100, 450, 300);

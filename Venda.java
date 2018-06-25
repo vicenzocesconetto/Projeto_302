@@ -38,10 +38,16 @@ public class Venda {
 		this.total += (s.getValor());
 	}
 	
-	public void removeProduto(int i){
-		this.total -= (produtos.get(i).getValor()*qtd.get(i));
-		qtd.remove(i);
-		produtos.remove(i);		
+	public void removeProduto(int i, int qtd){
+		if(this.qtd.get(i)==qtd) {
+			this.total -= (produtos.get(i).getValor()*this.qtd.get(i));
+			this.qtd.remove(i);
+			produtos.remove(i);
+			return;
+		}
+		
+		this.qtd.set(i, this.qtd.get(i)-qtd);
+		this.total -= (produtos.get(i).getValor()*this.qtd.get(i));
 	}
 	
 	public void removeServico(int i) {
