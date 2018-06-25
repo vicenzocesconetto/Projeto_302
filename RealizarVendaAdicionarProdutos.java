@@ -21,7 +21,7 @@ public class RealizarVendaAdicionarProdutos extends JDialog {
 	private JComboBox comboBoxProdutos;
 	private JTextField textQtd;
 	JLabel lblPesquisa = new JLabel("Entre com o nome do produto:");
-	private int qtd=0;
+	private int qtd=1;
 	private JButton btnMinus;
 	private JButton btnPlus;
 
@@ -86,7 +86,7 @@ public class RealizarVendaAdicionarProdutos extends JDialog {
 		btnMinus = new JButton("-");
 		btnMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(qtd>0) qtd--;
+				if(qtd>1) qtd--;
 				textQtd.setText(""+qtd);	
 			}
 		});
