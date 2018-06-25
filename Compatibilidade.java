@@ -5,13 +5,10 @@ public class Compatibilidade {
 	private String marca;
 	private ArrayList<Float> potencias;
 		
-	public Compatibilidade (String modelo, String marca, float... potencia){
+	public Compatibilidade (String modelo, String marca, ArrayList<Float> potencias){
 		this.modelo=modelo;
 		this.marca=marca;
-		this.potencias= new ArrayList<Float>();
-		for (float c: potencia) {
-			this.potencias.add(c);
-		}
+		this.potencias= potencias;
 	}
 
 	public void addPotencias(float potencia) {
