@@ -53,7 +53,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
     	Funcoes funcoes = new Funcoes();
-		ArrayList<Modelos> carros = funcoes.carregaModelos("/home/greenseiya/eclipse-workspace/Oficina/src/dados/marcas-carros.txt", "/home/greenseiya/eclipse-workspace/Oficina/src/dados/modelos-carro.txt");
+		ArrayList<Modelos> carros = funcoes.carregaModelos("C:/Users/Pichau/Desktop/UNICAMP/3SEM/MC302/Proj - MyClasses/src/dados/marcas-carros.txt" , "C:/Users/Pichau/Desktop/UNICAMP/3SEM/MC302/Proj - MyClasses/src/dados/modelos-carro.txt");
         Object source = event.getSource();
 
         if(source.toString().contains("Realizar venda")) {

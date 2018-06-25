@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class PaginaLogin extends JFrame implements ActionListener{
+public class PaginaLogin extends JDialog implements ActionListener{
 
     private JTextField campoDoUsuario;
     private JPasswordField campoDaSenha;
