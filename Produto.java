@@ -42,12 +42,11 @@ public class Produto implements Serializable {
 		estoque += quantia;
 	}
 	
-	public boolean diminuirEstoque(int quantia) { // Retorna false se o estoque for menor que a quantia removida. Retorna true se houver diminuicao de estoque e avisa quando o estoque minimo eh atingido
-		if (estoque >= quantia) {
+	public void diminuirEstoque(int quantia) throws EstoqueInsuficienteException { // Retorna false se o estoque for menor que a quantia removida. Retorna true se houver diminuicao de estoque e avisa quando o estoque minimo eh atingido
+		if (estoque >= quantia)
 			estoque -= quantia;
-			return true;
-		}
-		return false;
+		else
+			throw new EstoqueInsuficienteException();
 	}
 	
 	public void setNome(String nome) {

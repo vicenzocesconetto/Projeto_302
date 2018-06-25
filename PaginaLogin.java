@@ -2,13 +2,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PaginaLogin extends JFrame implements ActionListener{
 
     private JTextField campoDoUsuario;
     private JPasswordField campoDaSenha;
+    private Empresa empresa;
+    ArrayList<Cliente> clientes;
+    ArrayList<Produto> produtos;
+    ArrayList<Servico> servicos;
 
-    public PaginaLogin() {
+    public PaginaLogin(Empresa empresa) {
+
+        this.empresa = empresa;
 
         Container contentPane = getContentPane();
         JLabel labelUsuario = new JLabel("Usuario");
@@ -42,18 +49,22 @@ public class PaginaLogin extends JFrame implements ActionListener{
         contentPane.add(login);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 500);
+        setSize(Main.TAMANAHO_DA_JANELA, Main.TAMANAHO_DA_JANELA);
         setVisible(true);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String login = campoDoUsuario.getText();
-        String senha = String.valueOf(campoDaSenha.getPassword());
+        Funcoes biblioteca = new Funcoes();
+
+        if(biblioteca.loginGerente(empresa, campoDoUsuario.getText(), String.valueOf(campoDaSenha.getPassword()))) {
+            setVisible(false);
+//            MenuPrincipal menuPrincipal = new MenuPrincipal(empresa);
+        }
     }
 
     public static void main(String[] args) {
-        PaginaLogin p = new PaginaLogin();
+        PaginaLogin p = new PaginaLogin(new Empresa("er", "er"));
     }
 }

@@ -28,7 +28,7 @@ public class MainTeste {
 		try {
 			ObjectInputStream input = new ObjectInputStream(new FileInputStream(caminho));
 			
-			Empresa empresa = (Empresa) input.readObject();
+//			Empresa empresa = (Empresa) input.readObject();
 			input.close();
 			System.out.println("Dados carregados");
 			System.out.println("Nome: "+empresa.getNome());
@@ -45,7 +45,7 @@ public class MainTeste {
 		}catch (IOException e3) {
 			e3.printStackTrace();
 		}
-		*/	
+		*/
 /*
 		Date data = new Date( System.currentTimeMillis());
 		float kmDia=26.6f;
@@ -63,6 +63,8 @@ public class MainTeste {
 		teste(2.5f,3.6f,5.9f,8f);
 		System.out.println("Teste 3");	
 		teste();
+
+//		PaginaLogin inicio = new PaginaLogin(new Empresa("redf", "etet"), );
 	}
 	
 	public static void teste (float... potencia) {
