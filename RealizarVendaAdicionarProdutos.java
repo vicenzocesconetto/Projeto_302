@@ -19,36 +19,34 @@ public class RealizarVendaAdicionarProdutos extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JComboBox comboBoxProdutos;
 	private JTextField textQtd;
+	JLabel lblPesquisa = new JLabel("Entre com o nome do produto:");
 	private int qtd=0;
+	private JButton btnMinus;
+	private JButton btnPlus;
 
-	public RealizarVendaAdicionarProdutos(ArrayList<Produto> produtos) {
+	public RealizarVendaAdicionarProdutos(Venda venda, ArrayList<Produto> produtos) {
 		setTitle("Adicionar Produto");
-	    contentPanel.setLayout(null);
-	    setModalityType(DEFAULT_MODALITY_TYPE);
-	    	
-	    setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setLayout(null);
+        setModalityType(DEFAULT_MODALITY_TYPE);
+        setBounds(100, 100, 450, 300);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
-		{
-			JLabel lblEntreComO = new JLabel("Entre com o nome do produto:");
-			lblEntreComO.setBounds(12, 12, 214, 15);
-			contentPanel.add(lblEntreComO);
-		}
+		//DEFINE O TAMANHO DA LABEL: ENTRE COM O NOME...
+		lblPesquisa.setBounds(12, 12, 214, 15);
 		
+		//DEFINE COMBOBOX
 	    comboBoxProdutos = new JComboBox();
 	    comboBoxProdutos.setBounds(22, 42, 383, 24);
-		contentPanel.add(comboBoxProdutos);
 		
 		for(int i=0; i<produtos.size(); i++) {				
 			comboBoxProdutos.addItem(produtos.get(i).getNome());
 		}	
        
+		//DEFINE JTEXT PANE
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setBounds(12, 78, 416, 72);
-		contentPanel.add(textPane);
 		
 		ActionListener comboBoxSelect = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -61,18 +59,17 @@ public class RealizarVendaAdicionarProdutos extends JDialog {
 		};			
 		comboBoxProdutos.addActionListener(comboBoxSelect);
 		
-		
-		
-		
+		//QTD
+		//NUMERO
 		textQtd = new JTextField();
 		textQtd.setHorizontalAlignment(SwingConstants.CENTER);
 		textQtd.setBounds(311, 188, 45, 20);
-		contentPanel.add(textQtd);
-		textQtd.setColumns(1);
 		textQtd.setText(""+qtd);
 		
-		JButton btnNewButton = new JButton("+");
-		btnNewButton.addActionListener(new ActionListener() {
+		//BOTAO +
+		JButton btnPlus;
+		btnPlus = new JButton("+");
+		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int comboSelected = comboBoxProdutos.getSelectedIndex();
 				if(qtd<produtos.get(comboSelected).getEstoque()) {
@@ -81,36 +78,58 @@ public class RealizarVendaAdicionarProdutos extends JDialog {
 				textQtd.setText(""+qtd);				
 			}
 		});
-		btnNewButton.setBounds(360, 188, 45, 20);
-		contentPanel.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("-");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnPlus.setBounds(360, 188, 45, 20);
+	
+		//BOTAO -
+		JButton btnMinus;
+		btnMinus = new JButton("-");
+		btnMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int comboSelected = comboBoxProdutos.getSelectedIndex();
-				if(qtd>0) {
-					qtd--;
-				}
+				if(qtd>0) qtd--;
 				textQtd.setText(""+qtd);	
 			}
 		});
-		btnNewButton_1.setBounds(262, 188, 45, 20);
-		contentPanel.add(btnNewButton_1);
+		btnMinus.setBounds(262, 188, 45, 20);
 		
+		//LABEL QTD
 		JLabel lblQuantidade = new JLabel("Quantidade:");
 		lblQuantidade.setBounds(156, 191, 99, 15);
+			
+		//ADICIONA A TELA
+		contentPanel.add(lblPesquisa);
+		contentPanel.add(comboBoxProdutos);
+		contentPanel.add(textPane);
+		contentPanel.add(textQtd);
+		contentPanel.add(btnPlus);
+		contentPanel.add(btnMinus);
 		contentPanel.add(lblQuantidade);
+		
+		//BOTOES
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			
+			//BOTAO CANCELAR
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			//BOTAO ADICIONAR
 			{
 				JButton okButton = new JButton("Adicionar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						int comboSelected = comboBoxProdutos.getSelectedIndex();
+						venda.addProduto(produtos.get(comboSelected), qtd);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

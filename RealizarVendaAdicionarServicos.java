@@ -20,33 +20,31 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 	
 	public RealizarVendaAdicionarServicos(ArrayList<Servico> servicos){
 		setTitle("Adicionar Servico");
-	    contentPanel.setLayout(null);
-	    
-	    setModalityType(DEFAULT_MODALITY_TYPE);
-	    setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setLayout(null);
+        setModalityType(DEFAULT_MODALITY_TYPE);
+        setBounds(100, 100, 450, 300);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
-	    {
-			JLabel lblEntreComO = new JLabel("Entre com o nome do servico:");
-			lblEntreComO.setBounds(12, 12, 214, 15);
-			contentPanel.add(lblEntreComO);
-		}
-	
+		
+		//DEFINE LABEL: ENTRE COM O NOME
+		JLabel lblEntreComO = new JLabel("Entre com o nome do servico:");
+		lblEntreComO.setBounds(12, 12, 214, 15);
+		
+		//DEFINE O COMBOBOX	
 	    comboBoxServicos = new JComboBox();
 	    comboBoxServicos.setBounds(22, 42, 383, 24);
-		contentPanel.add(comboBoxServicos);
+		
 		
 		for(int i=0; i<servicos.size(); i++) {				
 			comboBoxServicos.addItem(servicos.get(i).getNome());
 		}	
        
+		//DEFINE O JTEXT PANE
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setBounds(12, 78, 416, 72);
-		contentPanel.add(textPane);
-		
+	
 		ActionListener comboBoxSelect = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int comboSelected = comboBoxServicos.getSelectedIndex();
@@ -57,21 +55,29 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 		};			
 		comboBoxServicos.addActionListener(comboBoxSelect);
 			
-		{
-			JLabel lblEntreComO = new JLabel("Entre com o nome do servico:");
-			lblEntreComO.setBounds(12, 12, 214, 15);
-			contentPanel.add(lblEntreComO);
-		}
-
+		//ADICIONA A TELA
+		contentPanel.add(lblEntreComO);
+		contentPanel.add(comboBoxServicos);
+		contentPanel.add(textPane);
+		
+		//BOTOES
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			
+			//BOTAO CANCELAR
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			//BOTAO ADICIONAR
 			{
 				JButton okButton = new JButton("Adicionar");
 				okButton.setActionCommand("OK");

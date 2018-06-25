@@ -53,7 +53,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
     	Funcoes funcoes = new Funcoes();
-		ArrayList<Modelos> carros = funcoes.carregaModelos("C:/Users/Pichau/Desktop/UNICAMP/3SEM/MC302/Proj - MyClasses/src/dados/marcas-carros.txt" , "C:/Users/Pichau/Desktop/UNICAMP/3SEM/MC302/Proj - MyClasses/src/dados/modelos-carro.txt");
+		ArrayList<Modelos> carros = funcoes.carregaModelos("/home/greenseiya/eclipse-workspace/Oficina/src/dados/marcas-carros.txt", "/home/greenseiya/eclipse-workspace/Oficina/src/dados/modelos-carro.txt");
         Object source = event.getSource();
 
         if(source.toString().contains("Realizar venda")) {
@@ -85,27 +85,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         }
         else if(source.toString().contains("Sair do sistema")) {
             System.out.println("Mjolnir");
+            dispose();
         }
-
-        setVisible(false);
-    }
-
-
-    public class ObjectNameListCellRenderer extends DefaultListCellRenderer {
-        private static final long serialVersionUID = 1L;
-        public Component getListCellRendererComponent(JList list,Object value,int index, boolean isSelected, boolean cellHasFocus) {
-            if (value instanceof Produto) {
-                value = ((Produto)value).getNome();
-            }else if (value instanceof Cliente) {
-                value = ((Cliente)value).getNome();
-            }else if (value instanceof Servico) {
-                value = ((Servico)value).getNome();
-            }
-            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            return this;
-        }
-    }
-    
+    }  
     public static void main(String[] args) {
         MenuPrincipal m = new MenuPrincipal(new Empresa("e", "er"), new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>());
     }
