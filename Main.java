@@ -51,22 +51,6 @@ public class Main {
 		ArrayList<Modelos> carros = funcoes.carregaModelos("marcas-carros.txt", "modelos-carro.txt");
 
 
-		ObjectOutputStream out = null; //serializacao
-		try {
-			out = new ObjectOutputStream(new FileOutputStream(serFilename));
-			out.writeObject(clientes);
-			out.writeObject(produtos);
-			out.writeObject(servicos);
-			out.writeObject(empresa);
-			out.flush();
-		}catch(IOException ex) {
-
-		}finally {
-			try {
-				out.close();
-			}catch (IOException e) {
-
-			}
-		}
+		
 	}
 }

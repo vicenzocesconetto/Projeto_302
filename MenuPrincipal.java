@@ -5,10 +5,14 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
+	String serFilename = "serializationData.ser";
     private Empresa empresa;
     private ArrayList<Cliente> clientes;
     private ArrayList<Produto> produtos;
@@ -53,39 +57,52 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
     	Funcoes funcoes = new Funcoes();
-		ArrayList<Modelos> carros = funcoes.carregaModelos("/home/greenseiya/eclipse-workspace/Oficina/src/dados/marcas-carros.txt", "/home/greenseiya/eclipse-workspace/Oficina/src/dados/modelos-carro.txt");
+		ArrayList<Modelos> carros = funcoes.carregaModelos("marcas-carros.txt", "modelos-carro.txt");
         Object source = event.getSource();
 
         if(source.toString().contains("Realizar venda")) {
-            System.out.println("Ragnar Lothbrok");
-    		for (int i = 0; i<clientes.size(); i++) {
-    			System.out.println(clientes.get(i).getNome());
-    		}
+           RealizarVenda rVenda = new RealizarVenda(empresa, funcionario, clientes, servicos, produtos);
         }
         else if(source.toString().contains("Cadastrar cliente")) {
-            System.out.println("Rollo Lothbrok");
+            CadastroCliente cadastroC = new CadastroCliente(clientes, carros);
         }
         else if(source.toString().contains("Cadastrar produto")) {
-    		CadastroCliente cadastro = new CadastroCliente(clientes, carros);
+    		CadastroProduto cadastroP = new CadastroProduto(produtos, carros);
         }
         else if(source.toString().contains("Cadastrar servico")) {
-
+        	CadastroServico cadastroS = new CadastroServico(servicos);
         }
         else if(source.toString().contains("Consultar/Atualizar Estoque de Produtos")) {
-            System.out.println("Helga");
+            
         }
         else if(source.toString().contains("Caixa")) {
             PaginaCaixa paginaCaixa = new PaginaCaixa(empresa, clientes, produtos, servicos, funcionario);
         }
         else if(source.toString().contains("Retorno de Clientes")) {
-            System.out.println("Siggy");
+            RetornoCliente retornoC = new RetornoCliente(clientes);
         }
         else if(source.toString().contains("Consultar/Atualizar Cliente/Produto/Servico")) {
-            System.out.println("Bretwalda");
+            
         }
         else if(source.toString().contains("Sair do sistema")) {
-            System.out.println("Mjolnir");
+        	ObjectOutputStream out = null; //serializacao
+    		try {
+    			out = new ObjectOutputStream(new FileOutputStream(serFilename));
+    			out.writeObject(clientes);
+    			out.writeObject(produtos);
+    			out.writeObject(servicos);
+    			out.writeObject(empresa);
+    			out.flush();
+    		}catch(IOException ex) {
+
+    		}finally {
+    			try {
+    				out.close();
+    			}catch (IOException e) {
+
+    			}
+    		}
+            dispose();
         }
-        dispose();
     }
 }
