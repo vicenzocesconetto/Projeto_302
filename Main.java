@@ -31,9 +31,12 @@ public class Main {
 				produtos = (ArrayList<Produto>) in.readObject();
 				servicos = (ArrayList<Servico>) in.readObject();
 				empresa = (Empresa) in.readObject();
-				Cliente.setNumClientes(clientes.size());
-				Produto.setNumeroProdutos(produtos.size());
-				Servico.setGeradorId(servicos.size());
+				if(clientes != null)
+				    Cliente.setNumClientes(clientes.size());
+				if(produtos != null)
+				    Produto.setNumeroProdutos(produtos.size());
+				if(servicos != null)
+				    Servico.setGeradorId(servicos.size());
 
 			}catch (ClassNotFoundException ex) {
 
@@ -50,7 +53,11 @@ public class Main {
 
 		ArrayList<Modelos> carros = funcoes.carregaModelos("marcas-carros.txt", "modelos-carro.txt");
 
+		Funcionario admin = new Funcionario("Admin", "admin", "123", Cargo.GERENTE);
+		if(empresa == null)
+		    empresa = new Empresa("Oficina", "98876");
+		empresa.addFuncionario(admin);
 
-		
+		PaginaLogin l = new PaginaLogin(empresa, clientes, produtos, servicos);
 	}
 }
