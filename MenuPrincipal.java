@@ -61,25 +61,32 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         Object source = event.getSource();
 
         if(source.toString().contains("Realizar venda")) {
-           RealizarVenda rVenda = new RealizarVenda(empresa, funcionario, clientes, servicos, produtos);
+        	RealizarVenda rVenda = new RealizarVenda(empresa, funcionario, clientes, servicos, produtos);
+        	rVenda.setVisible(true);
         }
         else if(source.toString().contains("Cadastrar cliente")) {
             CadastroCliente cadastroC = new CadastroCliente(clientes, carros);
+            cadastroC.setVisible(true);
         }
         else if(source.toString().contains("Cadastrar produto")) {
     		CadastroProduto cadastroP = new CadastroProduto(produtos, carros);
+    		cadastroP.setVisible(true);
         }
         else if(source.toString().contains("Cadastrar servico")) {
         	CadastroServico cadastroS = new CadastroServico(servicos);
+        	cadastroS.setVisible(true);
         }
         else if(source.toString().contains("Consultar/Atualizar Estoque de Produtos")) {
-            
+            ConsultarProduto consultarP = new ConsultarProduto(produtos);
+            consultarP.setVisible(true);
         }
         else if(source.toString().contains("Caixa")) {
             PaginaCaixa paginaCaixa = new PaginaCaixa(empresa, clientes, produtos, servicos, funcionario);
+            paginaCaixa.setVisible(true);
         }
         else if(source.toString().contains("Retorno de Clientes")) {
             RetornoCliente retornoC = new RetornoCliente(clientes);
+            retornoC.setVisible(true);
         }
         else if(source.toString().contains("Consultar/Atualizar Cliente/Produto/Servico")) {
             
@@ -105,4 +112,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             dispose();
         }
     }
+    
+    
 }
