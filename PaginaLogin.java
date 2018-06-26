@@ -16,6 +16,9 @@ public class PaginaLogin extends JFrame implements ActionListener{
     public PaginaLogin(Empresa empresa, ArrayList<Cliente> clientes, ArrayList<Produto> produtos, ArrayList<Servico> servicos) {
 
         this.empresa = empresa;
+        this.clientes = clientes;
+        this.produtos = produtos;
+        this.servicos = servicos;
 
         Container contentPane = getContentPane();
         JLabel labelUsuario = new JLabel("Usuario");
