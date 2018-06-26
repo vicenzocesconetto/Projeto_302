@@ -43,6 +43,7 @@ public class PaginaCaixa extends JFrame implements ActionListener {
         contentPane.add(caixa);
 //        contentPane.add(encerrante);
         contentPane.add(retirada);
+        contentPane.add(voltar);
 
         JTextField texto = new JTextField();
         texto.setBounds(40, 170, 400, 300);
@@ -65,8 +66,13 @@ public class PaginaCaixa extends JFrame implements ActionListener {
         else if(source.toString().contains("Voltar")) {
             MenuPrincipal menuPrincipal = new MenuPrincipal(empresa, clientes, produtos, servicos, funcionario);
         }
-        dispose();
+        setVisible(false);
     }
 
+    public static void main(String[] args) {
+        Empresa empresa = new Empresa("imperio", "12345678");
+        empresa.setCaixa(420.69f);
+        PaginaCaixa p = new PaginaCaixa(empresa, new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>(), new Funcionario("344", "r4e", "eer", Cargo.ATENDENTE));
+    }
 
 }
