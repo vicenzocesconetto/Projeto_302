@@ -107,6 +107,7 @@ public class ConsultarProduto extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						int comboSelected = comboBoxProdutos.getSelectedIndex();
 						produtos.get(comboSelected).setEstoque(Integer.parseInt(textField.getText()));
+						dispose();
 					}
 				});
 				okButton.setActionCommand("OK");

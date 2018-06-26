@@ -89,7 +89,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             retornoC.setVisible(true);
         }
         else if(source.toString().contains("Consultar/Atualizar Cliente/Produto/Servico")) {
-            
+            ConsultarCadastro consulta = new ConsultarCadastro(servicos, clientes, produtos);
+            consulta.setVisible(true);
         }
         else if(source.toString().contains("Sair do sistema")) {
         	ObjectOutputStream out = null; //serializacao
