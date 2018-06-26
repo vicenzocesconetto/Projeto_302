@@ -55,26 +55,26 @@ public class Venda {
 		servicos.remove(i);		
 	}	
 	
-	public boolean descontoPorcentagem (Float desconto, Empresa empresa, String login, String password) {
-		if(funcoes.loginGerente(empresa, login, password)) {
-			if(desconto<=100) {
-				desconto = desconto/100;
-				this.total= this.total*desconto;				
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean descontoValor (Float valor, Float desconto, Empresa empresa, String login, String password) {
-		if(funcoes.loginGerente(empresa, login, password)) {
-			if(desconto<=valor) {
-				this.total = this.total-desconto;
-				return true;
-			}
-		}
-		return false;
-	}
+//	public boolean descontoPorcentagem (Float desconto, Empresa empresa, String login, String password) {
+//		if(funcoes.loginGerente(empresa, login, password)) {
+//			if(desconto<=100) {
+//				desconto = desconto/100;
+//				this.total= this.total*desconto;
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+//
+//	public boolean descontoValor (Float valor, Float desconto, Empresa empresa, String login, String password) {
+//		if(funcoes.loginGerente(empresa, login, password)) {
+//			if(desconto<=valor) {
+//				this.total = this.total-desconto;
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 	
 	//GETS E SETS PADROES
 	public Cliente getCliente() {
