@@ -109,7 +109,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
     			}
     		}
-            dispose();
+            setVisible(false);
         }
     }
     
