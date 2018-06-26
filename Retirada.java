@@ -1,4 +1,4 @@
-public class Retirada extends Movimentacao {
+public class Retirada extends Movimentacao implements PrettyPrint{
 	private String motivo;
 
 	public Retirada(float valor, String motivo) {
@@ -13,4 +13,12 @@ public class Retirada extends Movimentacao {
 	public void setMotivo(String motivo) {
 		this.motivo = motivo.toUpperCase();
 	}
+
+    @Override
+    public String prettyPrint() {
+        String str = "Retirada\n" +
+                "Valor: " + Float.toString(getValor()) + "\n" +
+                "Motivo: " + motivo + "\n";
+        return str;
+    }
 }
