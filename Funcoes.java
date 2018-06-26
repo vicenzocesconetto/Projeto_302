@@ -46,20 +46,34 @@ public class Funcoes {
 	}	
 
 	public boolean salvarEncerrante(String m) throws IOException {
-		String caminho = "/home/greenseiya/Documents/Oficina/src/encerrantes/" +dataHoje();
-		System.out.println(caminho);
+		String caminho = dataHoje()+".txt";
 		try {
 			FileWriter arquivo = new FileWriter (caminho);
 			arquivo.write(m);
 			arquivo.close();
+			return true;
 		} catch (IOException e) {
 			return false;
 		} catch (Exception e) {
 			return false;
 		}
-		return true;
 	}
-		
+	/*
+	public boolean salvarVenda(String m, String d) throws IOException {
+		String caminho = "vendas/"+dataHoje()+"_"+d+".txt";
+		System.out.println(caminho);
+		try {
+			FileWriter arquivo = new FileWriter (caminho);
+			arquivo.write(m);
+			arquivo.close();
+			return true;
+		} catch (IOException e) {
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	*/	
 	public String dataHoje() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy");
 		return sdf.format( new Date( System.currentTimeMillis() ) );
@@ -72,6 +86,10 @@ public class Funcoes {
 	
 	public String horaSistema() {
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		return  sdf.format( new Date( System.currentTimeMillis())) ;
+	}
+	public String horaSistemaArquivo() {
+		SimpleDateFormat sdf = new SimpleDateFormat("HH_mm");
 		return  sdf.format( new Date( System.currentTimeMillis())) ;
 	}
 	

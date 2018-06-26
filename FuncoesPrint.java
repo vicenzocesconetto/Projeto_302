@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class FuncoesPrint {
 	Funcoes funcoes = new Funcoes();
@@ -9,13 +10,13 @@ public class FuncoesPrint {
 	       for (int i=0;i<empresa.getMovimentacoes().size();i++) {
 				if(empresa.getMovimentacoes().get(i) instanceof Entrada) {
 					Entrada e = (Entrada)empresa.getMovimentacoes().get(i);
-					str += "---\n";
+					str += "-------------------------------------\n";
 					str += "Entrada!\n";
 					str += "Valor: R$" + e.getValor()+"\n";
 					str += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
 				}else {
 					Retirada r = (Retirada)empresa.getMovimentacoes().get(i);
-						str += "---\n";
+						str += "-------------------------------------\n";
 						str += "Retirada!\n";
 						str += "Valor: R$" + r.getValor()+"\n";
 						str += "Motivo: " + r.getMotivo()+"\n";	
@@ -42,13 +43,29 @@ public class FuncoesPrint {
 
 		public String printVenda(Venda venda) {
 			if(venda == null) return "Venda nao encontrada";
-			
+			DecimalFormat df = new DecimalFormat("0.00");
 			String str="Detalhes da venda:\n";
-			str+="Nome: " + venda.getCliente().getNome() +"\n";
+			str+="Cliente: " + venda.getCliente().getNome() +"\n";
+			str+="Data da compra: " + venda.getData();
+			str+="\tFuncionario: " + venda.getFuncionario()+"\n";
+			
+			for (int i=0; i < venda.getProdutos().size();i++) {
+				str+="--------------------------------------------------\n";
+				str+=venda.getProdutos().get(i).getNome() + "\t";
+				str+="Quantidade: " + venda.getQtd().get(i) + "\n";
+				str+="Valor Unitario: " + df.format(venda.getProdutos().get(i).getValor());
+				str+="\tSubTotal: R$" + df.format(venda.getProdutos().get(i).getValor()*venda.getQtd().get(i)) + "\n";
+			}
+			for (int i=0; i < venda.getServicos().size();i++) {
+				str+="--------------------------------------------------\n";
+				str+=venda.getServicos().get(i).getNome()+ "\n";;
+				str+="Valor: R$" + df.format(venda.getServicos().get(i).getValor()) + "\n";
+			}
+			
+			str+="--------------------------------------------------\n";
+			str+="Valor Total: R$" + df.format(venda.getTotal())+"\n";
 			str+="Forma de Pagamento: " + venda.getFormaPagamento()+"\n";
-			str+="Data: " + venda.getData()+"\n";
-			str+="Funcionario: " + venda.getFuncionario()+"\n";
-			str+="Total: " + venda.getTotal();
+					
 			return str;
 		}
 		

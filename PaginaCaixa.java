@@ -68,10 +68,5 @@ public class PaginaCaixa extends JFrame implements ActionListener {
         dispose();
     }
 
-    public static void main(String[] args) {
-        Empresa empresa = new Empresa("imperio", "12345678");
-        empresa.setCaixa(420.69f);
-        PaginaCaixa p = new PaginaCaixa(empresa, new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>(), new Funcionario("344", "r4e", "eer", Cargo.ATENDENTE));
-    }
 
 }
