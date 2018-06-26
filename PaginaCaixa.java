@@ -35,7 +35,7 @@ public class PaginaCaixa extends JFrame implements ActionListener {
 //        encerrante.setBounds(140, 70, 200, 30);
         retirada.setBounds(140, 70, 200, 30);
         voltar.setBounds(140, 110, 200, 30);
-
+        voltar.addActionListener(this);
 //        encerrante.addActionListener(this);
         retirada.addActionListener(this);
 
