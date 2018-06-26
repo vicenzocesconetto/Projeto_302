@@ -55,10 +55,9 @@ public class PaginaLogin extends JFrame implements ActionListener{
         Funcoes biblioteca = new Funcoes();
 
         if(biblioteca.login(empresa, campoDoUsuario.getText(), String.valueOf(campoDaSenha.getPassword()))) {
-//            setVisible(false);
+            setVisible(false);
             Funcionario funcionario = empresa.getFuncionarioPeloLogin(campoDoUsuario.getText());
             MenuPrincipal menuPrincipal = new MenuPrincipal(empresa, clientes, produtos, servicos, funcionario);
-            setVisible(false);
         } else {
             JOptionPane.showMessageDialog(this,"Usuario ou senha incorretos",
                     "Erro",JOptionPane.ERROR_MESSAGE);
