@@ -50,7 +50,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-
     @Override
     public void actionPerformed(ActionEvent event) {
     	Funcoes funcoes = new Funcoes();
@@ -88,8 +87,5 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             System.out.println("Mjolnir");
         }
         dispose();
-    }  
-    public static void main(String[] args) {
-        MenuPrincipal m = new MenuPrincipal(new Empresa("e", "er"), new ArrayList<Cliente>(), new ArrayList<Produto>(), new ArrayList<Servico>(), new Funcionario("jaeer", "etrtrrt", "errt", Cargo.ATENDENTE));
     }
 }
