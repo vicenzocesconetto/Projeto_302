@@ -18,6 +18,7 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JComboBox comboBoxServicos;
+	private JComboBox comboBoxCarros;
 	
 	public RealizarVendaAdicionarServicos(Venda venda, ArrayList<Servico> servicos){
 		setTitle("Adicionar Servico");
@@ -56,10 +57,24 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 		};			
 		comboBoxServicos.addActionListener(comboBoxSelect);
 			
+		JLabel lblVeiculo = new JLabel("Veiculo");
+		lblVeiculo.setBounds(12, 162, 70, 15);
+		
+		//DEFINE O COMBOBOX	
+		comboBoxCarros = new JComboBox();
+		comboBoxCarros.setBounds(22, 186, 383, 24);
+		
+		
+		for(int i=0; i<servicos.size(); i++) {				
+			comboBoxCarros.addItem(venda.getCliente().getVeiculos().get(i).getMarca()+" - " + venda.getCliente().getVeiculos().get(i).getModelo()+" - " + venda.getCliente().getVeiculos().get(i).getPotencia() );
+		}	
+		
 		//ADICIONA A TELA
-		contentPanel.add(lblEntreComO);
-		contentPanel.add(comboBoxServicos);
-		contentPanel.add(textPane);
+				contentPanel.add(lblEntreComO);
+				contentPanel.add(comboBoxServicos);
+				contentPanel.add(textPane);
+				contentPanel.add(lblVeiculo);
+				contentPanel.add(comboBoxCarros);
 		
 		//BOTOES
 		{
@@ -84,6 +99,7 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int comboSelected = comboBoxServicos.getSelectedIndex();
+						
 						venda.addServico(servicos.get(comboSelected));
 						JOptionPane.showMessageDialog(null, "Servico Adicionado", null, JOptionPane.INFORMATION_MESSAGE);
 						dispose();

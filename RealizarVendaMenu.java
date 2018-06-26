@@ -73,6 +73,13 @@ public class RealizarVendaMenu extends JDialog {
 		
 		//CONCLUIR
 		JButton btnConcluirVenda = new JButton("Concluir Venda");
+		btnConcluirVenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConcluirVenda concluir = new ConcluirVenda(venda);
+				concluir.setVisible(true);
+				dispose();
+			}
+		});
 		btnConcluirVenda.setBounds(138, 190, 170, 25);
 		
 		//ADICIONA NA TELA
