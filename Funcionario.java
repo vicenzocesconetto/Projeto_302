@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Funcionario implements Serializable {
+public class Funcionario implements Serializable, PrettyPrint {
 	private static final long serialVersionUID = 1L;
 	private String nome;
 	private String login;
@@ -45,5 +45,21 @@ public class Funcionario implements Serializable {
 
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
-	}	
+	}
+
+    @Override
+    public String prettyPrint() {
+	    String str = "Funcionario: " + nome + "\n" +
+                "Login: " + login + "\n" +
+                "Cargo: ";
+	    switch (cargo){
+            case ATENDENTE:
+                str += "ATENDENTE";
+            case GERENTE:
+                str += "GERENTE";
+        }
+        str += "\n";
+
+        return null;
+    }
 }
