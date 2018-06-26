@@ -1,0 +1,29 @@
+Parte 2 do projeto  - Do Date 16/06 
+
+- Evandro:
+	Dados para o programa
+	Detalhe na impressão do encerrante
+	Adicionar a empresa ArrayList de funcionarios
+	Salvar o caixa
+	Salvar dados da empresa
+
+- Gustavo:
+	Serializar classes:
+		Cliente/Motorista
+		Produto
+		Servico
+		Funcionario
+
+- Vicenzo:
+	Tratamento de excecao
+	Classe Abstrata: Movimentacao
+
+- Tarefas Livres
+	-Adicionar carros a um cliente
+	-Trocar modelo do carro
+	-Adicionar mais de um carro
+	-Calcular retorno
+	-Login/Senha
+	-Desconto
+	
+
