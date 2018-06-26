@@ -53,10 +53,32 @@ public class Main {
 
 		ArrayList<Modelos> carros = funcoes.carregaModelos("marcas-carros.txt", "modelos-carro.txt");
 
+		// SETUP
 		Funcionario admin = new Funcionario("Admin", "admin", "123", Cargo.GERENTE);
 		if(empresa == null)
 		    empresa = new Empresa("Oficina", "98876");
 		empresa.addFuncionario(admin);
+
+		Produto produtoGenerico = new Produto(0, 14, 19.99f, "Lubrificante");
+		produtoGenerico.setRendimento(5000);
+		produtoGenerico.setValidade(6);
+		if(produtos == null)
+		    produtos = new ArrayList<Produto>();
+
+		produtos.add(produtoGenerico);
+
+		Cliente cliente = new Cliente("Igor", "333456", "email@gmail.com", new Endereco("calle", "234","villa", "Camp", "SP"));
+
+		if(clientes == null)
+		    clientes = new ArrayList<Cliente>();
+		clientes.add(cliente);
+
+		Servico servico = new Servico("Limpeza", 30f, false);
+
+		if(servicos == null)
+		    servicos = new ArrayList<Servico>();
+
+		servicos.add(servico);
 
 		PaginaLogin l = new PaginaLogin(empresa, clientes, produtos, servicos);
 	}
