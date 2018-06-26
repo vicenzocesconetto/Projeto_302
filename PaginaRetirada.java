@@ -72,6 +72,6 @@ public class PaginaRetirada extends JFrame implements ActionListener {
             }
         }
         PaginaCaixa paginaCaixa = new PaginaCaixa(empresa, clientes, produtos, servicos, funcionario);
-        dispose();
+        setVisible(false);
     }
 }
