@@ -101,6 +101,11 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 						int comboSelected = comboBoxServicos.getSelectedIndex();
 						
 						venda.addServico(servicos.get(comboSelected));
+						
+						comboSelected = comboBoxCarros.getSelectedIndex();
+						
+						venda.addVeiculo(venda.getCliente().getVeiculos().get(comboSelected));
+						
 						JOptionPane.showMessageDialog(null, "Servico Adicionado", null, JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 					}

@@ -5,6 +5,7 @@ public class Venda {
 	private Cliente cliente;
     private ArrayList<Produto> produtos;
     private ArrayList<Servico> servicos;
+    private ArrayList<Veiculo> veiculos; //GUARDA O VEICULO I USADO NO SERVICO I
     private ArrayList<Integer> qtd; //GUARDA A QTD DE ITENS COMPRADOS DO PRODUTO I, QUE ESTA NA IESIMA POSICAO DO ARRAY THIS.PRODUTOS
     private FormaPagamento formaPagamento;
     private final String data;
@@ -15,6 +16,7 @@ public class Venda {
     public Venda() {
     	this.produtos = new ArrayList<Produto>();
     	this.servicos = new ArrayList<Servico>();
+    	this.veiculos = new ArrayList<Veiculo>();
     	this.qtd = new ArrayList<Integer>();
     	this.funcoes= new Funcoes();
     	this.data = funcoes.dataHojeBarra();
@@ -52,29 +54,34 @@ public class Venda {
 	
 	public void removeServico(int i) {
 		this.total -= (servicos.get(i).getValor());
-		servicos.remove(i);		
+		servicos.remove(i);	
+		this.veiculos.remove(i);
 	}	
 	
-//	public boolean descontoPorcentagem (Float desconto, Empresa empresa, String login, String password) {
-//		if(funcoes.loginGerente(empresa, login, password)) {
-//			if(desconto<=100) {
-//				desconto = desconto/100;
-//				this.total= this.total*desconto;
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-//
-//	public boolean descontoValor (Float valor, Float desconto, Empresa empresa, String login, String password) {
-//		if(funcoes.loginGerente(empresa, login, password)) {
-//			if(desconto<=valor) {
-//				this.total = this.total-desconto;
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
+	public boolean descontoPorcentagem (Float desconto, Empresa empresa, String login, String password) {
+		if(funcoes.loginGerente(empresa, login, password)) {
+			if(desconto<=100) {
+				desconto = desconto/100;
+				this.total= this.total*desconto;				
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean descontoValor (Float valor, Float desconto, Empresa empresa, String login, String password) {
+		if(funcoes.loginGerente(empresa, login, password)) {
+			if(desconto<=valor) {
+				this.total = this.total-desconto;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void addVeiculo(Veiculo novo) {
+		this.veiculos.add(novo);
+	}
 	
 	//GETS E SETS PADROES
 	public Cliente getCliente() {
@@ -132,4 +139,9 @@ public class Venda {
 	public String getData() {
 		return data;
 	}
+
+	public ArrayList<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+	
 }

@@ -101,15 +101,15 @@ public class Funcoes {
 		return false;
 	}
 	
-//	public boolean loginGerente(Empresa empresa, String login, String password) {
-//		for (int i=0;i<empresa.getFuncionarios().size();i++) {
-//			if(empresa.getFuncionarios().get(i).getLogin().equals(login))
-//				if(empresa.getFuncionarios().get(i).getSenha().equals(password)) {
-//					if(empresa.getFuncionarios().get(i).getCargo()==Cargo.GERENTE)return true;
-//				}
-//			}
-//		return false;
-//	}
+	public boolean loginGerente(Empresa empresa, String login, String password) {
+		for (int i=0;i<empresa.getFuncionarios().size();i++) {
+			if(empresa.getFuncionarios().get(i).getLogin().equals(login))
+				if(empresa.getFuncionarios().get(i).getSenha().equals(password)) {
+					if(empresa.getFuncionarios().get(i).getCargo()==Cargo.GERENTE)return true;
+				}
+			}
+		return false;
+	}
 	
 	public boolean produtoCompativel(Produto p, Veiculo veiculo) {
 		for(int i=0;i<p.getModelosCompativeis().size();i++) {	
@@ -134,19 +134,15 @@ public class Funcoes {
 		}
 		//SALVA MOVIMENTACAO
 		venda.getEmpresa().addMovimentacao(new Entrada(venda.getTotal(),venda.getFormaPagamento()));
-	}
-	
-	public void finalizarVendaServico(Venda venda, Veiculo veiculo) throws EstoqueInsuficienteException {
-		finalizarVenda(venda);
 		
 		//CALCULA DATA DE RETORNO DO CLIENTE SE FOR O CASO
-		for (int i=0; i<venda.getServicos().size(); i++) {
-			if(venda.getServicos().get(i).isRetorno()) {
-				venda.getCliente().setRetorno(new Retorno(venda, veiculo));
-			}
-		}
+				for (int i=0; i<venda.getServicos().size(); i++) {
+					if(venda.getServicos().get(i).isRetorno()) {
+						venda.getCliente().setRetorno(new Retorno(venda, venda.getVeiculos().get(i)));
+					}
+				}
 	}
-	
+		
 	public Cliente buscarCliente(ArrayList<Cliente> clientes, String nome) {
 		 for (int i = 0; i<clientes.size(); i++) {
 			 if (clientes.get(i).getNome().equals(nome.toUpperCase())) return clientes.get(i);

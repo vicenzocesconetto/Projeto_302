@@ -92,6 +92,12 @@ public class ConcluirVenda extends JDialog {
 							venda.setFormaPagamento(FormaPagamento.MASTERCARD_DEBITO);
 							VendaConcluida concluir = new VendaConcluida(venda);
 							concluir.setVisible(true);
+							Funcoes funcoes = new Funcoes();
+							try {
+								funcoes.finalizarVenda(venda);
+							} catch (EstoqueInsuficienteException e1) {
+								JOptionPane.showMessageDialog(null, "Operação Invalida!", null, JOptionPane.ERROR_MESSAGE);
+							}
 							dispose();
 						}
 						else if(rdbtnMastercardCrdito.isSelected()) {

@@ -14,6 +14,7 @@ public class Retorno {
 	@SuppressWarnings("deprecation")
 	public void setData() {
 		Date data = new Date( System.currentTimeMillis());
+		this.data=null;
 		int dias=0;
 		
 		for (int i=0;i<venda.getProdutos().size();i++) {
