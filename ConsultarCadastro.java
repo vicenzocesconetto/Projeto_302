@@ -5,10 +5,13 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
+import java.awt.Color;
+
 import javax.swing.BoxLayout;
 
 public class ConsultarCadastro extends JDialog {
@@ -26,6 +29,8 @@ public class ConsultarCadastro extends JDialog {
 			getContentPane().add(buttonPane);
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(new Color(59, 89, 182));
+				cancelButton.setForeground(Color.white);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -37,6 +42,8 @@ public class ConsultarCadastro extends JDialog {
 		}
 		
 		JButton btnConsultarCadastroDe = new JButton("Consultar cadastro de Produtos");
+		btnConsultarCadastroDe.setBackground(new Color(59, 89, 182));
+		btnConsultarCadastroDe.setForeground(Color.white);
 		btnConsultarCadastroDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ConsultarCadastroProduto Cproduto = new ConsultarCadastroProduto(produtos);
@@ -47,6 +54,9 @@ public class ConsultarCadastro extends JDialog {
 		getContentPane().add(btnConsultarCadastroDe);
 		
 		JButton btnConsultarCadastroDe_1 = new JButton("Consultar cadastro de serviços");
+		btnConsultarCadastroDe_1.setBackground(new Color(59, 89, 182));
+		btnConsultarCadastroDe_1.setForeground(Color.white);
+		
 		btnConsultarCadastroDe_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ConsultarCadastroServico Cservico = new ConsultarCadastroServico(servicos);
@@ -57,6 +67,8 @@ public class ConsultarCadastro extends JDialog {
 		getContentPane().add(btnConsultarCadastroDe_1);
 		
 		JButton btnConsultarCadastroDe_2 = new JButton("Consultar cadastro de Clientes");
+		btnConsultarCadastroDe_2.setBackground(new Color(59, 89, 182));
+		btnConsultarCadastroDe_2.setForeground(Color.white);
 		btnConsultarCadastroDe_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ConsultarCadastroCliente Ccliente = new ConsultarCadastroCliente(clientes);

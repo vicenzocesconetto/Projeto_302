@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -6,10 +7,13 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class VendaConcluida extends JDialog {
 
@@ -27,11 +31,14 @@ public class VendaConcluida extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setText(print.printVenda(venda));
 		textPane.setEditable(false);
 		textPane.setBounds(10, 10, 430, 210);
-		textPane.setText(print.printVenda(venda));
+		JScrollPane scroll = new JScrollPane(textPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.setBounds(10, 10, 420, 210);
 				
-		contentPanel.add(textPane);
+		contentPanel.add(scroll);
+		
 		
 		{
 			JPanel buttonPane = new JPanel();
@@ -39,6 +46,10 @@ public class VendaConcluida extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				
+				okButton.setBackground(new Color(59, 89, 182));
+				okButton.setForeground(Color.white);
+				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

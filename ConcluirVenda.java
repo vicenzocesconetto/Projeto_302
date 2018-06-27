@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.ButtonGroup;
@@ -6,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -76,6 +78,10 @@ public class ConcluirVenda extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				
+				cancelButton.setBackground(new Color(59, 89, 182));
+				cancelButton.setForeground(Color.white);
+				
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -86,46 +92,35 @@ public class ConcluirVenda extends JDialog {
 			}
 			{
 				JButton okButton = new JButton("Avançar");
+				
+				okButton.setBackground(new Color(59, 89, 182));
+				okButton.setForeground(Color.white);
+				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(rdbtnMastercardDebito.isSelected()) {
-							venda.setFormaPagamento(FormaPagamento.MASTERCARD_DEBITO);
-							VendaConcluida concluir = new VendaConcluida(venda);
-							concluir.setVisible(true);
-							Funcoes funcoes = new Funcoes();
-							try {
-								funcoes.finalizarVenda(venda);
-							} catch (EstoqueInsuficienteException e1) {
-								JOptionPane.showMessageDialog(null, "Operação Invalida!", null, JOptionPane.ERROR_MESSAGE);
-							}
+						if(venda.getTotal()==0f) {
+							JOptionPane.showMessageDialog(null, "Adicione algum item a venda!", null, JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+							if(rdbtnMastercardDebito.isSelected()) venda.setFormaPagamento(FormaPagamento.MASTERCARD_DEBITO);
+							else if(rdbtnMastercardCrdito.isSelected()) venda.setFormaPagamento(FormaPagamento.MASTERCARD_CREDITO);
+							else if(rdbtnVisaCredito.isSelected()) venda.setFormaPagamento(FormaPagamento.VISA_CREDITO);
+							else if(rdbtnVisaDebito.isSelected()) venda.setFormaPagamento(FormaPagamento.VISA_DEBITO);
+							else venda.setFormaPagamento(FormaPagamento.DINHEIRO);
+							
+						setVisible(false);
+						Funcoes funcoes = new Funcoes();
+						try {
+							funcoes.finalizarVenda(venda);
+						} catch (EstoqueInsuficienteException e1) {
+							JOptionPane.showMessageDialog(null, "Operação Invalida!", null, JOptionPane.ERROR_MESSAGE);
 							dispose();
 						}
-						else if(rdbtnMastercardCrdito.isSelected()) {
-							venda.setFormaPagamento(FormaPagamento.MASTERCARD_CREDITO);
-							VendaConcluida concluir = new VendaConcluida(venda);
-							concluir.setVisible(true);
-							dispose();
-						}else if(rdbtnVisaCredito.isSelected()) {
-							venda.setFormaPagamento(FormaPagamento.VISA_CREDITO);
-							VendaConcluida concluir = new VendaConcluida(venda);
-							concluir.setVisible(true);
-							dispose();
-						}else if(rdbtnVisaDebito.isSelected()) {
-							venda.setFormaPagamento(FormaPagamento.VISA_DEBITO);
-							VendaConcluida concluir = new VendaConcluida(venda);
-							concluir.setVisible(true);
-							dispose();
-						}else if(rdbtnDinheiro.isSelected()) {
-							venda.setFormaPagamento(FormaPagamento.DINHEIRO);
-							VendaConcluida concluir = new VendaConcluida(venda);
-							concluir.setVisible(true);
-							dispose();
-						}else {
-							JOptionPane.showMessageDialog(null, "Selecione uma forma de pagamento!", null, JOptionPane.ERROR_MESSAGE);
+						
+						VendaConcluida concluir = new VendaConcluida(venda);
+						concluir.setVisible(true);
+						dispose();
 						}
-						
-						
-						
 					}
 				});
 				okButton.setActionCommand("OK");

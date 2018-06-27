@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +26,7 @@ public class RealizarVendaRemoverProdutos extends JDialog {
 	private int qtd=1;
 	
 	public RealizarVendaRemoverProdutos(Venda venda) {
-		setTitle("Remover Servico");
+		setTitle("Remover Produto");
 		contentPanel.setLayout(null);
         setModalityType(DEFAULT_MODALITY_TYPE);
         setBounds(100, 100, 450, 300);
@@ -70,8 +71,11 @@ public class RealizarVendaRemoverProdutos extends JDialog {
 		textQtd.setText(""+qtd);
 		
 		//BOTAO +
-		JButton btnPlus;
-		btnPlus = new JButton("+");
+		JButton btnPlus = new JButton("+");
+		
+		btnPlus.setBackground(new Color(59, 89, 182));
+		btnPlus.setForeground(Color.white);
+		
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int comboSelected = comboBoxProdutos.getSelectedIndex();
@@ -84,8 +88,12 @@ public class RealizarVendaRemoverProdutos extends JDialog {
 		btnPlus.setBounds(360, 188, 45, 20);
 	
 		//BOTAO -
-		JButton btnMinus;
-		btnMinus = new JButton("-");
+		JButton btnMinus = new JButton("-");
+		
+
+		btnMinus.setBackground(new Color(59, 89, 182));
+		btnMinus.setForeground(Color.white);
+		
 		btnMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(qtd>1) qtd--;
@@ -114,6 +122,10 @@ public class RealizarVendaRemoverProdutos extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				
+				cancelButton.setBackground(new Color(59, 89, 182));
+				cancelButton.setForeground(Color.white);		
+				
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -126,6 +138,10 @@ public class RealizarVendaRemoverProdutos extends JDialog {
 			
 			{
 				JButton okButton = new JButton("Remover");
+				
+				okButton.setBackground(new Color(59, 89, 182));
+				okButton.setForeground(Color.white);
+				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int comboSelected = comboBoxProdutos.getSelectedIndex();

@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JCheckBox;
 
 public class ConsultarCadastroServico extends JDialog {
@@ -22,7 +24,6 @@ public class ConsultarCadastroServico extends JDialog {
 	private JComboBox comboBoxServicos;
 	private JTextField textFieldNome;
 	private JTextField textFieldValor;
-	private DecimalFormat df = new DecimalFormat("0.00");
 	JLabel lblPesquisa = new JLabel("Entre com o nome do serviço:");
 
 	public ConsultarCadastroServico(ArrayList<Servico> servicos) {
@@ -35,71 +36,66 @@ public class ConsultarCadastroServico extends JDialog {
 		
 		//DEFINE O TAMANHO DA LABEL: ENTRE COM O NOME...
 		lblPesquisa.setBounds(12, 12, 214, 15);
-						
+	
 		//DEFINE O COMBOBOX	
 	    comboBoxServicos = new JComboBox();
 	    comboBoxServicos.setBounds(22, 42, 383, 24);
+				
+		for(int i=0; i<servicos.size(); i++) comboBoxServicos.addItem(servicos.get(i).getNome());
 		
+		//LABEL NOME
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(12, 90, 45, 15);
+				
+		textFieldNome = new JTextField();
+		textFieldNome.setBounds(112, 88, 300, 19);
+		contentPanel.add(textFieldNome);
+		textFieldNome.setColumns(10);
 		
-		for(int i=0; i<servicos.size(); i++) {				
-			comboBoxServicos.addItem(servicos.get(i).getNome());
-		}	
+		//LABEL VALOR
+		JLabel lblValorun = new JLabel("Valor (UN):");
+		lblValorun.setBounds(12, 116, 83, 15);
+						
+		textFieldValor = new JTextField();
+		textFieldValor.setBounds(112, 114, 114, 19);
+		contentPanel.add(textFieldValor);
+		textFieldValor.setColumns(10);
+				
+		//CHECK BOX SERVICO CICLICO
+		JCheckBox chckbxServioCiclico = new JCheckBox("Serviço ciclico");
+		chckbxServioCiclico.setBounds(12, 141, 129, 23);
 		
-		{
-			JLabel lblNome = new JLabel("Nome:");
-			lblNome.setBounds(12, 90, 45, 15);
-			contentPanel.add(lblNome);
-		}
-		{
-			JLabel lblValorun = new JLabel("Valor (UN):");
-			lblValorun.setBounds(12, 116, 83, 15);
-			contentPanel.add(lblValorun);
-		}
-		
-		{
-			textFieldNome = new JTextField();
-			textFieldNome.setBounds(112, 88, 300, 19);
-			contentPanel.add(textFieldNome);
-			textFieldNome.setColumns(10);
-		}
-		{
-			textFieldValor = new JTextField();
-			textFieldValor.setBounds(112, 114, 114, 19);
-			contentPanel.add(textFieldValor);
-			textFieldValor.setColumns(10);
-		}
-		
-		
+			
 		ActionListener comboBoxSelect = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int comboSelected = comboBoxServicos.getSelectedIndex();
-				
 				textFieldNome.setText(servicos.get(comboSelected).getNome());
-				textFieldValor.setText(df.format(servicos.get(comboSelected).getValor()));
+				textFieldValor.setText(""+servicos.get(comboSelected).getValor());
 				
+				if(servicos.get(comboSelected).isRetorno())	chckbxServioCiclico.setSelected(true);
+				else chckbxServioCiclico.setSelected(false); 
 			}
 		};			
 		comboBoxServicos.addActionListener(comboBoxSelect);
 		
+		//ADICIONA NA TELA
 		contentPanel.add(lblPesquisa);
 		contentPanel.add(comboBoxServicos);
-		{
-			JCheckBox chckbxServioCiclico = new JCheckBox("Serviço ciclico");
-			chckbxServioCiclico.setBounds(12, 141, 129, 23);
-			contentPanel.add(chckbxServioCiclico);
-		}
-		JCheckBox chckbxAtualizarEstoque = new JCheckBox("Atualizar estoque");
-		chckbxAtualizarEstoque.setBounds(22, 158, 182, 23);
-		if(servicos.get(comboBoxServicos.getSelectedIndex()).isRetorno()) {
-			chckbxAtualizarEstoque.setSelected(true);
-		}else chckbxAtualizarEstoque.setSelected(false); 
+		contentPanel.add(lblNome);
+		contentPanel.add(lblValorun);
+		contentPanel.add(chckbxServioCiclico);
 		
+		//BOTOES BASE
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			
+			//BOTAO CANCELAR
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(new Color(59, 89, 182));
+				cancelButton.setForeground(Color.white);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -108,17 +104,21 @@ public class ConsultarCadastroServico extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			//BOTAO SALVAR
 			{
 				JButton okButton = new JButton("Salvar");
+				okButton.setBackground(new Color(59, 89, 182));
+				okButton.setForeground(Color.white);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int comboSelected = comboBoxServicos.getSelectedIndex();
+						
 						servicos.get(comboSelected).setNome(textFieldNome.getText());
-						servicos.get(comboSelected).setValor(Float.parseFloat(textFieldNome.getText()));
+						servicos.get(comboSelected).setValor(Float.parseFloat(textFieldValor.getText()));
 						
-						if(chckbxAtualizarEstoque.isSelected())servicos.get(comboSelected).setRetorno(true);
+						if(chckbxServioCiclico.isSelected())servicos.get(comboSelected).setRetorno(true);
 						else servicos.get(comboSelected).setRetorno(false);
-						
+										
 						dispose();
 					}
 				});

@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
@@ -6,9 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -25,12 +28,13 @@ public class ConsultarCadastroCliente extends JDialog {
 	private JTextField textFieldBairro;
 	private JTextField textFieldCidade;
 	private JTextField textFieldUF;
+	private ArrayList<Veiculo> cadastrarVeiculo= new ArrayList<Veiculo>();
 
 	public ConsultarCadastroCliente(ArrayList<Cliente> clientes) {
 		setTitle("Consultar/Atualizar Estoque de Clientes");
         contentPanel.setLayout(null);
         setModalityType(DEFAULT_MODALITY_TYPE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 450, 408);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
         
@@ -40,11 +44,16 @@ public class ConsultarCadastroCliente extends JDialog {
         //DEFINE AS COMBOBOX
         comboBoxClientes = new JComboBox();
         comboBoxClientes.setBounds(22, 42, 383, 24);
-				
+		
+        //DEFINE O COMBOBOX	
+  		JComboBox comboBoxCarros = new JComboBox();
+  		comboBoxCarros.setBounds(33, 252, 383, 24);
+        
 		for(int i=0; i<clientes.size(); i++) {				
 			comboBoxClientes.addItem(clientes.get(i).getNome());
-		}	
+		}
 		
+		//CAMPOS DO CADASTRO		
 		{
 			JLabel lblNome = new JLabel("Nome:");
 			lblNome.setBounds(35, 88, 45, 15);
@@ -137,10 +146,15 @@ public class ConsultarCadastroCliente extends JDialog {
 			textFieldUF.setColumns(10);
 		}
 		
-		
+				
 		ActionListener comboBoxSelect = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int comboSelected = comboBoxClientes.getSelectedIndex();
+				
+				comboBoxCarros.removeAllItems();
+				for(int i=0; i<clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().size(); i++) {
+					comboBoxCarros.addItem(clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().get(i).getMarca()+" - " + clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().get(i).getModelo()+" - " + clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().get(i).getPotencia() );
+				}
 				
 				textFieldNome.setText(clientes.get(comboSelected).getNome());
 				textFieldTelefone.setText(clientes.get(comboSelected).getTelefone());
@@ -155,13 +169,60 @@ public class ConsultarCadastroCliente extends JDialog {
 		comboBoxClientes.addActionListener(comboBoxSelect);		
 		contentPanel.add(lblPesquisa);
 		contentPanel.add(comboBoxClientes);
+		contentPanel.add(comboBoxCarros);
+			
+		{
+			JLabel lblVeiculos = new JLabel("Veiculos:");
+			lblVeiculos.setBounds(12, 225, 70, 15);
+			contentPanel.add(lblVeiculos);
+		}
+		{
+			JButton btnAdicionarCarro = new JButton("Adicionar Carro");
+			btnAdicionarCarro.setBackground(new Color(59, 89, 182));
+			btnAdicionarCarro.setForeground(Color.white);
+			btnAdicionarCarro.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					cadastrarVeiculo.clear();
+					CadastroVeiculo cVeiculo = new CadastroVeiculo(cadastrarVeiculo);
+					cVeiculo.setVisible(true);
+					clientes.get(comboBoxClientes.getSelectedIndex()).addVeiculo(cadastrarVeiculo.get(0));
+					comboBoxCarros.removeAllItems();
+					for(int i=0; i<clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().size(); i++) {
+						comboBoxCarros.addItem(clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().get(i).getMarca()+" - " + clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().get(i).getModelo()+" - " + clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().get(i).getPotencia() );
+					}
+				}
+			});
+			btnAdicionarCarro.setBounds(224, 288, 150, 25);
+			contentPanel.add(btnAdicionarCarro);
+		}
+		{
+			JButton btnRemoverCarro = new JButton("Remover Carro");
+			btnRemoverCarro.setBackground(new Color(59, 89, 182));
+			btnRemoverCarro.setForeground(Color.white);
+			btnRemoverCarro.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(clientes.get(comboBoxClientes.getSelectedIndex()).removeVeiculo(comboBoxCarros.getSelectedIndex())) {
+						JOptionPane.showMessageDialog(null, "Veiculo Removido", null, JOptionPane.INFORMATION_MESSAGE);
+					}else JOptionPane.showMessageDialog(null, "Erro ao remover o veiculo", null, JOptionPane.ERROR_MESSAGE);
+					comboBoxCarros.removeAllItems();
+					for(int i=0; i<clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().size(); i++) {
+						comboBoxCarros.addItem(clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().get(i).getMarca()+" - " + clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().get(i).getModelo()+" - " + clientes.get(comboBoxClientes.getSelectedIndex()).getVeiculos().get(i).getPotencia() );
+					}
+				}
+			});
+			btnRemoverCarro.setBounds(67, 288, 150, 25);
+			contentPanel.add(btnRemoverCarro);
+		}
 		
+		//BOTOES BASE			
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(new Color(59, 89, 182));
+				cancelButton.setForeground(Color.white);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -172,6 +233,8 @@ public class ConsultarCadastroCliente extends JDialog {
 			}
 			{
 				JButton okButton = new JButton("Salvar");
+				okButton.setBackground(new Color(59, 89, 182));
+				okButton.setForeground(Color.white);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int comboSelected = comboBoxClientes.getSelectedIndex();

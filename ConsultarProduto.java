@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JCheckBox;
 
 public class ConsultarProduto extends JDialog {
@@ -93,6 +95,10 @@ public class ConsultarProduto extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				
+				cancelButton.setBackground(new Color(59, 89, 182));
+				cancelButton.setForeground(Color.white);
+				
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -103,10 +109,14 @@ public class ConsultarProduto extends JDialog {
 			}
 			{
 				JButton okButton = new JButton("Salvar");
+				
+				okButton.setBackground(new Color(59, 89, 182));
+				okButton.setForeground(Color.white);
+				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int comboSelected = comboBoxProdutos.getSelectedIndex();
-						produtos.get(comboSelected).setEstoque(Integer.parseInt(textField.getText()));
+						if(chckbxAtualizarEstoque.isSelected())	produtos.get(comboSelected).setEstoque(Integer.parseInt(textField.getText()));
 						dispose();
 					}
 				});

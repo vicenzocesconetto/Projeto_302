@@ -22,7 +22,7 @@ public class Funcoes {
 			}
 			input.close();
 		}catch(IOException e) {
-			return null;
+			System.out.println("Erro ao ler as marcas");
 		}
 		
 		try {
@@ -39,9 +39,8 @@ public class Funcoes {
 			}
 			input.close();
 		}catch(IOException e) {
-			return null;
+			System.out.println("Erro ao ler as marcas");
 		}
-		
 		return modelos;
 	}	
 
@@ -84,6 +83,11 @@ public class Funcoes {
 		return sdf.format( new Date( System.currentTimeMillis() ) );
 	}
 	
+	public String dataFormatada(Date data) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(data);
+	}
+	
 	public String horaSistema() {
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		return  sdf.format( new Date( System.currentTimeMillis())) ;
@@ -112,11 +116,14 @@ public class Funcoes {
 	}
 	
 	public boolean produtoCompativel(Produto p, Veiculo veiculo) {
+		if(p.getModelosCompativeis().get(0).getMarca().equals("TODAS")) return true;
 		for(int i=0;i<p.getModelosCompativeis().size();i++) {	
 			if(p.getModelosCompativeis().get(i).getMarca().equals(veiculo.getMarca())) {
 				if(p.getModelosCompativeis().get(i).getModelo().equals(veiculo.getModelo())) {
 					for(int a=0;a<p.getModelosCompativeis().get(i).getPotencias().size();a++) {
-						if(p.getModelosCompativeis().get(i).getPotencias().get(a)==veiculo.getPotencia()) return true;
+						if(p.getModelosCompativeis().get(i).getPotencias().get(a).equals(veiculo.getPotencia())){
+							return true;
+						}
 					}
 				}
 			}
@@ -138,7 +145,8 @@ public class Funcoes {
 		//CALCULA DATA DE RETORNO DO CLIENTE SE FOR O CASO
 				for (int i=0; i<venda.getServicos().size(); i++) {
 					if(venda.getServicos().get(i).isRetorno()) {
-						venda.getCliente().setRetorno(new Retorno(venda, venda.getVeiculos().get(i)));
+						venda.getCliente().setRetorno(new Retorno(venda, venda.getVeiculo()));
+						System.out.println(venda.getCliente().getRetorno().getData());
 					}
 				}
 	}

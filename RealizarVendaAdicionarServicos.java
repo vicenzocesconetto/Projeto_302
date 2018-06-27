@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,16 +19,14 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JComboBox comboBoxServicos;
-	private JComboBox comboBoxCarros;
-	
+
 	public RealizarVendaAdicionarServicos(Venda venda, ArrayList<Servico> servicos){
 		setTitle("Adicionar Servico");
 		contentPanel.setLayout(null);
         setModalityType(DEFAULT_MODALITY_TYPE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 430, 244);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		
 		
 		//DEFINE LABEL: ENTRE COM O NOME
 		JLabel lblEntreComO = new JLabel("Entre com o nome do servico:");
@@ -35,17 +34,14 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 		
 		//DEFINE O COMBOBOX	
 	    comboBoxServicos = new JComboBox();
-	    comboBoxServicos.setBounds(22, 42, 383, 24);
+	    comboBoxServicos.setBounds(23, 42, 383, 24);
 		
-		
-		for(int i=0; i<servicos.size(); i++) {				
-			comboBoxServicos.addItem(servicos.get(i).getNome());
-		}	
+		for(int i=0; i<servicos.size(); i++) comboBoxServicos.addItem(servicos.get(i).getNome());	
        
 		//DEFINE O JTEXT PANE
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
-		textPane.setBounds(12, 78, 416, 72);
+		textPane.setBounds(2, 78, 416, 72);
 	
 		ActionListener comboBoxSelect = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -56,25 +52,13 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 			}
 		};			
 		comboBoxServicos.addActionListener(comboBoxSelect);
-			
-		JLabel lblVeiculo = new JLabel("Veiculo");
-		lblVeiculo.setBounds(12, 162, 70, 15);
 		
-		//DEFINE O COMBOBOX	
-		comboBoxCarros = new JComboBox();
-		comboBoxCarros.setBounds(22, 186, 383, 24);
-		
-		
-		for(int i=0; i<servicos.size(); i++) {				
-			comboBoxCarros.addItem(venda.getCliente().getVeiculos().get(i).getMarca()+" - " + venda.getCliente().getVeiculos().get(i).getModelo()+" - " + venda.getCliente().getVeiculos().get(i).getPotencia() );
-		}	
 		
 		//ADICIONA A TELA
 				contentPanel.add(lblEntreComO);
 				contentPanel.add(comboBoxServicos);
 				contentPanel.add(textPane);
-				contentPanel.add(lblVeiculo);
-				contentPanel.add(comboBoxCarros);
+				
 		
 		//BOTOES
 		{
@@ -85,6 +69,10 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 			//BOTAO CANCELAR
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				
+				cancelButton.setBackground(new Color(59, 89, 182));
+				cancelButton.setForeground(Color.white);
+				
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -96,16 +84,14 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 			//BOTAO ADICIONAR
 			{
 				JButton okButton = new JButton("Adicionar");
+				
+				okButton.setBackground(new Color(59, 89, 182));
+				okButton.setForeground(Color.white);
+				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int comboSelected = comboBoxServicos.getSelectedIndex();
-						
 						venda.addServico(servicos.get(comboSelected));
-						
-						comboSelected = comboBoxCarros.getSelectedIndex();
-						
-						venda.addVeiculo(venda.getCliente().getVeiculos().get(comboSelected));
-						
 						JOptionPane.showMessageDialog(null, "Servico Adicionado", null, JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 					}
@@ -116,5 +102,4 @@ public class RealizarVendaAdicionarServicos extends JDialog {
 			}
 		}
 	}
-
 }

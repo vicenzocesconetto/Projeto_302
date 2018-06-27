@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,9 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class Main {
-
-	public static final int TAMANAHO_DA_JANELA = 500;
-
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		String serFilename = "serializationData.ser";

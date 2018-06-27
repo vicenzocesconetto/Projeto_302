@@ -1,77 +1,81 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class PaginaRetirada extends JFrame implements ActionListener {
+public class PaginaRetirada extends JDialog{
 
-    private JTextField valor;
-    private JTextField motivo;
-    private Empresa empresa;
-    private ArrayList<Cliente> clientes;
-    private ArrayList<Produto> produtos;
-    private ArrayList<Servico> servicos;
-    private Funcionario funcionario;
-
-    public PaginaRetirada(Empresa empresa, ArrayList<Cliente> clientes, ArrayList<Produto> produtos, ArrayList<Servico> servicos, Funcionario funcionario) {
-
-        this.empresa = empresa;
-        this.funcionario = funcionario;
-
-        Container contentPane = getContentPane();
-        JLabel labelValor = new JLabel("Valor");
-        JLabel labelMotivo = new JLabel("Motivo");
+	private final JPanel contentPanel = new JPanel();
+	private JTextField valor;
+	private Funcoes funcoes = new Funcoes();
+   
+    public PaginaRetirada(Empresa empresa) {
+    	setTitle("Fazer Retirada");
+		contentPanel.setLayout(null);
+        setModalityType(DEFAULT_MODALITY_TYPE);
+        setBounds(100, 100, 450, 250);
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+    	
+    	JLabel labelValor = new JLabel("Valor (R$):");
+    	labelValor.setBounds(59, 28, 79, 30);
+    	
+    	JLabel labelMotivo = new JLabel("Motivo:");
+        labelMotivo.setBounds(80, 66, 58, 30);
+        
         valor = new JTextField(10);
-        motivo = new JTextField(10);
+        valor.setBounds(140, 28, 200, 30);
+        
+        JTextArea textArea = new JTextArea();
+        textArea.setWrapStyleWord(true);
+        textArea.setLineWrap(true);
+        textArea.setBounds(140, 66, 200, 79);
+                
+        JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(140, 66, 200, 79);
+        
         JButton retirada = new JButton("Retirar!");
-        JButton voltar = new JButton("Voltar");
-
-        setTitle("Retirada");
-
-        labelValor.setBounds(80, 70, 200, 30);
-        labelMotivo.setBounds(80, 110, 200, 30);
-        valor.setBounds(140, 70, 200, 30);
-        motivo.setBounds(140, 110, 200, 30);
-        retirada.setBounds(150, 160, 100, 30);
-        voltar.setBounds(150, 210, 100, 30);
-
+        retirada.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if(Float.parseFloat(valor.getText())==0) {
+        			JOptionPane.showMessageDialog(null, "Não é possivel retirar R$0!", null, JOptionPane.ERROR_MESSAGE);
+        		}else if(textArea.getText().equals("")){
+        			JOptionPane.showMessageDialog(null, "Preencha o motivo da retirada!", null, JOptionPane.ERROR_MESSAGE);
+        		}else {
+        			if(funcoes.retirarDinheiro(empresa, Float.parseFloat(valor.getText()), textArea.getText())) {
+	        			JOptionPane.showMessageDialog(null, "Retira autorizada", null, JOptionPane.INFORMATION_MESSAGE);
+	        			dispose();
+	        		}else {
+	        			JOptionPane.showMessageDialog(null, "Retira não autorizada!", null, JOptionPane.ERROR_MESSAGE);
+	        		}
+        		}
+        	}
+        });
+        retirada.setBounds(207, 157, 100, 30);
         retirada.setBackground(Color.red);
-        retirada.setForeground(Color.white);
+        retirada.setForeground(Color.white);      
+        
+        JButton voltar = new JButton("Voltar");
+        voltar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        	}
+        });
+        voltar.setBounds(95, 157, 100, 30);
+        voltar.setBackground(new Color(59, 89, 182));
+        voltar.setForeground(Color.white);
+             
+        contentPanel.add(scroll);
+        contentPanel.add(labelValor);
+        contentPanel.add(valor);
+        contentPanel.add(labelMotivo);
+        contentPanel.add(retirada);
+        contentPanel.add(voltar);
+        
+       
 
-        retirada.addActionListener(this);
-        voltar.addActionListener(this);
-
-        contentPane.setLayout(null);
-        contentPane.add(labelValor);
-        contentPane.add(valor);
-        contentPane.add(labelMotivo);
-        contentPane.add(motivo);
-        contentPane.add(retirada);
-        contentPane.add(voltar);
-
-        setSize(Main.TAMANAHO_DA_JANELA, Main.TAMANAHO_DA_JANELA);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        Funcoes biblioteca = new Funcoes();
-        Object source = event.getSource();
-
-        if(source.toString().contains("Retirar")) {
-            if (biblioteca.retirarDinheiro(empresa, Float.parseFloat(valor.getText()), motivo.getText())) {
-                JOptionPane.showMessageDialog(this, "Sucesso!",
-                        "Missao Possivel", JOptionPane.INFORMATION_MESSAGE);
-
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Valor maior que o caixa!",
-                        "Missao Impossivel", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        PaginaCaixa paginaCaixa = new PaginaCaixa(empresa, clientes, produtos, servicos, funcionario);
-        setVisible(false);
-    }
+    } 
 }

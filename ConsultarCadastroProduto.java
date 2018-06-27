@@ -1,7 +1,9 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -9,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -25,10 +28,10 @@ public class ConsultarCadastroProduto extends JDialog {
 	private DecimalFormat df = new DecimalFormat("0.00");
 	
 	public ConsultarCadastroProduto(ArrayList<Produto> produtos) {
-		setTitle("Consultar/Atualizar Estoque de Produtos");
+		setTitle("Consultar/Atualizar Cadastro de Produtos");
 		contentPanel.setLayout(null);
         setModalityType(DEFAULT_MODALITY_TYPE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 450, 342);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
@@ -37,8 +40,8 @@ public class ConsultarCadastroProduto extends JDialog {
 				
 		//DEFINE COMBOBOX
 	    comboBoxProdutos = new JComboBox();
-	    comboBoxProdutos.setBounds(22, 42, 383, 24);
-		
+	    comboBoxProdutos.setBounds(30, 42, 390, 25);
+	    
 		for(int i=0; i<produtos.size(); i++) {				
 			comboBoxProdutos.addItem(produtos.get(i).getNome());
 		}	
@@ -61,7 +64,7 @@ public class ConsultarCadastroProduto extends JDialog {
 		}
 		{
 			textFieldNome = new JTextField();
-			textFieldNome.setBounds(112, 88, 114, 19);
+			textFieldNome.setBounds(112, 88, 150, 19);
 			contentPanel.add(textFieldNome);
 			textFieldNome.setColumns(10);
 		}
@@ -88,18 +91,33 @@ public class ConsultarCadastroProduto extends JDialog {
 			contentPanel.add(textFieldEstMin);
 			textFieldEstMin.setColumns(10);
 		}
+		JLabel lblModelosCompativeis = new JLabel("Modelos Compativeis");
+		lblModelosCompativeis.setBounds(12, 204, 150, 15);
+		contentPanel.add(lblModelosCompativeis);
+		
+		JComboBox comboBoxModelosCom = new JComboBox();
+		comboBoxModelosCom.setBounds(30, 231, 390, 25);
+		contentPanel.add(comboBoxModelosCom);
 		
 		ActionListener comboBoxSelect = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int comboSelected = comboBoxProdutos.getSelectedIndex();
 				
 				textFieldNome.setText(produtos.get(comboSelected).getNome());
-				textFieldValor.setText(df.format(produtos.get(comboSelected).getValor()));
-				textFieldEst.setText(df.format(produtos.get(comboSelected).getEstoque()));
-				textFieldEstMin.setText(df.format(produtos.get(comboSelected).getEstoqueMinimo()));
+				textFieldValor.setText(""+produtos.get(comboSelected).getValor());
+				textFieldEst.setText(""+produtos.get(comboSelected).getEstoque());
+				textFieldEstMin.setText(""+produtos.get(comboSelected).getEstoqueMinimo());
+				
+				for(int i=0; i<produtos.get(comboSelected).getModelosCompativeis().size();i++) {
+					comboBoxModelosCom.addItem(produtos.get(comboSelected).getModelosCompativeis().get(i).getMarca()+" - " + produtos.get(comboSelected).getModelosCompativeis().get(i).getModelo());
+				}
 			}
 		};			
 		comboBoxProdutos.addActionListener(comboBoxSelect);
+		
+		
+		
+		
 		
 		contentPanel.add(lblPesquisa);
 		contentPanel.add(comboBoxProdutos);
@@ -111,16 +129,26 @@ public class ConsultarCadastroProduto extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(new Color(59, 89, 182));
+				cancelButton.setForeground(Color.white);
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 			{
 				JButton okButton = new JButton("Salvar");
+				okButton.setBackground(new Color(59, 89, 182));
+				okButton.setForeground(Color.white);
+				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int comboSelected = comboBoxProdutos.getSelectedIndex();
 						produtos.get(comboSelected).setNome(textFieldNome.getText());
-						produtos.get(comboSelected).setValor(Float.parseFloat(textFieldValor.getText()));
+						produtos.get(comboSelected).setValor( Float.parseFloat(textFieldValor.getText()) );
 						produtos.get(comboSelected).setEstoque(Integer.parseInt(textFieldEst.getText()));
 						produtos.get(comboSelected).setEstoqueMinimo(Integer.parseInt(textFieldEstMin.getText()));
 						dispose();

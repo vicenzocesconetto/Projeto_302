@@ -4,26 +4,27 @@ public class FuncoesPrint {
 	Funcoes funcoes = new Funcoes();
 	
 	public String imprimeEncerrante(Empresa empresa, Funcionario f){
-	       String  str = funcoes.dataHojeBarra() + " - " + funcoes.horaSistema()+"\n";
-	       str += "Funcionario: " + f.getNome()+"\n";
-	       
-	       for (int i=0;i<empresa.getMovimentacoes().size();i++) {
-				if(empresa.getMovimentacoes().get(i) instanceof Entrada) {
-					Entrada e = (Entrada)empresa.getMovimentacoes().get(i);
+		DecimalFormat df = new DecimalFormat("0.00");
+	    String  str = funcoes.dataHojeBarra() + " - " + funcoes.horaSistema()+"\n";
+	    str += "Funcionario: " + f.getNome()+"\n";
+       
+	    for (int i=0;i<empresa.getMovimentacoes().size();i++) {
+	    	if(empresa.getMovimentacoes().get(i) instanceof Entrada) {
+				Entrada e = (Entrada)empresa.getMovimentacoes().get(i);
+				str += "-------------------------------------\n";
+				str += "Entrada!\n";
+				str += "Valor: R$" + df.format(e.getValor())+"\n";
+				str += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
+			}else {
+				Retirada r = (Retirada)empresa.getMovimentacoes().get(i);
 					str += "-------------------------------------\n";
-					str += "Entrada!\n";
-					str += "Valor: R$" + e.getValor()+"\n";
-					str += "Forma de pagamento: " + e.getFormaPagamento()+"\n";	
-				}else {
-					Retirada r = (Retirada)empresa.getMovimentacoes().get(i);
-						str += "-------------------------------------\n";
-						str += "Retirada!\n";
-						str += "Valor: R$" + r.getValor()+"\n";
-						str += "Motivo: " + r.getMotivo()+"\n";	
-					}
+					str += "Retirada!\n";
+					str += "Valor: R$" + df.format(r.getValor())+"\n";
+					str += "Motivo: " + r.getMotivo()+"\n";	
 				}
-	        return str;
-	   }
+			}
+        return str;
+   }
 		
 		public String printDadosCliente(Cliente cliente) {
 			if (cliente == null) return "Cliente nao encontrado!";

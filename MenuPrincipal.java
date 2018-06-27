@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -13,22 +14,12 @@ import java.util.ArrayList;
 public class MenuPrincipal extends JFrame implements ActionListener {
 
 	String serFilename = "serializationData.ser";
-    private Empresa empresa;
-    private ArrayList<Cliente> clientes;
-    private ArrayList<Produto> produtos;
-    private ArrayList<Servico> servicos;
     private Funcionario funcionario;
 
+    
     public MenuPrincipal(Empresa empresa, ArrayList<Cliente> clientes, ArrayList<Produto> produtos, ArrayList<Servico> servicos, Funcionario funcionario) {
-
-        this.empresa = empresa;
-        this.clientes = clientes;
-        this.produtos = produtos;
-        this.servicos = servicos;
-        this.funcionario = funcionario;
-        
-        Funcoes funcoes = new Funcoes();
-
+    	Container contentPane = getContentPane();
+    	
         JButton[] botoes = new JButton[9];
 
     	botoes[0] = new JButton("Realizar venda");
@@ -41,7 +32,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         botoes[7] = new JButton("Consultar/Atualizar Cliente/Produto/Servico");
         botoes[8] = new JButton("Sair do sistema");
 
-        Container contentPane = getContentPane();
+        
         contentPane.setLayout(new FlowLayout());
 
         for(int i = 0; i < 9; ++i) {
@@ -110,8 +101,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
     			}
     		}
+            setVisible(false);
         }
-        setVisible(false);
     }
     
     

@@ -56,6 +56,10 @@ public class Produto implements Serializable {
 	public void addModeloCompativel(Compatibilidade novo) {
 		this.modelosCompativeis.add(novo);
 	}
+	
+	public void setModelo() {
+		this.modelosCompativeis=null;
+	}
 
 	//GETTERS E SETTER PADROES
 	public float getValor() {

@@ -1,13 +1,18 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 
 public class CadastroCliente extends JDialog {
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel contentPanel = new JPanel();
+	
 	private JTextField textNome;
 	private JTextField textTelefone;
 	private JTextField textEmail;
@@ -16,303 +21,171 @@ public class CadastroCliente extends JDialog {
 	private JTextField textCidade;
 	private JTextField textEstado;
 	private JTextField textNumero;
-	private JTextField textPotencia;
-	private JTextField textPlaca;
-	private JTextField textAnoFabricacao;
-	private JTextField textAnoModelo;
-	private JTextField textQuilometragem;
+	
 	private JComboBox comboBoxTipo;
-	private JComboBox comboBoxMarca;
-	private JComboBox comboBoxModelo;
-	private ArrayList<JTextField> textVeiculos; 
-	private ArrayList<Veiculo> clienteVeiculos;
-	private ArrayList<Cliente> clientes;
-
-	public CadastroCliente(ArrayList<Cliente> clientes, ArrayList<Modelos> marcas) {
-		setTitle("CADASTRO CLIENTE");
-		this.clientes = clientes;
-		this.textVeiculos = new ArrayList<JTextField>();
-		this.clienteVeiculos = new ArrayList<Veiculo>();
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 603, 441);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-						
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	private JComboBox comboBoxVeiculos;
+	
+	private ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(5, 130, 424, 0);
-		contentPane.add(lblNewLabel);
+	public CadastroCliente(ArrayList<Cliente> clientes) {
+		
+		setTitle("Cadastrar Cliente");
+        setModalityType(DEFAULT_MODALITY_TYPE);
+        setBounds(100, 100, 350, 530);
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		
+		JLabel lblInformacoesPessoais = new JLabel("INFORMACOES PESSOAIS");
+		lblInformacoesPessoais.setBounds(79, 15, 192, 14);
+		contentPanel.add(lblInformacoesPessoais);
 		
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(5, 40, 60, 29);
-		contentPane.add(lblNome);
+		lblNome.setBounds(58, 48, 50, 15);
+		contentPanel.add(lblNome);
 		
 		textNome = new JTextField();
+		textNome.setBounds(114, 45, 180, 20);
 		lblNome.setLabelFor(textNome);
-		textNome.setBounds(80, 45, 146, 20);
-		contentPane.add(textNome);
+		contentPanel.add(textNome);
 		textNome.setColumns(10);
 		
 		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(5, 75, 79, 14);
-		contentPane.add(lblTelefone);
+		lblTelefone.setBounds(38, 76, 70, 15);
+		contentPanel.add(lblTelefone);
 		
 		textTelefone = new JTextField();
+		textTelefone.setBounds(114, 73, 146, 20);
 		lblTelefone.setLabelFor(textTelefone);
 		textTelefone.setColumns(10);
-		textTelefone.setBounds(80, 75, 146, 20);
-		contentPane.add(textTelefone);
+		contentPanel.add(textTelefone);
 		
 		JLabel lblEmail = new JLabel("e-mail: ");
-		lblEmail.setBounds(5, 104, 65, 14);
-		contentPane.add(lblEmail);
+		lblEmail.setBounds(55, 104, 53, 15);
+		contentPanel.add(lblEmail);
 		
 		textEmail = new JTextField();
+		textEmail.setBounds(114, 101, 180, 20);
 		lblEmail.setLabelFor(textEmail);
 		textEmail.setColumns(10);
-		textEmail.setBounds(80, 101, 146, 20);
-		contentPane.add(textEmail);
-		
-		JLabel lblRua = new JLabel("Rua:");
-		lblRua.setLabelFor(textEmail);
-		lblRua.setBounds(5, 173, 65, 14);
-		contentPane.add(lblRua);
-		
-		textRua = new JTextField();
-		textRua.setColumns(10);
-		textRua.setBounds(80, 170, 146, 20);
-		contentPane.add(textRua);
-		
-		JLabel lblNumero = new JLabel("Numero:");
-		lblNumero.setBounds(5, 198, 65, 14);
-		contentPane.add(lblNumero);
-		
-		textNumero = new JTextField();
-		textNumero.setColumns(10);
-		textNumero.setBounds(80, 195, 50, 20);
-		contentPane.add(textNumero);
+		contentPanel.add(textEmail);
 		
 		JLabel lblEndereo = new JLabel("ENDERECO");
-		lblEndereo.setBounds(5, 141, 103, 14);
-		contentPane.add(lblEndereo);
+		lblEndereo.setBounds(123, 141, 103, 14);
+		contentPanel.add(lblEndereo);
 		
-		JLabel lblInformacoesPessoais = new JLabel("INFORMACOES PESSOAIS");
-		lblInformacoesPessoais.setBounds(5, 15, 192, 14);
-		contentPane.add(lblInformacoesPessoais);
+		JLabel lblRua = new JLabel("Rua:");
+		lblRua.setBounds(76, 173, 32, 15);
+		lblRua.setLabelFor(textEmail);
+		contentPanel.add(lblRua);
+		
+		textRua = new JTextField();
+		textRua.setBounds(114, 170, 146, 20);
+		textRua.setColumns(10);
+		contentPanel.add(textRua);
+		
+		JLabel lblNumero = new JLabel("Numero:");
+		lblNumero.setBounds(48, 199, 60, 15);
+		contentPanel.add(lblNumero);
+		
+		textNumero = new JTextField();
+		textNumero.setBounds(114, 196, 50, 20);
+		textNumero.setColumns(10);
+		contentPanel.add(textNumero);
 		
 		JLabel lblBairro = new JLabel("Bairro: ");
-		lblBairro.setBounds(5, 223, 65, 14);
-		contentPane.add(lblBairro);
+		lblBairro.setBounds(58, 225, 52, 15);
+		contentPanel.add(lblBairro);
 		
 		textBairro = new JTextField();
+		textBairro.setBounds(114, 222, 146, 20);
 		textBairro.setColumns(10);
-		textBairro.setBounds(80, 220, 146, 20);
-		contentPane.add(textBairro);
+		contentPanel.add(textBairro);
 		
 		JLabel lblCidade = new JLabel("Cidade:");
-		lblCidade.setBounds(5, 248, 65, 14);
-		contentPane.add(lblCidade);
+		lblCidade.setBounds(53, 251, 55, 15);
+		contentPanel.add(lblCidade);
 		
 		textCidade = new JTextField();
+		textCidade.setBounds(114, 248, 146, 20);
 		textCidade.setColumns(10);
-		textCidade.setBounds(80, 245, 146, 20);
-		contentPane.add(textCidade);
+		contentPanel.add(textCidade);
 		
 		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(5, 274, 60, 20);
-		contentPane.add(lblEstado);
+		lblEstado.setBounds(53, 277, 55, 15);
+		contentPanel.add(lblEstado);
 		
 		textEstado = new JTextField();
+		textEstado.setBounds(114, 274, 100, 20);
 		textEstado.setColumns(10);
-		textEstado.setBounds(80, 274, 146, 20);
-		contentPane.add(textEstado);
+		contentPanel.add(textEstado);
 		
-		JButton btnAdicionarCliente = new JButton("ADICIONAR CLIENTE");
-		
-		btnAdicionarCliente.setBounds(5, 314, 296, 79);
-		contentPane.add(btnAdicionarCliente);
-		btnAdicionarCliente.addActionListener(new AdicionaCliente());
-		JLabel lblVeiculos = new JLabel("VEICULO");
-		lblVeiculos.setBounds(276, 15, 103, 14);
-		contentPane.add(lblVeiculos);
-		
-		JLabel lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(276, 40, 60, 29);
-		contentPane.add(lblMarca);
-	
-		comboBoxMarca = new JComboBox();
-		comboBoxMarca.setBounds(362, 44, 146, 20);
-		contentPane.add(comboBoxMarca);
-		
-		for(int i=0; i<marcas.size(); i++) {				
-			comboBoxMarca.addItem(marcas.get(i).getNome());
-		}	
-
-		JLabel lblModelo = new JLabel("Modelo:");
-		lblModelo.setBounds(276, 68, 60, 29);
-		contentPane.add(lblModelo);
-	
-		comboBoxModelo = new JComboBox();
-		comboBoxModelo.setBounds(362, 72, 146, 20);
-		contentPane.add(comboBoxModelo);
-		
-		for(int i=0; i<=marcas.get(0).getModelos().size(); i++) {
-			if(comboBoxMarca.getSelectedItem().equals(marcas.get(i).getNome())) {
-				for(int a=0;a<marcas.get(i).getModelos().size();a++) {
-					comboBoxModelo.addItem(marcas.get(i).getModelos().get(a));
-				}
-			}
-		}	
-		
-		ActionListener comboBoxSelect = new ActionListener() {
+		JButton btnAdicionarCliente = new JButton("Adicionar Cliente");
+		btnAdicionarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int comboSelected = comboBoxMarca.getSelectedIndex();
-				ArrayList<String> modelosMarca = marcas.get(comboSelected).getModelos();
-				DefaultComboBoxModel model = new DefaultComboBoxModel();//Cria um novo model de listaMunicipio
-				model.removeAllElements(); //Remove todos elementos
+				try {
+				Cliente clienteNovo = new Cliente(textNome.getText(), textTelefone.getText(), textEmail.getText(), new Endereco(textRua.getText(), textNumero.getText(), textBairro.getText(), textCidade.getText(), textEstado.getText()));
+				if(veiculos.size()>0) for(int i=0; i<veiculos.size(); i++) clienteNovo.addVeiculo(veiculos.get(i));
+				clientes.add(clienteNovo);
+				JOptionPane.showMessageDialog(null, "Cliente Cadastrado!", null, JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+				}catch(Exception erro) {
+					JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente!", null, JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		btnAdicionarCliente.setBounds(75, 413, 200, 40);
+		btnAdicionarCliente.setBackground(new Color(59, 89, 182));
+		btnAdicionarCliente.setForeground(Color.white);
+		contentPanel.add(btnAdicionarCliente);
+		
+		//DEFINE O COMBOBOX	
+		comboBoxVeiculos = new JComboBox();
+		comboBoxVeiculos.setBounds(9, 330, 326, 24);
+		contentPanel.add(comboBoxVeiculos);
 				
-				for(Object obj: modelosMarca){ //Para cada Objeto add
-					model.addElement(obj);						
-				}
-				comboBoxModelo.setModel(model); //Set o modelo na comboBox 
+		JLabel lblVeiculos = new JLabel("Veiculos");
+		lblVeiculos.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblVeiculos.setBounds(12, 304, 96, 22);
+		contentPanel.add(lblVeiculos);
+		
+		JButton btnCadastrarVeiculo = new JButton("Cadastrar Veiculo");
+		btnCadastrarVeiculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CadastroVeiculo cVeiculo = new CadastroVeiculo(veiculos);
+				cVeiculo.setVisible(true);
+				comboBoxVeiculos.removeAllItems();
+				for(int i=0; i<veiculos.size(); i++) {
+					comboBoxVeiculos.addItem(veiculos.get(i).getMarca()+" - " + veiculos.get(i).getModelo()+" - " + veiculos.get(i).getPotencia());
+				}				
 			}
-		};			
-		comboBoxMarca.addActionListener(comboBoxSelect);
-	
-		JLabel lblPotencia = new JLabel("Potencia:");
-		lblPotencia.setBounds(276, 95, 79, 29);
-		contentPane.add(lblPotencia);
+		});
+		btnCadastrarVeiculo.setForeground(Color.WHITE);
+		btnCadastrarVeiculo.setBackground(new Color(59, 89, 182));
+		btnCadastrarVeiculo.setBounds(75, 366, 200, 40);
+		contentPanel.add(btnCadastrarVeiculo);
 		
-		textPotencia = new JTextField();
-		textPotencia.setColumns(10);
-		textPotencia.setBounds(362, 99, 50, 20);
-		contentPane.add(textPotencia);
-		
-		JLabel lblPlaca = new JLabel("Placa:");
-		lblPlaca.setBounds(276, 130, 60, 20);
-		contentPane.add(lblPlaca);
-		
-		textPlaca = new JTextField();
-		textPlaca.setColumns(10);
-		textPlaca.setBounds(362, 130, 146, 20);
-		contentPane.add(textPlaca);
-		
-		JLabel lblAnoFabricacao = new JLabel("Ano de Fabricacao:");
-		lblAnoFabricacao.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblAnoFabricacao.setBounds(276, 153, 97, 20);
-		contentPane.add(lblAnoFabricacao);
-		
-		textAnoFabricacao = new JTextField();
-		textAnoFabricacao.setColumns(10);
-		textAnoFabricacao.setBounds(383, 153, 125, 20);
-		contentPane.add(textAnoFabricacao);
-		
-		JLabel lblAnoDeModelo = new JLabel("Ano de Modelo:");
-		lblAnoDeModelo.setBounds(276, 181, 97, 20);
-		contentPane.add(lblAnoDeModelo);
-		
-		textAnoModelo = new JTextField();
-		textAnoModelo.setColumns(10);
-		textAnoModelo.setBounds(362, 181, 146, 20);
-		contentPane.add(textAnoModelo);
-		
-		JLabel lblQuilometragem = new JLabel("Quilometragem:");
-		lblQuilometragem.setBounds(276, 212, 97, 20);
-		contentPane.add(lblQuilometragem);
-		
-		textQuilometragem = new JTextField();
-		textQuilometragem.setColumns(10);
-		textQuilometragem.setBounds(362, 212, 146, 20);
-		
-		contentPane.add(textQuilometragem);
-		
-		textVeiculos.add(textPotencia);
-		textVeiculos.add(textPlaca);
-		textVeiculos.add(textAnoFabricacao);
-		textVeiculos.add(textAnoModelo);
-		textVeiculos.add(textQuilometragem);
-		
-		JButton btnAdicionarVeiculo = new JButton("ADICIONAR VEICULO");
-		comboBoxTipo = new JComboBox();
-		comboBoxTipo.setBounds(372, 244, 136, 29);
-		contentPane.add(comboBoxTipo);
-		comboBoxTipo.addItem(TipoVeiculo.CARRO);
-		comboBoxTipo.addItem(TipoVeiculo.CAMINHAO);
-		comboBoxTipo.addItem(TipoVeiculo.MOTO);
-		
-		btnAdicionarVeiculo.addActionListener(new AdicionaVeiculo());
-		
-		btnAdicionarVeiculo.setBounds(307, 314, 270, 79);
-		contentPane.add(btnAdicionarVeiculo);
-		
-		JLabel lblTipo = new JLabel("TIPO:");
-		lblTipo.setBounds(324, 244, 49, 28);
-		contentPane.add(lblTipo);
-		this.setVisible(true);
-	}
-	
-	private class AdicionaVeiculo implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			try {
-				for (int i = 0; i<textVeiculos.size(); i++) {
-					if (textVeiculos.get(i).getText().equals("")) throw new Exception("Nenhum campo pode estar vazio"); 
-				}
-			}catch(Exception ex) {	
-				JOptionPane.showMessageDialog(null,ex.toString(), null, JOptionPane.ERROR_MESSAGE);
-				return;
-			}
+		//BOTOES
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
-			try {
-				 clienteVeiculos.add(new Veiculo((TipoVeiculo)comboBoxTipo.getSelectedItem(), (String) comboBoxMarca.getSelectedItem(), (String) comboBoxMarca.getSelectedItem(), textPlaca.getText(), 
-						Integer.parseInt(textAnoFabricacao.getText()), Integer.parseInt(textAnoModelo.getText()), Integer.parseInt(textQuilometragem.getText()), Float.parseFloat(textPotencia.getText())));
-			}catch(NumberFormatException ex) {
-				JOptionPane.showMessageDialog(null, ex.toString(), null, JOptionPane.ERROR_MESSAGE);
-				return;
-			}catch(Exception ex) {
-				JOptionPane.showMessageDialog(null,ex.toString(), null, JOptionPane.ERROR_MESSAGE);
-				return;
+			//BOTAO CANCELAR
+			{
+				JButton cancelButton = new JButton("Cancelar");
+				
+				cancelButton.setBackground(new Color(59, 89, 182));
+				cancelButton.setForeground(Color.white);				
+				
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
 			}
-			JOptionPane.showMessageDialog(null, "VEICULO ADICIONADO COM SUCESSO",  null, JOptionPane.INFORMATION_MESSAGE);
-			for (int i = 0; i<textVeiculos.size(); i++) {
-				textVeiculos.get(i).setText(""); 
-			}
-
-		}	
-	}
-	
-	private class AdicionaCliente implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			if (textNome.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "O campo NOME nao pode estar vazio", null, JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-			Cliente c = new Cliente(textNome.getText(), textTelefone.getText(), textEmail.getText(),
-					new Endereco(textRua.getText(), textNumero.getText(), textBairro.getText(), 
-					textCidade.getText(), textEstado.getText()));
-			for (int i = 0; i<clienteVeiculos.size(); i++) {
-				c.addVeiculo(clienteVeiculos.get(i));
-			}
-			clienteVeiculos = new ArrayList<Veiculo>();
-			clientes.add(c);
-			JOptionPane.showMessageDialog(null, "CLIENTE ADICIONADO COM SUCESSO",  null, JOptionPane.INFORMATION_MESSAGE);
-			textNome.setText("");
-			textRua.setText("");
-			textNumero.setText("");
-			textEstado.setText("");
-			textCidade.setText("");
-			textEmail.setText("");
-			textTelefone.setText("");
-			textBairro.setText("");
 		}
 	}
 }
-
-
-
-
-
-

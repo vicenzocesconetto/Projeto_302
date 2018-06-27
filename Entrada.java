@@ -1,3 +1,4 @@
+
 public class Entrada extends Movimentacao implements PrettyPrint{
 	private FormaPagamento formaPagamento;
 

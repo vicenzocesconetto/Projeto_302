@@ -1,3 +1,4 @@
+
 public class Retirada extends Movimentacao implements PrettyPrint{
 	private String motivo;
 
