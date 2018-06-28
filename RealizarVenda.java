@@ -71,7 +71,7 @@ public class RealizarVenda extends JDialog {
 						str += "\tCidade: " + clientes.get(comboSelected).getEndereco().getCidade();
 						str += "\tUF: " + clientes.get(comboSelected).getEndereco().getUf() + "\n"; 
 				textPane.setText(str);
-				
+				comboBoxCarros.removeAllItems();
 				for(int i=0; i<clientes.get(comboSelected).getVeiculos().size(); i++) {
 					comboBoxCarros.addItem(clientes.get(comboSelected).getVeiculos().get(i).getMarca()+" - " + clientes.get(comboSelected).getVeiculos().get(i).getModelo()+" - " + clientes.get(comboSelected).getVeiculos().get(i).getPotencia() );
 				}

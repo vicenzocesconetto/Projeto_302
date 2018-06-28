@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Compatibilidade {
+public class Compatibilidade implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String modelo;
 	private String marca;
 	private ArrayList<Float> potencias;

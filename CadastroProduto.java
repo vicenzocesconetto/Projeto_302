@@ -30,9 +30,9 @@ public class CadastroProduto extends JDialog {
 	
 	private Funcoes funcoes = new Funcoes();
 	
-	private ArrayList<Modelos> carros = funcoes.carregaModelos("/home/greenseiya/eclipse-workspace/Oficina/src/dados/marcas-carros.txt", "/home/greenseiya/eclipse-workspace/Oficina/src/dados/modelos-carro.txt");
-	private ArrayList<Modelos> motos = funcoes.carregaModelos("/home/greenseiya/eclipse-workspace/Oficina/src/dados/marcas-motos.txt", "/home/greenseiya/eclipse-workspace/Oficina/src/dados/modelos-moto.txt");
-	private ArrayList<Modelos> caminhoes = funcoes.carregaModelos("/home/greenseiya/eclipse-workspace/Oficina/src/dados/marcas-caminhao.txt", "/home/greenseiya/eclipse-workspace/Oficina/src/dados/modelos-caminhao.txt");
+	private ArrayList<Modelos> carros = funcoes.carregaModelos("dados/marcas-carros.txt", "dados/modelos-carro.txt");
+	private ArrayList<Modelos> motos = funcoes.carregaModelos("dados/marcas-motos.txt", "dados/modelos-moto.txt");
+	private ArrayList<Modelos> caminhoes = funcoes.carregaModelos("dados/marcas-caminhao.txt", "dados/modelos-caminhao.txt");
 	
 	private ArrayList<Modelos> modelos;
 	
@@ -294,7 +294,7 @@ public class CadastroProduto extends JDialog {
 					}
 				}
 				try{
-					Produto p = new Produto(Integer.parseInt(textEstoqueMinimo.getText()), Integer.parseInt(textEstoque.getText()), Float.parseFloat(textEstoqueMinimo.getText()), textNome.getText());
+					Produto p = new Produto(Integer.parseInt(textEstoqueMinimo.getText()), Integer.parseInt(textEstoque.getText()), Float.parseFloat(textValor.getText()), textNome.getText());
 					if(textRendimento.getText().equals("")) {
 						p.setRendimento(Integer.parseInt(textRendimento.getText()));
 					}

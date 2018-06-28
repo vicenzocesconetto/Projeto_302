@@ -145,7 +145,6 @@ public class Funcoes {
 				for (int i=0; i<venda.getServicos().size(); i++) {
 					if(venda.getServicos().get(i).isRetorno()) {
 						venda.getCliente().setRetorno(new Retorno(venda, venda.getVeiculo()));
-						System.out.println(venda.getCliente().getRetorno().getData());
 					}
 				}
 	}

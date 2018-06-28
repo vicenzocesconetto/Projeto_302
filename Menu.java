@@ -158,7 +158,6 @@ public class Menu extends JDialog {
 	    			out.writeObject(servicos);
 	    			out.writeObject(empresa);
 	    			out.flush();
-	    			System.out.println("BATATA");
 	    		}catch(IOException ex) {
 
 	    		}finally {
@@ -168,8 +167,8 @@ public class Menu extends JDialog {
 
 	    			}
 	    		}
-	            setVisible(false);
-				dispose();
+	            		dispose();
+				System.exit(0);
 			}
 		});
 		btnSair.setBackground(new Color(59, 89, 182));
