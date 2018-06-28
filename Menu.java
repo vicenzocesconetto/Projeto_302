@@ -177,7 +177,7 @@ public class Menu extends JDialog {
 		
 		btnSair.setBounds(25, 658, 400, 50);
 		contentPanel.add(btnSair);
-		
+		setLocationRelativeTo(null);
 		
 
 	}

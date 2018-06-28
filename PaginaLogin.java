@@ -60,5 +60,6 @@ public class PaginaLogin extends JFrame{
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 500);
+	setLocationRelativeTo(null);
     }
 }
