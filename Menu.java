@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 public class Menu extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	String serFilename = "serializationData.ser";
+	String serFilename = "serialization.ser";
     private Funcoes funcoes = new Funcoes();
 	
 	public Menu(Empresa empresa, ArrayList<Cliente> clientes, ArrayList<Produto> produtos, ArrayList<Servico> servicos, Funcionario funcionario){
@@ -150,6 +150,25 @@ public class Menu extends JDialog {
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ObjectOutputStream out = null; //serializacao
+	    		try {
+	    			out = new ObjectOutputStream(new FileOutputStream(serFilename));
+	    			out.writeObject(clientes);
+	    			out.writeObject(produtos);
+	    			out.writeObject(servicos);
+	    			out.writeObject(empresa);
+	    			out.flush();
+	    			System.out.println("BATATA");
+	    		}catch(IOException ex) {
+
+	    		}finally {
+	    			try {
+	    				out.close();
+	    			}catch (IOException ex) {
+
+	    			}
+	    		}
+	            setVisible(false);
 				dispose();
 			}
 		});
