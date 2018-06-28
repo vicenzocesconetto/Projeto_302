@@ -206,11 +206,11 @@ public class CadastroProduto extends JDialog {
 		});
 		
 		JLabel lblModelosCompativeis = new JLabel("Modelos Compativeis");
-		lblModelosCompativeis.setBounds(5, 462, 150, 15);
+		lblModelosCompativeis.setBounds(5, 468, 150, 15);
 		contentPanel.add(lblModelosCompativeis);
 		
 		JComboBox comboBoxModelosCom = new JComboBox();
-		comboBoxModelosCom.setBounds(18, 484, 300, 24);
+		comboBoxModelosCom.setBounds(18, 490, 300, 24);
 		contentPanel.add(comboBoxModelosCom);
 		
 		//POTENCIAS
@@ -257,28 +257,25 @@ public class CadastroProduto extends JDialog {
 				ArrayList<Float> potencias = new ArrayList<Float>();
 				try {
 					int k = 0;
-					
-					if(comboBoxMarca.getSelectedItem().equals("TODAS")) k=10;
-					else{
 						for (int i = 0; i<checkBoxPots.size(); i++) {
 							if (checkBoxPots.get(i).isSelected()) {
 								potencias.add(Float.parseFloat(checkBoxPots.get(i).getText()));
 								k++;
 							}
 						}
-					}
 					if (k == 0)	JOptionPane.showMessageDialog(null, "Voce deve selecionar pelo menos uma potencia", null, JOptionPane.ERROR_MESSAGE);
-					
+					else {
 					produtosModelosCompativeis.add(new Compatibilidade(comboBoxModelo.getSelectedItem().toString(), comboBoxMarca.getSelectedItem().toString(),potencias));
 					comboBoxModelosCom.removeAllItems();
 					for(int i=0; i<produtosModelosCompativeis.size(); i++) comboBoxModelosCom.addItem(produtosModelosCompativeis.get(i).getMarca()+" - " + produtosModelosCompativeis.get(i).getModelo());
+					}
 				}catch(Exception ex) {
 					JOptionPane.showMessageDialog(null,ex.toString(), null, JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 			}
 			});
-		btnNewButton.setBounds(80, 425, 175, 25);
+		btnNewButton.setBounds(80, 430, 175, 25);
 		contentPanel.add(btnNewButton);
 
 		JButton btnAdicionarProduto = new JButton("Adicionar Produto");

@@ -116,7 +116,6 @@ public class Funcoes {
 	}
 	
 	public boolean produtoCompativel(Produto p, Veiculo veiculo) {
-		if(p.getModelosCompativeis().get(0).getMarca().equals("TODAS")) return true;
 		for(int i=0;i<p.getModelosCompativeis().size();i++) {	
 			if(p.getModelosCompativeis().get(i).getMarca().equals(veiculo.getMarca())) {
 				if(p.getModelosCompativeis().get(i).getModelo().equals(veiculo.getModelo())) {
